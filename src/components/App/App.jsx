@@ -1,7 +1,10 @@
 import React from 'react';
-// import logo from './logo.svg';
 import './App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from '../Home/Home';
+import Header from '../Header/Header';
+import Welcome from '../Welcome/Welcome';
+import Game from '../Game/Game';
 // import { Router, Route, Switch } from "react-router";
 
 
@@ -12,12 +15,13 @@ const App = () => {
   //Game page
 
   return (
-
     <div className="App">
       <Router>
-        HEADER
+        <Header />
         <Switch>
-          {/* <Route exact path="/" component={Home} /> */}
+          <Route exact path="/" component={Home} />
+          <Route exact path="/welcome" component={Welcome} />
+          <Route exact path="/game" component={Game} />
         </Switch>
       </Router>
     </div>
