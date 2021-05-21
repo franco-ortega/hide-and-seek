@@ -24,7 +24,7 @@ const Home = ({ setPlayer }) => {
     <main className={styles.Home}>
       <h2>Home Page!</h2>
       <section>
-        <p>This is a Hide & Seek game. Enter your name and click on the Begin button to proceed.</p>
+        <p>This is a Hide & Seek game. Enter your name and click on the button to proceed.</p>
         <form onSubmit={onPlayerSubmit}>
           <label htmlFor="name">
             Name: <input
@@ -33,7 +33,7 @@ const Home = ({ setPlayer }) => {
               placeholder="Name"
               onChange={onPlayerChange} />
           </label>
-          <button>Click to Begin</button>
+          <button>Click to Proceed</button>
         </form>
       </section>
     </main>
