@@ -1,6 +1,8 @@
+@import '../App/AppGeneralStyles.scss';
+
 .Welcome {
     border: pink solid 1vw;
-    height: 80vh;
+    height: $body-height;
     text-align: center;
     display: flex;
     flex-direction: column;
