@@ -18,10 +18,10 @@ const Header = ({ gameActive, player, playerScore, computerScore }) => {
 };
 
 Header.propTypes = {
-  gameActive: PropTypes.string.isRequired,
+  gameActive: PropTypes.bool.isRequired,
   player: PropTypes.string.isRequired,
-  playerScore: PropTypes.func.isRequired,
-  computerScore: PropTypes.func.isRequired
+  playerScore: PropTypes.number.isRequired,
+  computerScore: PropTypes.number.isRequired
 };
 
 export default Header;
