@@ -2,4 +2,16 @@
     border: pink solid 1vw;
     height: 80vh;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    section {
+        background: lightgreen;
+        width: 75%;
+
+        p {
+            text-align: left;
+        }
+    }
 }

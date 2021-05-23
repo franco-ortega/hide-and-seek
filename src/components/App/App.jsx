@@ -10,16 +10,27 @@ import Game from '../Game/Game';
 
 const App = () => {
   const [player, setPlayer] = useState('');
-  
+  const [gameActive, setGameActive] = useState(false);
 
   return (
     <div className="App">
       <Router>
-        <Header player={player} />
+        <Header player={player} gameActive={gameActive} />
         <Switch>
-          <Route exact path="/" render={() => <Home setPlayer={setPlayer} />} />
-          <Route exact path="/welcome" render={() => <Welcome player={player} />} />
-          <Route exact path="/game" component={Game} />
+          <Route
+            exact path="/"
+            render={() => <Home setPlayer={setPlayer} />} />
+          <Route
+            exact path="/welcome"
+            render={() => <Welcome 
+              player={player}
+              gameActive={gameActive}
+              setGameActive={setGameActive}/>} />
+          <Route
+            exact path="/game"
+            render={() => <Game
+              gameActive={gameActive}
+              setGameActive={setGameActive}/>} />
         </Switch>
       </Router>
     </div>

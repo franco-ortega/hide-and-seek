@@ -1,7 +1,7 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import styles from './Home.module.scss';
-import { useHistory } from 'react-router';
 
 const Home = ({ setPlayer }) => {
   let history = useHistory();
@@ -15,7 +15,7 @@ const Home = ({ setPlayer }) => {
 
   const onPlayerSubmit = (e) => {
     e.preventDefault();
-    console.log('Clicked!');
+    console.log('Player Submit Clicked!');
     setPlayer(playerObject.player);
     history.push('/welcome');
   };
