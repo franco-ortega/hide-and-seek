@@ -7,12 +7,12 @@ const Header = ({ gameActive, player, playerScore, computerScore }) => {
   return (
     <header className={styles.Header}>
       <h1>Hide & Seek</h1>
-      <p>{gameActive && <Scoreboard
+      <div>{gameActive && <Scoreboard
         player={player}
         playerScore={playerScore}
         computerScore={computerScore}
       />}
-      </p>
+      </div>
     </header>
   );
 };

@@ -41,7 +41,9 @@ const App = () => {
               gameActive={gameActive}
               setGameActive={setGameActive}
               setPlayerScore={setPlayerScore}
-              setComputerScore={setComputerScore}/>}
+              setComputerScore={setComputerScore}
+              playerScore={playerScore}
+              computerScore={computerScore}/>}
           />
         </Switch>
       </Router>

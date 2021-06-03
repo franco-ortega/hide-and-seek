@@ -7,9 +7,10 @@ const Welcome = ({ player, gameActive, setGameActive }) => {
   let history = useHistory();
 
   console.log(gameActive);
-  console.log('Start Game Clicked!');
+  
 
   const onStartGameClick = () => {
+    console.log('Start Game Clicked!');
     setGameActive(true);
     history.push('/game');
   };
