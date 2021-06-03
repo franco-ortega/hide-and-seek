@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Header.module.scss';
-import Scoreboard from '../../Scoreboard/Scoreboard';
+import Scoreboard from '../Scoreboard/Scoreboard';
 
 const Header = ({ gameActive, player, playerScore, computerScore }) => {
   return (
