@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import Home from '../Home/Home';
 import Welcome from '../Welcome/Welcome';
 import Game from '../Game/Game';
+import Results from '../Results/Results';
 // import { Router, Route, Switch } from "react-router";
 
 
@@ -42,6 +43,16 @@ const App = () => {
               setGameActive={setGameActive}
               setPlayerScore={setPlayerScore}
               setComputerScore={setComputerScore}
+              playerScore={playerScore}
+              computerScore={computerScore}/>}
+          />
+          <Route
+            exact path="/results"
+            render={() => <Results
+              // gameActive={gameActive}
+              // setGameActive={setGameActive}
+              // setPlayerScore={setPlayerScore}
+              // setComputerScore={setComputerScore}
               playerScore={playerScore}
               computerScore={computerScore}/>}
           />

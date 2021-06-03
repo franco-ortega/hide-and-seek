@@ -16,6 +16,9 @@ const Game = ({
   //correctBox = number
   const [hidingSpot, setHidingSpot] = useState(0);
 
+  //disable button
+  const [buttonClickable, setButtonClickable] = useState(false);
+
   useEffect(() => {
     if(!activePlayer) {
       setTimeout(() => {
@@ -23,25 +26,37 @@ const Game = ({
         const computerHidingSpot = Math.ceil(Math.random() * 3);
         setHidingSpot(computerHidingSpot);
         console.log('Computer Hiding Spot: ' + computerHidingSpot);
-      }, 2000);
+        setButtonClickable(true);
+      }, 3000);
     }
     console.log('Active Player: ' + activePlayer);
+
+    if(playerScore === 5 || computerScore === 5) {
+      setGameActive(false);
+    }
+
   }, [activePlayer]);
 
-  const incrementScore = () => setPlayerScore(playerScore + 1);
+  const incrementPlayerScore = () => setPlayerScore(playerScore + 1);
+  const incrementComputerScore = () => setComputerScore(computerScore + 1);
 
   //player clicks box to make guess
   const onGuessHidingSpotClick = ({ target }) => {
     console.log('Hiding spot: ' + hidingSpot);
 
+    setButtonClickable(false);
+
     const guess = Number(target.value);
     console.log('Player guessed: ' + guess);
 
     if(guess === hidingSpot) {
-      incrementScore();
+      incrementPlayerScore();
       console.log('Score!!');
+    } else {
+      incrementComputerScore();
     }
 
+    
     setActivePlayer(false);
   };
   //check score by comparing value of selection to correctBox
@@ -52,16 +67,8 @@ const Game = ({
   //computer makes guess
   //display messages: Your turn, Computer turn, You score, They score
 
-  if(playerScore === 25) {
-    console.log(activePlayer, setActivePlayer, hidingSpot, setHidingSpot);
 
-    console.log(  gameActive,
-      setGameActive,
-      playerScore,
-      setPlayerScore,
-      computerScore,
-      setComputerScore);
-  }
+  if(!gameActive) return 'Game Over';
 
   return (
     <main className={styles.Game}>
@@ -70,9 +77,9 @@ const Game = ({
         Message: {activePlayer ? 'Pick a box.' : 'Computer is choosing.'}
       </section>
       <section>
-        <button value="1" onClick={onGuessHidingSpotClick}>Box 1</button>
-        <button value="2" onClick={onGuessHidingSpotClick}>Box 2</button>
-        <button value="3" onClick={onGuessHidingSpotClick}>Box 3</button>
+        <button value="1" disabled={!buttonClickable} onClick={onGuessHidingSpotClick}>Box 1</button>
+        <button value="2" disabled={!buttonClickable} onClick={onGuessHidingSpotClick}>Box 2</button>
+        <button value="3" disabled={!buttonClickable} onClick={onGuessHidingSpotClick}>Box 3</button>
       </section>
     </main>
   );
