@@ -49,11 +49,11 @@ const App = () => {
           <Route
             exact path="/results"
             render={() => <Results
-              // gameActive={gameActive}
-              // setGameActive={setGameActive}
-              // setPlayerScore={setPlayerScore}
-              // setComputerScore={setComputerScore}
+              setGameActive={setGameActive}
+              gameActive={gameActive}
+              setPlayerScore={setPlayerScore}
               playerScore={playerScore}
+              setComputerScore={setComputerScore}
               computerScore={computerScore}/>}
           />
         </Switch>
