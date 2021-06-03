@@ -1,0 +1,23 @@
+@import '../App/AppGeneralStyles.scss';
+
+.Home {
+    border: gray solid 1vw;
+    height: $body-height;
+    text-align: center;
+
+    section {
+        form {
+            background: pink;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 1vw;
+
+            label {
+                margin: 1vw;
+            }
+        }
+    }
+
+}

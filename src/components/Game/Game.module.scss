@@ -1,0 +1,15 @@
+@import '../App/AppGeneralStyles.scss';
+
+.Game {
+    border: blue solid 1vw;
+    height: $body-height;
+    text-align: center;
+
+    section {
+        button {
+            height: 10vh;
+            width: 15vh;
+            margin: 1vw;
+        }
+    }
+}
