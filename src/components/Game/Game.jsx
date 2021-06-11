@@ -13,9 +13,18 @@ const Game = ({
   setComputerScore
 }) => {
   let history = useHistory();
+  //computer hides item
+  //player guesses
+  //check guess
+  //maybe score
+  //player hides item
+  //computer guesses
+  //check guess
+  //maybe score
   
   //active player boolean: player = true, computer = false
-  const [activePlayer, setActivePlayer] = useState(false);
+  const [activeSeeker, setActiveSeeker] = useState(false);
+  // const [activeHider, setActiveHider] = useState(true);
 
   //correctBox = number
   const [hidingSpot, setHidingSpot] = useState(0);
@@ -26,11 +35,37 @@ const Game = ({
   const incrementPlayerScore = () => setPlayerScore(playerScore + 1);
   const incrementComputerScore = () => setComputerScore(computerScore + 1);
 
-  const computerTurn = () => {
+  const computerHidesItem = () => {
     const computerHidingSpot = Math.ceil(Math.random() * 3);
     setHidingSpot(computerHidingSpot);
     setButtonClickable(true);
-    setActivePlayer(true);
+    setActiveSeeker(true);
+  };
+
+  // For when the computer makes guesses too:
+  ////new turn: clear correctBox
+  ////player selects Box to hide item
+  ////computer makes guess
+  const computerMakesGuess = () => {
+    console.log('The computer is making a guess');
+    //random select a number
+    const computerGuess = Math.ceil(Math.random() * 3);
+    //compare guess to hiding spot
+    //if correct, increment computer score
+    if(computerGuess === hidingSpot) incrementComputerScore();
+  };
+
+
+  const computerTurn = () => {
+    if(!activeSeeker) {
+      computerHidesItem();
+      // const computerHidingSpot = Math.ceil(Math.random() * 3);
+      // setHidingSpot(computerHidingSpot);
+      // setButtonClickable(true);
+      // setActiveSeeker(true);
+    } else {
+      computerMakesGuess();
+    }
   };
 
   useEffect(() => {
@@ -38,46 +73,48 @@ const Game = ({
       setGameActive(false);
       history.push('/results');
     } else {
-      if(!activePlayer) {
+      if(!activeSeeker) {
         setTimeout(() => {
           computerTurn();
         }, 1000);
       }  
     }
-  }, [activePlayer, ]);
+  }, [activeSeeker, ]);
 
 
-  //player clicks box to make guess
+  //player clicks box to make guess || or to hide item
   const onGuessHidingSpotClick = ({ target }) => {
-    console.log('GHS: Hiding spot: ' + hidingSpot);
-
-    setButtonClickable(false);
-
-    const guess = Number(target.value);
-    console.log('GHS: Player guessed: ' + guess);
-
-    //check score by comparing value of selection to correctBox
-    //increment score
-    if(guess === hidingSpot) incrementPlayerScore();
-    else incrementComputerScore();
-
-    setActivePlayer(false);
+    if(activeSeeker) {
+      console.log('GHS: Hiding spot: ' + hidingSpot);
+  
+      setButtonClickable(false);
+  
+      const guess = Number(target.value);
+      console.log('GHS: Player guessed: ' + guess);
+  
+      //check score by comparing value of selection to correctBox
+      //increment score
+      if(guess === hidingSpot) incrementPlayerScore();
+      // else incrementComputerScore();
+  
+      setActiveSeeker(false);
+    } else {
+      //the player hides the item
+      const playerHidingSpot = Number(target.value);
+      setHidingSpot(playerHidingSpot);
+    }
   };
 
 
-  // For when the computer makes guesses too:
-  ////new turn: clear correctBox
-  ////player selects Box to hide item
-  ////computer makes guess
-
-  console.log('ACTIVE PLAYER (end): ' + activePlayer);
+  
+  console.log('ACTIVE PLAYER (end): ' + activeSeeker);
 
   return (
     <main className={styles.Game}>
       <h2>Game</h2>
       <section>
         {/* display messages: Your turn, Computer turn, You score, They score */}
-        Message: {activePlayer ? 'Pick a box.' : 'Computer is choosing.'}
+        Message: {activeSeeker ? 'Pick a box.' : 'Computer is hiding the item.'}
       </section>
       <section>
         <button value="1" disabled={!buttonClickable} onClick={onGuessHidingSpotClick}>Box 1</button>
