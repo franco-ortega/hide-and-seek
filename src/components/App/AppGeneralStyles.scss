@@ -1,1 +1,16 @@
-$body-height: 80vh;
+$header-height: 15vh;
+$main-height: 85vh;
+$headerColor: green;
+
+
+@mixin screen-size($size) {
+    @if $size == tablet-portrait {
+        @media screen and (min-width: 500px) { @content; }
+    }
+    @else if $size == tablet-landscape {
+        @media screen and (min-width: 900px) { @content; }
+    }
+    @else if $size == desktop {
+        @media screen and (min-width: 1200px) { @content; }
+    }
+}

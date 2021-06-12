@@ -1,12 +1,12 @@
 @import '../App/AppGeneralStyles.scss';
 
 .Home {
-    border: gray solid 1vw;
-    height: $body-height;
+    // border: gray solid 1vw;
+    height: 85vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
+    text-align: justify;
 
     h2 {
         margin: 2vw;
@@ -15,8 +15,8 @@
     section {
         background: pink;
         border-radius: 10px;
-        width: 60%;
-        padding: 1vw;
+        width: 90%;
+        padding: 2vw;
 
         form {
             background: lightpink;
@@ -28,14 +28,46 @@
             margin: 1vw;
             padding: 1vw;
 
-            label {
-                margin: 1vw;
+            input {
+                margin: 2vw;
             }
 
             button {
                 border-radius: 10px;
                 padding: .5vw;
             }
+        }
+    }
+
+    @include screen-size(tablet-portrait) {
+        height: 80vh;
+        text-align: center;
+
+        section {
+            width: 80%;
+
+            input {
+                margin: 10vw;
+            }
+        }
+    }
+
+
+    @include screen-size(tablet-landscape) {
+        section {
+            width: 60%;
+        }
+
+        input {
+            // margin: .25vw;
+        }
+    }
+
+    @include screen-size(desktop) {
+        height: 82vh;
+
+        section {
+            width: 50%;
         }
     }
 

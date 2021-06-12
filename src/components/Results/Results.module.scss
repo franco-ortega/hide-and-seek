@@ -1,5 +1,5 @@
 .Results {
-    border: 1vw solid orange;
+    // border: 1vw solid orange;
     height: 80vh;
     display: flex;
     flex-direction: column;
@@ -12,7 +12,7 @@
     section {
         background: orange;
         border-radius: 10px;
-        width: 50%;
+        width: 80%;
         padding: 1vw;
         
         display: flex;
@@ -22,7 +22,7 @@
         p, button {
             border-radius: 10px;
             margin: .5vw;
-            padding: .2vw;
+            padding: .75vw;
         }
     }
 }

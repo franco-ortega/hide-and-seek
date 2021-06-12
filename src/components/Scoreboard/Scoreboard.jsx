@@ -6,9 +6,11 @@ const Scoreboard = ({ player, playerScore, computerScore }) => {
 
   return (
     <section className={styles.Scoreboard}>
-      <h2>Scoreboard</h2>
-      <p>{player}: {playerScore}</p>
-      <p>Computer: {computerScore}</p>
+      <p className={styles.marquee}>Scoreboard<span className={styles.colon}>:</span></p>
+      <p className={styles.scores}>
+        <span>{player}: {playerScore}</span>
+        <span>Computer: {computerScore}</span>
+      </p>
     </section>
   );
 };
