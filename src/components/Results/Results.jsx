@@ -34,8 +34,10 @@ const Results = ({
       <section>
         <p>Your score: {playerScore}</p>
         <p>Computer score: {computerScore}</p>
-        <button onClick={onPlayAgainClick}>Play Again</button>
-        <button onClick={onNewPlayerClick}>New Player</button>
+        <p>
+          <button onClick={onPlayAgainClick}>Play Again</button>
+          <button onClick={onNewPlayerClick}>New Player</button>
+        </p>
       </section>
 
     </main>
