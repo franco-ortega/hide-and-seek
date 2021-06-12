@@ -2,7 +2,7 @@
 
 .Welcome {
     border: pink solid 1vw;
-    height: $body-height;
+    height: $main-height;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -15,7 +15,7 @@
     section {
         background: lightgreen;
         border-radius: 10px;
-        width: 50%;
+        width: 90%;
         padding: 1vw 5vw;
 
         p {
@@ -27,6 +27,28 @@
             border-radius: 10px;
             margin: 2vw;
             padding: .5vw;
+        }
+    }
+
+    @include screen-size(tablet-portrait) {
+        height: 80vh;
+
+        section {
+            width: 80%;
+
+        }
+    }
+
+
+    @include screen-size(tablet-landscape) {
+        
+    }
+
+    @include screen-size(desktop) {
+        height: 82vh;
+
+        section {
+            width: 50%;
         }
     }
 }

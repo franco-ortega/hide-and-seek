@@ -30,6 +30,7 @@ const Home = ({ setPlayer }) => {
             Name: <input
               id="name"
               type="text"
+              maxLength="25"
               placeholder="Name"
               onChange={onPlayerChange} />
           </label>

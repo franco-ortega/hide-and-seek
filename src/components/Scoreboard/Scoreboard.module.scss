@@ -1,8 +1,93 @@
+@import '../App/AppGeneralStyles.scss';
+
 .Scoreboard {
     // background: lightblue;
+    border: .2vw solid black;
+    border-radius: 10px;
     width: fit-content;
+    // height: 5vh;
 
-    h2 {
-        font-size: 2.5vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    // gap: 0vw;
+
+    p {
+        padding-right: 2vw;
+    }
+
+    p.marquee {
+        // background: pink;
+        // border: .2vw solid black;
+        // border-style: none solid none none;
+        height: 5vh;
+        padding: 0 1vw;
+        display: flex;
+        align-items: center;
+
+        font-size: 1.5rem;
+    }
+
+    p.scores {
+        // background: rgb(200, 158, 240);
+        display: flex;
+        flex-direction: column;
+        font-size: .8rem;
+    }
+
+    @include screen-size(tablet-portrait) {
+        // border: 1vw solid red;
+    
+        p.marquee {
+            font-size: 2.25rem;
+        }
+
+        .scores {
+            font-size: 1.25rem;
+        }
+    }
+
+    @include screen-size(tablet-landscape) {
+        // border: .1vw solid green;
+        flex-direction: column;
+        margin: 1vw 1vw 0 0;
+        padding: .5vw 1vw;
+
+        p {
+            // border: 1px dashed green;
+            // padding: 0 1vw;
+            padding: 0;
+        }
+
+        p.marquee {
+            // border: 1px dashed green;
+            font-size: 1.5rem;
+            text-decoration: underline;
+            // padding: 0;
+            margin: 0;
+        }
+
+        p.scores {
+            // padding: 1vw 1vw;
+            font-size: 1.1rem;
+        }
+
+        span {
+            // padding-right: 0vw;
+            // background: chartreuse;
+        }
+        span.colon {
+            display: none;
+        }
+
+    }
+
+    @include screen-size(desktop) {
+        // border: .1vw solid lightblue;
+        margin-right: 2vw;
+        // flex-direction: column;
+        // gap: 0;
+        
     }
 }

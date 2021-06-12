@@ -1,32 +1,87 @@
+@import '../App/AppGeneralStyles.scss';
+
 .Header {
-    // border: black solid 1vw;
-    height: 20vh;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1, 1fr;
-    
+    // background: lightgreen;
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     
     h1 {
-        grid-column: 2 / 3;
-        grid-row: 1 /2;
-        // background: yellow;
         color: blueviolet;
-        width: 100%;
-        font-size: 4vw;
+        font-size: 3rem;
         text-align: center;
     }
 
     div {
-        grid-column: 3 / 4;
-        grid-row: 1 /2;
-
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        width: 100%;
+        height: 5vh;
         text-align: end;
-        padding-right: 1vw;
-        // border: solid 3px black;
+    }
+
+    @include screen-size(tablet-portrait) {
+        height: 20vh;
+
+        h1 {
+            color: blueviolet;
+            font-size: 4rem;
+        }
+    
+        div {
+            // border: solid .1px black;
+            height: 7vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: end;
+        }
+    }
+
+    @include screen-size(tablet-landscape) {
+        // border: .5vw solid green;
+        // height: 20vh;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 1, 1fr;
+        // align-items: center;
+
+        h1 {
+            grid-column: 2 / 4;
+            grid-row: 1 /2;
+            // width: 100%;
+            // font-size: 4vw;
+            // text-align: center;
+        }
+
+        div {
+            height: 19vh;
+            grid-column: 3 / 5;
+            grid-row: 1 /2;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+    }
+
+    @include screen-size(desktop) {
+        // border: 1vw solid lightblue;
+        height: 18vh;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1, 1fr;
+
+        h1 {
+            grid-column: 2 / 3;
+            grid-row: 1 /2;
+            // width: 100%;
+            // font-size: 4vw;
+            // text-align: center;
+        }
+
+        div {
+            grid-column: 3 / 4;
+            grid-row: 1 /2;
+        }
     }
 }
