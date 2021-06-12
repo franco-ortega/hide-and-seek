@@ -4,6 +4,7 @@ import styles from './Game.module.scss';
 import { useHistory } from 'react-router';
 
 const Game = ({
+  gameActive,
   setGameActive,
   playerScore,
   setPlayerScore,
@@ -12,7 +13,6 @@ const Game = ({
 }) => {
   let history = useHistory();
   
-  //active player boolean: player = true, computer = false
   const [activeSeeker, setActiveSeeker] = useState('');
   const [activeHider, setActiveHider] = useState('computer');
 
@@ -41,8 +41,13 @@ const Game = ({
   //disable button
   const [buttonClickable, setButtonClickable] = useState(false);
 
-  const incrementPlayerScore = () => setPlayerScore(playerScore + 1);
-  const incrementComputerScore = () => setComputerScore(computerScore + 1);
+  const incrementScore = (scorer) => {
+    if(scorer === 'player') {
+      setPlayerScore(playerScore + 1);
+    } else {
+      setComputerScore(computerScore + 1);
+    }
+  };
 
   const computerHidesItem = () => {
     const computerHidingSpot = Math.ceil(Math.random() * 3);
@@ -64,15 +69,13 @@ const Game = ({
     setActiveSeeker('');
 
     //compare guess to hiding spot; if correct, increment computer score
-    if(computerGuess === hidingSpot) incrementComputerScore();
-    setActiveHider('computer');
-
     if(computerGuess === hidingSpot) {
-      incrementComputerScore();
+      incrementScore('computer');
       setCorrect(true);
     } else {
       setIncorrect(true);
     }
+    setActiveHider('computer');
   };
 
   const computerTurn = () => {
@@ -81,13 +84,16 @@ const Game = ({
   };
 
   useEffect(() => {
-    if(playerScore === 5 || computerScore === 5) {
+    if(playerScore === 3 || computerScore === 3) {
+      setButtonClickable(false);
       setGameActive(false);
-      history.push('/results');
+      setTimeout(() => {
+        history.push('/results');
+      }, 2000);
     } else {
       setTimeout(() => {
         computerTurn();
-      }, 3000);
+      }, 2000);
     }
   }, [activeHider]);
 
@@ -101,7 +107,7 @@ const Game = ({
       console.log('PT: player guess: ' + guess);
 
       if(guess === hidingSpot) {
-        incrementPlayerScore();
+        incrementScore('player');
         setCorrect(true);
       } else {
         setIncorrect(true);
@@ -137,12 +143,8 @@ const Game = ({
         <p>
           {playerSeeks && 'Click on a box to guess where the item is hidden.'}
           {computerSeeks && 'The computer is guessing where you hid the item.'}
-          {playerSeeks && computerSeeks && 'Does double seek ever display?'}
-        </p>
-        <p>
-          {playerHides && 'Now it\'s your turn to hide the item. Click on a box to hide the item.'}
           {computerHides && 'The computer is hiding the item.'}
-          {playerHides && computerHides && 'Does double hide ever display?'}
+          {playerHides && gameActive && 'Now it\'s your turn to hide the item. Click on a box to hide the item.'}
         </p>
       </section>
       <section>
@@ -163,6 +165,7 @@ const Game = ({
 };
 
 Game.propTypes = {
+  gameActive: PropTypes.bool.isRequired,
   setGameActive: PropTypes.func.isRequired,
   playerScore: PropTypes.number.isRequired,
   setPlayerScore: PropTypes.func.isRequired,
