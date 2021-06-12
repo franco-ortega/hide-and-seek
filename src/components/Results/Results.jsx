@@ -30,12 +30,14 @@ const Results = ({
 
   return (
     <main className={styles.Results}>
-      <h1>Result Page!!</h1>
+      <h1>Results Page!!</h1>
       <section>
         <p>Your score: {playerScore}</p>
         <p>Computer score: {computerScore}</p>
-        <button onClick={onPlayAgainClick}>Play Again</button>
-        <button onClick={onNewPlayerClick}>New Player</button>
+        <p>
+          <button onClick={onPlayAgainClick}>Play Again</button>
+          <button onClick={onNewPlayerClick}>New Player</button>
+        </p>
       </section>
 
     </main>

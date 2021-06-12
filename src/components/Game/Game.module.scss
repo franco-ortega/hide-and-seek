@@ -3,13 +3,32 @@
 .Game {
     border: blue solid 1vw;
     height: $body-height;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
 
+    h2 {
+        margin: 2vw;
+    }
+
+
     section {
+        background: lightblue;
+        border-radius: 10px 50px;
+        height: fit-content;
+        width: 75%;
+        padding: 3vw 1.5vw;
+
         button {
+            border-radius: 10px;
             height: 10vh;
             width: 15vh;
             margin: 1vw;
+        }
+
+        p {
+            height: 5vh;
         }
     }
 }
