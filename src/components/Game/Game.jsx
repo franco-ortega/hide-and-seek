@@ -32,6 +32,9 @@ const Game = ({
   if(activeHider === 'computer') computerHides = true;
   else computerHides === false;
 
+  const [correct, setCorrect] = useState(false);
+  const [incorrect, setIncorrect] = useState(false);
+
   //correctBox = number
   const [hidingSpot, setHidingSpot] = useState(0);
 
@@ -48,13 +51,10 @@ const Game = ({
     setHidingSpot(computerHidingSpot);
     setButtonClickable(true);
     setActiveSeeker('player');
-    // setButtonClickable(true);
+    setCorrect(false);
+    setIncorrect(false);
   };
 
-  // For when the computer makes guesses too:
-  ////new turn: clear correctBox
-  ////player selects Box to hide item
-  ////computer makes guess
   const computerMakesGuess = () => {
     console.log('The computer is making a guess');
 
@@ -63,11 +63,16 @@ const Game = ({
     console.log('computer guess: ' + computerGuess);
     setActiveSeeker('');
 
-    //compare guess to hiding spot
-    //if correct, increment computer score
+    //compare guess to hiding spot; if correct, increment computer score
     if(computerGuess === hidingSpot) incrementComputerScore();
     setActiveHider('computer');
-    // setButtonClickable('false');
+
+    if(computerGuess === hidingSpot) {
+      incrementComputerScore();
+      setCorrect(true);
+    } else {
+      setIncorrect(true);
+    }
   };
 
   const computerTurn = () => {
@@ -76,13 +81,13 @@ const Game = ({
   };
 
   useEffect(() => {
-    if(playerScore === 3 || computerScore === 3) {
+    if(playerScore === 5 || computerScore === 5) {
       setGameActive(false);
       history.push('/results');
     } else {
       setTimeout(() => {
         computerTurn();
-      }, 2000);
+      }, 3000);
     }
   }, [activeHider]);
 
@@ -95,12 +100,14 @@ const Game = ({
       console.log('PT: hiding spot: ' + hidingSpot);
       console.log('PT: player guess: ' + guess);
 
-      //check score by comparing value of selection to correctBox
-      //increment score
       if(guess === hidingSpot) {
         incrementPlayerScore();
+        setCorrect(true);
+      } else {
+        setIncorrect(true);
       }
   
+      // correct = false;
       setActiveSeeker('');
       setActiveHider('player');
 
@@ -115,6 +122,8 @@ const Game = ({
       setActiveSeeker('computer');
       setActiveHider('');
       setButtonClickable(false);
+      setCorrect(false);
+      setIncorrect(false);
     }
   };
   
@@ -140,6 +149,14 @@ const Game = ({
         <button value="1" disabled={!buttonClickable} onClick={onPlayerTurnClick}>Box 1</button>
         <button value="2" disabled={!buttonClickable} onClick={onPlayerTurnClick}>Box 2</button>
         <button value="3" disabled={!buttonClickable} onClick={onPlayerTurnClick}>Box 3</button>
+      </section>
+      <section>
+        <p>
+          {correct && playerHides && 'You guessed correctly!'}
+          {correct && computerHides && 'Computer guessed correctly!'}
+          {incorrect && playerHides && 'You guessed incorrectly.'}
+          {incorrect && computerHides && 'Computer guessed incorrectly.'}
+        </p>
       </section>
     </main>
   );
