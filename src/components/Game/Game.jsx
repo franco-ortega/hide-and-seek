@@ -41,6 +41,9 @@ const Game = ({
   //disable button
   const [buttonClickable, setButtonClickable] = useState(false);
 
+  //display the result: correct or incorrect
+  const [displayResult, setDisplayResult] = useState(false);
+
   const incrementScore = (scorer) => {
     if(scorer === 'player') {
       setPlayerScore(playerScore + 1);
@@ -66,7 +69,7 @@ const Game = ({
     //random select a number
     const computerGuess = Math.ceil(Math.random() * 3);
     console.log('computer guess: ' + computerGuess);
-    setActiveSeeker('');
+    // setActiveSeeker('');
 
     //compare guess to hiding spot; if correct, increment computer score
     if(computerGuess === hidingSpot) {
@@ -75,7 +78,12 @@ const Game = ({
     } else {
       setIncorrect(true);
     }
-    setActiveHider('computer');
+
+    setDisplayResult(true);
+    setTimeout(() => {
+      setActiveSeeker('');
+      setActiveHider('computer');
+    }, 2000);
   };
 
   const computerTurn = () => {
@@ -112,10 +120,18 @@ const Game = ({
       } else {
         setIncorrect(true);
       }
+
+      setButtonClickable(false);
+      setDisplayResult(true);
+
+      setTimeout(() => {
+        // correct = false;
+        setActiveSeeker('');
+        setActiveHider('player');
+        setDisplayResult(false);
+        setButtonClickable(true);
+      }, 2000);
   
-      // correct = false;
-      setActiveSeeker('');
-      setActiveHider('player');
 
     } else if(activeHider === 'player') {
 
@@ -141,10 +157,14 @@ const Game = ({
       <section>
         {/* display messages: Your turn, Computer turn, You score, They score */}
         <p>
-          {playerSeeks && 'Click on a box to guess where the item is hidden.'}
-          {computerSeeks && 'The computer is guessing where you hid the item.'}
           {computerHides && 'The computer is hiding the item.'}
+          {playerSeeks && 'Click on a box to guess where the item is hidden.'}
           {playerHides && gameActive && 'Now it\'s your turn to hide the item. Click on a box to hide the item.'}
+          {computerSeeks && 'The computer is guessing where you hid the item.'}
+          {/* {correct && playerHides && 'You guessed correctly!'} */}
+          {/* {incorrect && playerHides && 'You guessed incorrectly.'} */}
+
+          {/* {displayResult && 'Display the results right now'} */}
         </p>
       </section>
       <section>
@@ -153,13 +173,24 @@ const Game = ({
         <button value="3" disabled={!buttonClickable} onClick={onPlayerTurnClick}>Box 3</button>
       </section>
       <section>
+        {displayResult && 
+          <p>
+            {correct && playerSeeks && 'You guessed correctly!'}
+            {incorrect && playerSeeks && 'You guessed incorrectly.'}
+            {correct && computerSeeks && 'Computer guessed correctly!'}
+            {incorrect && computerSeeks && 'Computer guessed incorrectly.'}
+          </p>
+        }
+      </section>
+      {/* <section>
         <p>
           {correct && playerHides && 'You guessed correctly!'}
-          {correct && computerHides && 'Computer guessed correctly!'}
           {incorrect && playerHides && 'You guessed incorrectly.'}
+
+          {correct && computerHides && 'Computer guessed correctly!'}
           {incorrect && computerHides && 'Computer guessed incorrectly.'}
         </p>
-      </section>
+      </section> */}
     </main>
   );
 };
