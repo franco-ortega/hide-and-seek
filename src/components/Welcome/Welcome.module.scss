@@ -21,12 +21,6 @@
             text-align: left;
             margin: .75vw;
         }
-
-        button {
-            border-radius: 10px;
-            margin: 2vw;
-            padding: .5vw;
-        }
     }
 
     @include screen-size(tablet-portrait) {
@@ -34,10 +28,8 @@
 
         section {
             width: 80%;
-
         }
     }
-
 
     @include screen-size(tablet-landscape) {
         

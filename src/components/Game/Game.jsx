@@ -4,7 +4,7 @@ import styles from './Game.module.scss';
 import { useHistory } from 'react-router';
 
 const Game = ({
-  gameActive,
+  // gameActive,
   setGameActive,
   playerScore,
   setPlayerScore,
@@ -16,19 +16,19 @@ const Game = ({
   const [activeSeeker, setActiveSeeker] = useState('');
   const [activeHider, setActiveHider] = useState('computer');
 
-  let playerSeeks = false;
+  let playerSeeks;
   if(activeSeeker === 'player') playerSeeks = true;
   else playerSeeks === false;
 
-  let computerSeeks = false;
+  let computerSeeks;
   if(activeSeeker === 'computer') computerSeeks = true;
   else computerSeeks === false;
 
-  let playerHides = false;
+  let playerHides;
   if(activeHider === 'player') playerHides = true;
   else playerHides === false;
 
-  let computerHides = false;
+  let computerHides;
   if(activeHider === 'computer') computerHides = true;
   else computerHides === false;
 
@@ -83,6 +83,7 @@ const Game = ({
 
     setDisplayResult(true);
     setTimeout(() => {
+      setDisplayResult(false);
       setActiveSeeker('');
       setActiveHider('computer');
     }, 2000);
@@ -97,8 +98,8 @@ const Game = ({
     if(playerScore === 3 || computerScore === 3) {
       setButtonClickable(false);
       setGameOver(true);
-      setGameActive(false);
       setTimeout(() => {
+        setGameActive(false);
         history.push('/results');
       }, 2000);
     } else if(activeHider === 'player') {
@@ -150,45 +151,53 @@ const Game = ({
       setActiveHider('');
     }
   };
-  
+
+  const selectActionMessage = () => {
+    if(!gameOver) {
+      if(computerHides) return 'The computer is hiding the item.';
+      if(playerSeeks) return 'Click on a box to guess where the item is hidden.';
+      if(playerHides) return 'Now it\'s your turn to hide the item. Click on a box to hide the item.';
+      if(computerSeeks) return 'The computer is guessing where you hid the item.';
+    } else {
+      return 'Game Over!';
+    }
+  };
+
+  const actionMessage = selectActionMessage();
+
+  const selectResultMessage = () => {
+    if(displayResult) {
+      if(correct && playerSeeks) return 'You guessed correctly!';
+      if(incorrect && playerSeeks) return 'You guessed incorrectly.';
+      if(correct && computerSeeks) return 'Computer guessed correctly!';
+      if(incorrect && computerSeeks) return 'Computer guessed incorrectly.';
+    }
+  };
+
+  const resultMessage = selectResultMessage();
+
   console.log('Active Seeker: ' + activeSeeker + '; Active Hider: ' + activeHider);
 
   return (
     <main className={styles.Game}>
-      <h2>Game</h2>
+      <h2>Happy seeking!!</h2>
       <section>
-        {!gameOver ?
-          <span>
-            {/* display messages: Your turn, Computer turn, You score, They score */}
-            {computerHides && 'The computer is hiding the item.'}
-            {playerSeeks && 'Click on a box to guess where the item is hidden.'}
-            {playerHides && gameActive && 'Now it\'s your turn to hide the item. Click on a box to hide the item.'}
-            {computerSeeks && 'The computer is guessing where you hid the item.'}
-          </span>
-          : 'Game Over!'
-        }
+        {actionMessage}
       </section>
-      <section>
+      <section className={styles.Buttons}>
         <button value="1" disabled={!buttonClickable} onClick={onPlayerTurnClick}>Box 1</button>
         <button value="2" disabled={!buttonClickable} onClick={onPlayerTurnClick}>Box 2</button>
         <button value="3" disabled={!buttonClickable} onClick={onPlayerTurnClick}>Box 3</button>
       </section>
       <section>
-        {displayResult && 
-          <span>
-            {correct && playerSeeks && 'You guessed correctly!'}
-            {incorrect && playerSeeks && 'You guessed incorrectly.'}
-            {correct && computerSeeks && 'Computer guessed correctly!'}
-            {incorrect && computerSeeks && 'Computer guessed incorrectly.'}
-          </span>
-        }
+        {resultMessage}
       </section>
     </main>
   );
 };
 
 Game.propTypes = {
-  gameActive: PropTypes.bool.isRequired,
+  // gameActive: PropTypes.bool.isRequired,
   setGameActive: PropTypes.func.isRequired,
   playerScore: PropTypes.number.isRequired,
   setPlayerScore: PropTypes.func.isRequired,

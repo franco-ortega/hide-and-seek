@@ -30,7 +30,7 @@ const Results = ({
 
   return (
     <main className={styles.Results}>
-      <h1>Results Page!!</h1>
+      <h2>Results Page!!</h2>
       <section>
         <p>Your score: {playerScore}</p>
         <p>Computer score: {computerScore}</p>

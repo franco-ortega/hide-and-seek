@@ -1,7 +1,6 @@
 @import '../App/AppGeneralStyles.scss';
 
 .Home {
-    // border: gray solid 1vw;
     height: 85vh;
     display: flex;
     flex-direction: column;
@@ -19,22 +18,18 @@
         padding: 2vw;
 
         form {
-            background: lightpink;
+            border: 1px solid darkred;
             border-radius: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin: 1vw;
-            padding: 1vw;
+            width: fit-content;
+            margin: 5vw auto;
+            padding: 3vw 5vw;
 
             input {
                 margin: 2vw;
-            }
-
-            button {
-                border-radius: 10px;
-                padding: .5vw;
             }
         }
     }
@@ -46,8 +41,12 @@
         section {
             width: 80%;
 
-            input {
-                margin: 10vw;
+            form {
+                padding: 2vw;
+
+                input {
+                    margin: 1.5vw;
+                }
             }
         }
     }
@@ -56,10 +55,14 @@
     @include screen-size(tablet-landscape) {
         section {
             width: 60%;
-        }
 
-        input {
-            // margin: .25vw;
+            form {
+                padding: .75vw 1vw;
+
+                input {
+                    margin: 1vw;
+                }
+            }
         }
     }
 
@@ -70,5 +73,4 @@
             width: 50%;
         }
     }
-
 }
