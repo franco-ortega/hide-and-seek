@@ -1,8 +1,10 @@
 @import '../App/AppGeneralStyles.scss';
 
 .Game {
-    // border: blue solid 1vw;
+    
     height: $main-height;
+    width: 90%;
+    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,11 +16,14 @@
 
 
     section {
-        background: lightblue;
-        border-radius: 10px 50px;
-        height: fit-content;
-        width: 75%;
+        height: 10vh;
+        width: 85%;
         padding: 3vw 1.5vw;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
 
         button {
             border-radius: 10px;
@@ -31,4 +36,57 @@
             height: 5vh;
         }
     }
+
+    .Buttons {
+        background: lightblue;
+        border: 1px solid;
+        border-radius: 10px;
+        height: 30vh;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
 }
+
+@include screen-size(tablet-portrait) {
+    .Game {
+        section {
+            width: 70%;
+            padding: 0;
+        }
+
+        .Buttons {
+            background: lightblue;
+        }
+    }
+  }
+  
+  @include screen-size(tablet-landscape) {
+    .Game {
+        section {
+            width: 60%;
+        }
+
+        .Buttons {
+            height: 20vh;
+            background: lightcoral;
+        }
+    }
+  }
+  
+  @include screen-size(desktop) {
+    .Game {
+
+        section {
+            width: 50%;
+        }
+
+        .Buttons {
+            height: 25vh;
+            background: pink;
+        }
+    }
+  }
+  

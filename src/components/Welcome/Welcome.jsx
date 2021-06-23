@@ -19,7 +19,7 @@ const Welcome = ({ player, gameActive, setGameActive }) => {
     <main className={styles.Welcome}>
       <h2>Welcome {player}!</h2>
       <section>
-        <h3>Game Play:</h3>
+        <h3>Game Rules:</h3>
         <p>1. The computer will hide the item in a box.</p>
         <p>2. You can guess where the item is hidden by clicking on a box.</p>
         <p>3. Then you get to hide the item by clicking on a box.</p>

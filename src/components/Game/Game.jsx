@@ -4,7 +4,7 @@ import styles from './Game.module.scss';
 import { useHistory } from 'react-router';
 
 const Game = ({
-  gameActive,
+  // gameActive,
   setGameActive,
   playerScore,
   setPlayerScore,
@@ -16,19 +16,19 @@ const Game = ({
   const [activeSeeker, setActiveSeeker] = useState('');
   const [activeHider, setActiveHider] = useState('computer');
 
-  let playerSeeks = false;
+  let playerSeeks;
   if(activeSeeker === 'player') playerSeeks = true;
   else playerSeeks === false;
 
-  let computerSeeks = false;
+  let computerSeeks;
   if(activeSeeker === 'computer') computerSeeks = true;
   else computerSeeks === false;
 
-  let playerHides = false;
+  let playerHides;
   if(activeHider === 'player') playerHides = true;
   else playerHides === false;
 
-  let computerHides = false;
+  let computerHides;
   if(activeHider === 'computer') computerHides = true;
   else computerHides === false;
 
@@ -41,6 +41,12 @@ const Game = ({
   //disable button
   const [buttonClickable, setButtonClickable] = useState(false);
 
+  //display the result: correct or incorrect
+  const [displayResult, setDisplayResult] = useState(false);
+
+  //display 'Game Over' message
+  const [gameOver, setGameOver] = useState(false);
+
   const incrementScore = (scorer) => {
     if(scorer === 'player') {
       setPlayerScore(playerScore + 1);
@@ -52,12 +58,12 @@ const Game = ({
   const computerHidesItem = () => {
     const computerHidingSpot = Math.ceil(Math.random() * 3);
     console.log('computer hiding spot: ' + computerHidingSpot);
-    setActiveHider('');
     setHidingSpot(computerHidingSpot);
     setButtonClickable(true);
     setActiveSeeker('player');
     setCorrect(false);
     setIncorrect(false);
+    setActiveHider('');
   };
 
   const computerMakesGuess = () => {
@@ -66,7 +72,6 @@ const Game = ({
     //random select a number
     const computerGuess = Math.ceil(Math.random() * 3);
     console.log('computer guess: ' + computerGuess);
-    setActiveSeeker('');
 
     //compare guess to hiding spot; if correct, increment computer score
     if(computerGuess === hidingSpot) {
@@ -75,7 +80,13 @@ const Game = ({
     } else {
       setIncorrect(true);
     }
-    setActiveHider('computer');
+
+    setDisplayResult(true);
+    setTimeout(() => {
+      setDisplayResult(false);
+      setActiveSeeker('');
+      setActiveHider('computer');
+    }, 2000);
   };
 
   const computerTurn = () => {
@@ -86,10 +97,13 @@ const Game = ({
   useEffect(() => {
     if(playerScore === 3 || computerScore === 3) {
       setButtonClickable(false);
-      setGameActive(false);
+      setGameOver(true);
       setTimeout(() => {
+        setGameActive(false);
         history.push('/results');
       }, 2000);
+    } else if(activeHider === 'player') {
+      setButtonClickable(true);
     } else {
       setTimeout(() => {
         computerTurn();
@@ -100,7 +114,6 @@ const Game = ({
   //player clicks box to make guess || or to hide item
   const onPlayerTurnClick = ({ target }) => {
     if(activeSeeker === 'player') {
-      setButtonClickable(true);
       const guess = Number(target.value);
 
       console.log('PT: hiding spot: ' + hidingSpot);
@@ -112,10 +125,16 @@ const Game = ({
       } else {
         setIncorrect(true);
       }
+
+      setButtonClickable(false);
+      setDisplayResult(true);
+      
+      setTimeout(() => {
+        setActiveHider('player');
+        setActiveSeeker('');
+        setDisplayResult(false);
+      }, 2000);
   
-      // correct = false;
-      setActiveSeeker('');
-      setActiveHider('player');
 
     } else if(activeHider === 'player') {
 
@@ -126,46 +145,59 @@ const Game = ({
       
       setHidingSpot(playerHidingSpot);
       setActiveSeeker('computer');
-      setActiveHider('');
       setButtonClickable(false);
       setCorrect(false);
       setIncorrect(false);
+      setActiveHider('');
     }
   };
-  
+
+  const selectActionMessage = () => {
+    if(!gameOver) {
+      if(computerHides) return 'The computer is hiding the item.';
+      if(playerSeeks) return 'Click on a box to guess where the item is hidden.';
+      if(playerHides) return 'Now it\'s your turn to hide the item. Click on a box to hide the item.';
+      if(computerSeeks) return 'The computer is guessing where you hid the item.';
+    } else {
+      return 'Game Over!';
+    }
+  };
+
+  const actionMessage = selectActionMessage();
+
+  const selectResultMessage = () => {
+    if(displayResult) {
+      if(correct && playerSeeks) return 'You guessed correctly!';
+      if(incorrect && playerSeeks) return 'You guessed incorrectly.';
+      if(correct && computerSeeks) return 'Computer guessed correctly!';
+      if(incorrect && computerSeeks) return 'Computer guessed incorrectly.';
+    }
+  };
+
+  const resultMessage = selectResultMessage();
+
   console.log('Active Seeker: ' + activeSeeker + '; Active Hider: ' + activeHider);
 
   return (
     <main className={styles.Game}>
-      <h2>Game</h2>
+      <h2>Happy seeking!!</h2>
       <section>
-        {/* display messages: Your turn, Computer turn, You score, They score */}
-        <p>
-          {playerSeeks && 'Click on a box to guess where the item is hidden.'}
-          {computerSeeks && 'The computer is guessing where you hid the item.'}
-          {computerHides && 'The computer is hiding the item.'}
-          {playerHides && gameActive && 'Now it\'s your turn to hide the item. Click on a box to hide the item.'}
-        </p>
+        {actionMessage}
       </section>
-      <section>
+      <section className={styles.Buttons}>
         <button value="1" disabled={!buttonClickable} onClick={onPlayerTurnClick}>Box 1</button>
         <button value="2" disabled={!buttonClickable} onClick={onPlayerTurnClick}>Box 2</button>
         <button value="3" disabled={!buttonClickable} onClick={onPlayerTurnClick}>Box 3</button>
       </section>
       <section>
-        <p>
-          {correct && playerHides && 'You guessed correctly!'}
-          {correct && computerHides && 'Computer guessed correctly!'}
-          {incorrect && playerHides && 'You guessed incorrectly.'}
-          {incorrect && computerHides && 'Computer guessed incorrectly.'}
-        </p>
+        {resultMessage}
       </section>
     </main>
   );
 };
 
 Game.propTypes = {
-  gameActive: PropTypes.bool.isRequired,
+  // gameActive: PropTypes.bool.isRequired,
   setGameActive: PropTypes.func.isRequired,
   playerScore: PropTypes.number.isRequired,
   setPlayerScore: PropTypes.func.isRequired,
