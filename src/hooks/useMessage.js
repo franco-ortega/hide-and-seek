@@ -31,15 +31,14 @@ export const useMessage = (activeHider, activeSeeker) => {
   };
 
   const [correct, setCorrect] = useState(false);
-  const [incorrect, setIncorrect] = useState(false);
   const [displayResult, setDisplayResult] = useState(false);
 
   const selectResultMessage = () => {
     if(displayResult) {
       if(correct && playerSeeks) return 'You guessed correctly!';
-      if(incorrect && playerSeeks) return 'You guessed incorrectly.';
+      if(!correct && playerSeeks) return 'You guessed incorrectly.';
       if(correct && computerSeeks) return 'Computer guessed correctly!';
-      if(incorrect && computerSeeks) return 'Computer guessed incorrectly.';
+      if(!correct && computerSeeks) return 'Computer guessed incorrectly.';
     }
   };
 
@@ -47,7 +46,6 @@ export const useMessage = (activeHider, activeSeeker) => {
     setGameOver,
     selectActionMessage,
     setCorrect,
-    setIncorrect,
     setDisplayResult,
     selectResultMessage
   };

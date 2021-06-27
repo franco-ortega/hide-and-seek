@@ -17,6 +17,20 @@ const Game = ({
   const [activeSeeker, setActiveSeeker] = useState('');
   const [activeHider, setActiveHider] = useState('computer');
 
+  const {
+    setGameOver,
+    selectActionMessage,
+    setCorrect,
+    // setIncorrect,
+    setDisplayResult,
+    selectResultMessage
+  } = useMessage(activeHider, activeSeeker);
+
+  const actionMessage = selectActionMessage();
+  const resultMessage = selectResultMessage();
+
+
+  //*** CODE BELOW HERE IS NOW IN useMessage hook
   // let playerSeeks;
   // if(activeSeeker === 'player') playerSeeks = true;
   // else playerSeeks === false;
@@ -33,31 +47,42 @@ const Game = ({
   // if(activeHider === 'computer') computerHides = true;
   // else computerHides === false;
 
-  const {
-    setGameOver,
-    selectActionMessage,
-    setCorrect,
-    setIncorrect,
-    setDisplayResult,
-    selectResultMessage
-  } = useMessage(activeHider, activeSeeker);
-
-
-
   // const [correct, setCorrect] = useState(false);
   // const [incorrect, setIncorrect] = useState(false);
-
-  //correctBox = number
-  const [hidingSpot, setHidingSpot] = useState(0);
-
-  //disable button
-  const [buttonClickable, setButtonClickable] = useState(false);
 
   //display the result: correct or incorrect
   // const [displayResult, setDisplayResult] = useState(false);
 
   //display 'Game Over' message
   // const [gameOver, setGameOver] = useState(false);
+
+  // const selectActionMessage = () => {
+  //   if(!gameOver) {
+  //     if(computerHides) return 'The computer is hiding the item.';
+  //     if(playerSeeks) return 'Click on a box to guess where the item is hidden.';
+  //     if(playerHides) return 'Now it\'s your turn to hide the item. Click on a box to hide the item.';
+  //     if(computerSeeks) return 'The computer is guessing where you hid the item.';
+  //   } else {
+  //     return 'Game Over!';
+  //   }
+  // };
+
+  // const selectResultMessage = () => {
+  //   if(displayResult) {
+  //     if(correct && playerSeeks) return 'You guessed correctly!';
+  //     if(incorrect && playerSeeks) return 'You guessed incorrectly.';
+  //     if(correct && computerSeeks) return 'Computer guessed correctly!';
+  //     if(incorrect && computerSeeks) return 'Computer guessed incorrectly.';
+  //   }
+  // };
+  //*** CODE ABOVE HERE IS NOW IN useMessage hook
+
+
+  //correctBox = number
+  const [hidingSpot, setHidingSpot] = useState(0);
+
+  //disable button
+  const [buttonClickable, setButtonClickable] = useState(false);
 
   const incrementScore = (scorer) => {
     if(scorer === 'player') {
@@ -73,8 +98,6 @@ const Game = ({
     setHidingSpot(computerHidingSpot);
     setButtonClickable(true);
     setActiveSeeker('player');
-    setCorrect(false);
-    setIncorrect(false);
     setActiveHider('');
   };
 
@@ -90,7 +113,7 @@ const Game = ({
       incrementScore('computer');
       setCorrect(true);
     } else {
-      setIncorrect(true);
+      setCorrect(false);
     }
 
     setDisplayResult(true);
@@ -135,7 +158,7 @@ const Game = ({
         incrementScore('player');
         setCorrect(true);
       } else {
-        setIncorrect(true);
+        setCorrect(false);
       }
 
       setButtonClickable(false);
@@ -158,37 +181,11 @@ const Game = ({
       setHidingSpot(playerHidingSpot);
       setActiveSeeker('computer');
       setButtonClickable(false);
-      setCorrect(false);
-      setIncorrect(false);
       setActiveHider('');
     }
   };
 
-  // const selectActionMessage = () => {
-  //   if(!gameOver) {
-  //     if(computerHides) return 'The computer is hiding the item.';
-  //     if(playerSeeks) return 'Click on a box to guess where the item is hidden.';
-  //     if(playerHides) return 'Now it\'s your turn to hide the item. Click on a box to hide the item.';
-  //     if(computerSeeks) return 'The computer is guessing where you hid the item.';
-  //   } else {
-  //     return 'Game Over!';
-  //   }
-  // };
-
-  const actionMessage = selectActionMessage();
-
-  // const selectResultMessage = () => {
-  //   if(displayResult) {
-  //     if(correct && playerSeeks) return 'You guessed correctly!';
-  //     if(incorrect && playerSeeks) return 'You guessed incorrectly.';
-  //     if(correct && computerSeeks) return 'Computer guessed correctly!';
-  //     if(incorrect && computerSeeks) return 'Computer guessed incorrectly.';
-  //   }
-  // };
-
-  const resultMessage = selectResultMessage();
-
-  console.log('Active Seeker: ' + activeSeeker + '; Active Hider: ' + activeHider);
+  // console.log('Active Seeker: ' + activeSeeker + '; Active Hider: ' + activeHider);
 
   return (
     <main className={styles.Game}>
