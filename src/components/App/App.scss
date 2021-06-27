@@ -12,11 +12,11 @@ html, body {
 }
 
 button {
-  cursor: pointer;
+  background: yellow;
   border-radius: 10px;
   margin: 2vw;
   padding: .5vw 1.5vw;
-
+  cursor: pointer;
 }
 
 @include screen-size(tablet-portrait) {

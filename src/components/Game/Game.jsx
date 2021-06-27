@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Game.module.scss';
 import { useHistory } from 'react-router';
+import { useMessage } from '../../hooks/useMessage';
 
 const Game = ({
   // gameActive,
@@ -16,36 +17,71 @@ const Game = ({
   const [activeSeeker, setActiveSeeker] = useState('');
   const [activeHider, setActiveHider] = useState('computer');
 
-  let playerSeeks;
-  if(activeSeeker === 'player') playerSeeks = true;
-  else playerSeeks === false;
+  const {
+    setGameOver,
+    selectActionMessage,
+    setCorrect,
+    setDisplayResult,
+    selectResultMessage
+  } = useMessage(activeHider, activeSeeker);
 
-  let computerSeeks;
-  if(activeSeeker === 'computer') computerSeeks = true;
-  else computerSeeks === false;
+  const actionMessage = selectActionMessage();
+  const resultMessage = selectResultMessage();
 
-  let playerHides;
-  if(activeHider === 'player') playerHides = true;
-  else playerHides === false;
 
-  let computerHides;
-  if(activeHider === 'computer') computerHides = true;
-  else computerHides === false;
+  //*** CODE BELOW HERE IS NOW IN useMessage hook
+  // let playerSeeks;
+  // if(activeSeeker === 'player') playerSeeks = true;
+  // else playerSeeks === false;
 
-  const [correct, setCorrect] = useState(false);
-  const [incorrect, setIncorrect] = useState(false);
+  // let computerSeeks;
+  // if(activeSeeker === 'computer') computerSeeks = true;
+  // else computerSeeks === false;
+
+  // let playerHides;
+  // if(activeHider === 'player') playerHides = true;
+  // else playerHides === false;
+
+  // let computerHides;
+  // if(activeHider === 'computer') computerHides = true;
+  // else computerHides === false;
+
+  // const [correct, setCorrect] = useState(false);
+  // const [incorrect, setIncorrect] = useState(false);
+
+  //display the result: correct or incorrect
+  // const [displayResult, setDisplayResult] = useState(false);
+
+  //display 'Game Over' message
+  // const [gameOver, setGameOver] = useState(false);
+
+  // const selectActionMessage = () => {
+  //   if(!gameOver) {
+  //     if(computerHides) return 'The computer is hiding the item.';
+  //     if(playerSeeks) return 'Click on a box to guess where the item is hidden.';
+  //     if(playerHides) return 'Now it\'s your turn to hide the item. Click on a box to hide the item.';
+  //     if(computerSeeks) return 'The computer is guessing where you hid the item.';
+  //   } else {
+  //     return 'Game Over!';
+  //   }
+  // };
+
+  // const selectResultMessage = () => {
+  //   if(displayResult) {
+  //     if(correct && playerSeeks) return 'You guessed correctly!';
+  //     if(incorrect && playerSeeks) return 'You guessed incorrectly.';
+  //     if(correct && computerSeeks) return 'Computer guessed correctly!';
+  //     if(incorrect && computerSeeks) return 'Computer guessed incorrectly.';
+  //   }
+  // };
+  //*** CODE ABOVE HERE IS NOW IN useMessage hook
+
 
   //correctBox = number
   const [hidingSpot, setHidingSpot] = useState(0);
 
   //disable button
   const [buttonClickable, setButtonClickable] = useState(false);
-
-  //display the result: correct or incorrect
-  const [displayResult, setDisplayResult] = useState(false);
-
-  //display 'Game Over' message
-  const [gameOver, setGameOver] = useState(false);
 
   const incrementScore = (scorer) => {
     if(scorer === 'player') {
@@ -61,8 +97,6 @@ const Game = ({
     setHidingSpot(computerHidingSpot);
     setButtonClickable(true);
     setActiveSeeker('player');
-    setCorrect(false);
-    setIncorrect(false);
     setActiveHider('');
   };
 
@@ -78,7 +112,7 @@ const Game = ({
       incrementScore('computer');
       setCorrect(true);
     } else {
-      setIncorrect(true);
+      setCorrect(false);
     }
 
     setDisplayResult(true);
@@ -116,14 +150,13 @@ const Game = ({
     if(activeSeeker === 'player') {
       const guess = Number(target.value);
 
-      console.log('PT: hiding spot: ' + hidingSpot);
-      console.log('PT: player guess: ' + guess);
+      console.log('PT: hiding spot: ' + hidingSpot + '; player guess: ' + guess);
 
       if(guess === hidingSpot) {
         incrementScore('player');
         setCorrect(true);
       } else {
-        setIncorrect(true);
+        setCorrect(false);
       }
 
       setButtonClickable(false);
@@ -134,49 +167,19 @@ const Game = ({
         setActiveSeeker('');
         setDisplayResult(false);
       }, 2000);
-  
-
     } else if(activeHider === 'player') {
-
       //the player hides the item
-      console.log('Player hid the item!');
       const playerHidingSpot = Number(target.value);
-      console.log('player hiding spot: ' + playerHidingSpot);
+      console.log('player hides item: ' + playerHidingSpot);
       
       setHidingSpot(playerHidingSpot);
       setActiveSeeker('computer');
       setButtonClickable(false);
-      setCorrect(false);
-      setIncorrect(false);
       setActiveHider('');
     }
   };
 
-  const selectActionMessage = () => {
-    if(!gameOver) {
-      if(computerHides) return 'The computer is hiding the item.';
-      if(playerSeeks) return 'Click on a box to guess where the item is hidden.';
-      if(playerHides) return 'Now it\'s your turn to hide the item. Click on a box to hide the item.';
-      if(computerSeeks) return 'The computer is guessing where you hid the item.';
-    } else {
-      return 'Game Over!';
-    }
-  };
-
-  const actionMessage = selectActionMessage();
-
-  const selectResultMessage = () => {
-    if(displayResult) {
-      if(correct && playerSeeks) return 'You guessed correctly!';
-      if(incorrect && playerSeeks) return 'You guessed incorrectly.';
-      if(correct && computerSeeks) return 'Computer guessed correctly!';
-      if(incorrect && computerSeeks) return 'Computer guessed incorrectly.';
-    }
-  };
-
-  const resultMessage = selectResultMessage();
-
-  console.log('Active Seeker: ' + activeSeeker + '; Active Hider: ' + activeHider);
+  // console.log('Active Seeker: ' + activeSeeker + '; Active Hider: ' + activeHider);
 
   return (
     <main className={styles.Game}>
