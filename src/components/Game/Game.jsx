@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Game.module.scss';
 import { useHistory } from 'react-router';
+import { useMessage } from '../../hooks/useMessage';
 
 const Game = ({
   // gameActive,
@@ -16,24 +17,35 @@ const Game = ({
   const [activeSeeker, setActiveSeeker] = useState('');
   const [activeHider, setActiveHider] = useState('computer');
 
-  let playerSeeks;
-  if(activeSeeker === 'player') playerSeeks = true;
-  else playerSeeks === false;
+  // let playerSeeks;
+  // if(activeSeeker === 'player') playerSeeks = true;
+  // else playerSeeks === false;
 
-  let computerSeeks;
-  if(activeSeeker === 'computer') computerSeeks = true;
-  else computerSeeks === false;
+  // let computerSeeks;
+  // if(activeSeeker === 'computer') computerSeeks = true;
+  // else computerSeeks === false;
 
-  let playerHides;
-  if(activeHider === 'player') playerHides = true;
-  else playerHides === false;
+  // let playerHides;
+  // if(activeHider === 'player') playerHides = true;
+  // else playerHides === false;
 
-  let computerHides;
-  if(activeHider === 'computer') computerHides = true;
-  else computerHides === false;
+  // let computerHides;
+  // if(activeHider === 'computer') computerHides = true;
+  // else computerHides === false;
 
-  const [correct, setCorrect] = useState(false);
-  const [incorrect, setIncorrect] = useState(false);
+  const {
+    setGameOver,
+    selectActionMessage,
+    setCorrect,
+    setIncorrect,
+    setDisplayResult,
+    selectResultMessage
+  } = useMessage(activeHider, activeSeeker);
+
+
+
+  // const [correct, setCorrect] = useState(false);
+  // const [incorrect, setIncorrect] = useState(false);
 
   //correctBox = number
   const [hidingSpot, setHidingSpot] = useState(0);
@@ -42,10 +54,10 @@ const Game = ({
   const [buttonClickable, setButtonClickable] = useState(false);
 
   //display the result: correct or incorrect
-  const [displayResult, setDisplayResult] = useState(false);
+  // const [displayResult, setDisplayResult] = useState(false);
 
   //display 'Game Over' message
-  const [gameOver, setGameOver] = useState(false);
+  // const [gameOver, setGameOver] = useState(false);
 
   const incrementScore = (scorer) => {
     if(scorer === 'player') {
@@ -152,27 +164,27 @@ const Game = ({
     }
   };
 
-  const selectActionMessage = () => {
-    if(!gameOver) {
-      if(computerHides) return 'The computer is hiding the item.';
-      if(playerSeeks) return 'Click on a box to guess where the item is hidden.';
-      if(playerHides) return 'Now it\'s your turn to hide the item. Click on a box to hide the item.';
-      if(computerSeeks) return 'The computer is guessing where you hid the item.';
-    } else {
-      return 'Game Over!';
-    }
-  };
+  // const selectActionMessage = () => {
+  //   if(!gameOver) {
+  //     if(computerHides) return 'The computer is hiding the item.';
+  //     if(playerSeeks) return 'Click on a box to guess where the item is hidden.';
+  //     if(playerHides) return 'Now it\'s your turn to hide the item. Click on a box to hide the item.';
+  //     if(computerSeeks) return 'The computer is guessing where you hid the item.';
+  //   } else {
+  //     return 'Game Over!';
+  //   }
+  // };
 
   const actionMessage = selectActionMessage();
 
-  const selectResultMessage = () => {
-    if(displayResult) {
-      if(correct && playerSeeks) return 'You guessed correctly!';
-      if(incorrect && playerSeeks) return 'You guessed incorrectly.';
-      if(correct && computerSeeks) return 'Computer guessed correctly!';
-      if(incorrect && computerSeeks) return 'Computer guessed incorrectly.';
-    }
-  };
+  // const selectResultMessage = () => {
+  //   if(displayResult) {
+  //     if(correct && playerSeeks) return 'You guessed correctly!';
+  //     if(incorrect && playerSeeks) return 'You guessed incorrectly.';
+  //     if(correct && computerSeeks) return 'Computer guessed correctly!';
+  //     if(incorrect && computerSeeks) return 'Computer guessed incorrectly.';
+  //   }
+  // };
 
   const resultMessage = selectResultMessage();
 
