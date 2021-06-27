@@ -21,7 +21,6 @@ const Game = ({
     setGameOver,
     selectActionMessage,
     setCorrect,
-    // setIncorrect,
     setDisplayResult,
     selectResultMessage
   } = useMessage(activeHider, activeSeeker);
@@ -151,8 +150,7 @@ const Game = ({
     if(activeSeeker === 'player') {
       const guess = Number(target.value);
 
-      console.log('PT: hiding spot: ' + hidingSpot);
-      console.log('PT: player guess: ' + guess);
+      console.log('PT: hiding spot: ' + hidingSpot + '; player guess: ' + guess);
 
       if(guess === hidingSpot) {
         incrementScore('player');
@@ -169,14 +167,10 @@ const Game = ({
         setActiveSeeker('');
         setDisplayResult(false);
       }, 2000);
-  
-
     } else if(activeHider === 'player') {
-
       //the player hides the item
-      console.log('Player hid the item!');
       const playerHidingSpot = Number(target.value);
-      console.log('player hiding spot: ' + playerHidingSpot);
+      console.log('player hides item: ' + playerHidingSpot);
       
       setHidingSpot(playerHidingSpot);
       setActiveSeeker('computer');
