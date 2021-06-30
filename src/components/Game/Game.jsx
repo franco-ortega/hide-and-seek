@@ -32,11 +32,8 @@ const Game = ({
   const resultMessage = selectResultMessage();
 
   const incrementScore = (scorer) => {
-    if(scorer === 'player') {
-      setPlayerScore(playerScore + 1);
-    } else {
-      setComputerScore(computerScore + 1);
-    }
+    if(scorer === 'player') setPlayerScore(playerScore + 1);
+    if(scorer === 'computer') setComputerScore(computerScore + 1);
   };
 
   const computerHidesItem = () => {
