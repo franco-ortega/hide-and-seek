@@ -1,17 +1,17 @@
 import { useState } from 'react';
 
-export const useMessage = (activeHider, activeSeeker) => {
+export const useMessage = (currentAction) => {
   const [gameOver, setGameOver] = useState(false);
 
   const selectActionMessage = () => {
     let actionMessage;
 
     if(!gameOver) {
-      if(activeHider === 'computer') actionMessage = 'The computer is hiding the item.';
-      if(activeSeeker === 'player') actionMessage = 'Click on a box to guess where the item is hidden.';
-      if(activeHider === 'player') actionMessage = 'Now it\'s your turn to hide the item. Click on a box to hide the item.';
-      if(activeSeeker === 'computer') actionMessage = 'The computer is guessing where you hid the item.';
-      // else actionMessage = 'SOMETHING ELSE';
+      if(currentAction === 'computer hides') actionMessage = 'The computer is hiding the item.';
+      else if(currentAction === 'computer seeks') actionMessage = 'The computer is guessing where you hid the item.';
+      else if(currentAction === 'player hides') actionMessage = 'Now it\'s your turn to hide the item. Click on a box to hide the item.';
+      else if(currentAction === 'player seeks') actionMessage = 'Click on a box to guess where the item is hidden.';
+      else actionMessage = 'SOMETHING ELSE';
     } else {
       actionMessage = 'Game Over!';
     }
@@ -24,10 +24,10 @@ export const useMessage = (activeHider, activeSeeker) => {
 
   const selectResultMessage = () => {
     if(displayResult) {
-      if(correct && activeSeeker === 'player') return 'You guessed correctly!';
-      if(!correct && activeSeeker === 'player') return 'You guessed incorrectly.';
-      if(correct && activeSeeker === 'computer') return 'Computer guessed correctly!';
-      if(!correct && activeSeeker === 'computer') return 'Computer guessed incorrectly.';
+      if(correct && currentAction === 'player seeks') return 'You guessed correctly!';
+      if(!correct && currentAction === 'player seeks') return 'You guessed incorrectly.';
+      if(correct && currentAction === 'computer seeks') return 'Computer guessed correctly!';
+      if(!correct && currentAction === 'computer seeks') return 'Computer guessed incorrectly.';
       if(correct) return 'Only CORRECT.';
       if(!correct) return 'Only WRONG.';
     }
