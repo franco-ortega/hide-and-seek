@@ -12,6 +12,7 @@ const Game = ({
   setComputerScore
 }) => {
   let history = useHistory();
+  let timer = 2000;
 
   const [hidingSpot, setHidingSpot] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -30,6 +31,40 @@ const Game = ({
 
   const actionMessage = selectActionMessage();
   const resultMessage = selectResultMessage();
+
+  useEffect(() => {
+    console.log('Score Check useEffect');
+    if(playerScore === 3 || computerScore === 3) {
+      setButtonDisabled(true);
+      setGameOver(true);
+      setTimeout(() => {
+        setGameActive(false);
+        history.push('/results');
+      }, timer);
+    } else if(madeGuess === 'player') {
+      console.log('Player made guess.');
+      setTimeout(() => {
+        setDisplayResult(false);
+        setCurrentAction('player hides');
+      }, timer);
+    } else if(madeGuess === 'computer') {
+      console.log('Computer made guess.');
+      setTimeout(() => {
+        setDisplayResult(false);
+        setCurrentAction('computer hides');
+      }, timer);
+    }
+  }, [madeGuess]);
+
+  useEffect(() => {
+    console.log('Current Action useEffect');
+    if(currentAction === 'player hides' || currentAction === 'player seeks') setButtonDisabled(false);
+    if(currentAction === 'computer hides') setTimeout(() => computerHidesItem(), timer);
+    if(currentAction === 'computer seeks') setTimeout(() => computerMakesGuess(), timer);
+    if(currentAction === '') console.log('No one is acting');
+  }, [currentAction]);
+
+
 
   const incrementScore = (scorer) => {
     if(scorer === 'player') setPlayerScore(playerScore + 1);
@@ -60,68 +95,33 @@ const Game = ({
     setMadeGuess('computer');
   };
 
-  useEffect(() => {
-    console.log('Score Check useEffect');
-    if(playerScore === 3 || computerScore === 3) {
-      setButtonDisabled(true);
-      setGameOver(true);
-      setTimeout(() => {
-        setGameActive(false);
-        history.push('/results');
-      }, 2000);
-    } else if(madeGuess === 'player') {
-      console.log('Player made guess.');
-      setTimeout(() => {
-        setDisplayResult(false);
-        setCurrentAction('player hides');
-      }, 2000);
-    } else if(madeGuess === 'computer') {
-      console.log('Computer made guess.');
-      setTimeout(() => {
-        setDisplayResult(false);
-        setCurrentAction('computer hides');
-      }, 2000);
-    }
-  }, [madeGuess]);
-
-  useEffect(() => {
-    console.log('Current Action useEffect');
-    if(currentAction === 'player hides' || currentAction === 'player seeks') setButtonDisabled(false);
-    if(currentAction === 'computer hides') setTimeout(() => computerHidesItem(), 2000);
-    if(currentAction === 'computer seeks') setTimeout(() => computerMakesGuess(), 2000);
-    if(currentAction === '') console.log('No one is acting');
-  }, [currentAction]);
-
-  //player clicks box to make guess || or to hide item
   const onPlayerTurnClick = ({ target }) => {
     if(currentAction === 'player seeks') {
       const playerGuess = Number(target.value);
-
-      console.log('PT: hiding spot = ' + hidingSpot + '; player guess = ' + playerGuess);
-
+      console.log('Player Turn (seek) = ' + playerGuess + ' vs hiding spot = ' + hidingSpot);
+  
       if(playerGuess === hidingSpot) {
         incrementScore('player');
         setCorrect(true);
       } else {
         setCorrect(false);
       }
-
+  
       setButtonDisabled(true);
       setDisplayResult(true);
       setMadeGuess('player');
-      
+  
     } else if(currentAction === 'player hides') {
-      //the player hides the item
       const playerHidingSpot = Number(target.value);
-      console.log('player hides item: ' + playerHidingSpot);
-      
+      console.log('Player Turn (hide): ' + playerHidingSpot);
+        
       setHidingSpot(playerHidingSpot);
-      setCurrentAction('computer seeks');
       setButtonDisabled(true);
+      setCurrentAction('computer seeks');
     }
   };
-
-  console.log('Bottom of file - current action: ' + currentAction);
+  
+  console.log('Bottom of file: current action = ' + currentAction);
 
   return (
     <main className={styles.Game}>
