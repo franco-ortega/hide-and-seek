@@ -39,6 +39,8 @@ export const useMessage = (activeHider, activeSeeker) => {
       if(!correct && playerSeeks) return 'You guessed incorrectly.';
       if(correct && computerSeeks) return 'Computer guessed correctly!';
       if(!correct && computerSeeks) return 'Computer guessed incorrectly.';
+      if(correct) return 'Only CORRECT.';
+      if(!correct && computerSeeks) return 'Only WRONG.';
     }
   };
 
