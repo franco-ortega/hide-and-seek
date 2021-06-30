@@ -34,6 +34,7 @@ export const useMessage = (currentAction) => {
   };
 
   return {
+    gameOver,
     setGameOver,
     selectActionMessage,
     setCorrect,

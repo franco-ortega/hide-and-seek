@@ -23,6 +23,7 @@ const Game = ({
   const [currentAction, setCurrentAction] = useState('computer hides');
 
   const {
+    gameOver,
     setGameOver,
     selectActionMessage,
     setCorrect,
@@ -129,7 +130,7 @@ const Game = ({
     <main className={styles.Game}>
       <h2>Happy seeking!!</h2>
       <section>
-        Round: {round}
+        {!gameOver && 'Round: ' + round}
       </section>
       <section>
         {actionMessage}
