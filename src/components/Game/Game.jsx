@@ -64,8 +64,6 @@ const Game = ({
     if(currentAction === '') console.log('No one is acting');
   }, [currentAction]);
 
-
-
   const incrementScore = (scorer) => {
     if(scorer === 'player') setPlayerScore(playerScore + 1);
     if(scorer === 'computer') setComputerScore(computerScore + 1);
