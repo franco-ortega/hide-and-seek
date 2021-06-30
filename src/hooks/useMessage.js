@@ -11,7 +11,7 @@ export const useMessage = (currentAction) => {
       else if(currentAction === 'computer seeks') actionMessage = 'The computer is guessing where you hid the item.';
       else if(currentAction === 'player hides') actionMessage = 'Now it\'s your turn to hide the item. Click on a box to hide the item.';
       else if(currentAction === 'player seeks') actionMessage = 'Click on a box to guess where the item is hidden.';
-      else actionMessage = 'SOMETHING ELSE';
+      else actionMessage = 'SOME OTHER ACTION';
     } else {
       actionMessage = 'Game Over!';
     }
