@@ -17,6 +17,7 @@ const Game = ({
   const [hidingSpot, setHidingSpot] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [madeGuess, setMadeGuess] = useState('');
+  const [round, setRound] = useState(1);
 
   // List of currentActions: computer hides, player seeks, player hides, computer seeks
   const [currentAction, setCurrentAction] = useState('computer hides');
@@ -52,8 +53,9 @@ const Game = ({
       setTimeout(() => {
         setDisplayResult(false);
         setCurrentAction('computer hides');
+        incrementRound();
       }, timer);
-    }
+    } else if(madeGuess === '') console.log('No one made a guess');
   }, [madeGuess]);
 
   useEffect(() => {
@@ -68,6 +70,8 @@ const Game = ({
     if(scorer === 'player') setPlayerScore(playerScore + 1);
     if(scorer === 'computer') setComputerScore(computerScore + 1);
   };
+
+  const incrementRound = () => setRound(round + 1);
 
   const computerHidesItem = () => {
     const computerHidingSpot = Math.ceil(Math.random() * 3);
@@ -124,6 +128,9 @@ const Game = ({
   return (
     <main className={styles.Game}>
       <h2>Happy seeking!!</h2>
+      <section>
+        Round: {round}
+      </section>
       <section>
         {actionMessage}
       </section>
