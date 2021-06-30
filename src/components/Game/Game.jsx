@@ -16,9 +16,9 @@ const Game = ({
 
   const [hidingSpot, setHidingSpot] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [madeGuess, setMadeGuess] = useState('');
-  const [activeSeeker, setActiveSeeker] = useState('');
   const [activeHider, setActiveHider] = useState('computer');
+  const [activeSeeker, setActiveSeeker] = useState('');
+  const [madeGuess, setMadeGuess] = useState('');
 
   const {
     setGameOver,
@@ -30,7 +30,6 @@ const Game = ({
 
   const actionMessage = selectActionMessage();
   const resultMessage = selectResultMessage();
-
 
   const incrementScore = (scorer) => {
     if(scorer === 'player') {
@@ -47,8 +46,6 @@ const Game = ({
     console.log('TEST 1');
     setActiveSeeker('player');
     console.log('TEST 2');
-    setActiveHider('');
-    console.log('TEST 3');
   };
 
   const computerMakesGuess = () => {
@@ -56,7 +53,7 @@ const Game = ({
 
     //random select a number
     const computerGuess = Math.ceil(Math.random() * 3);
-    console.log('computer guess: ' + computerGuess);
+    console.log('CT: hiding spot = ' + hidingSpot + '; computer guess = ' + computerGuess);
 
     //compare guess to hiding spot; if correct, increment computer score
     if(computerGuess === hidingSpot) {
@@ -106,7 +103,14 @@ const Game = ({
       setTimeout(() => {
         computerHidesItem();
       }, 2000);
-    } else if(activeSeeker === 'player') {
+    } else if(activeHider === '') {
+      console.log('No one is hiding');
+    }
+  }, [activeHider]);
+
+  useEffect(() => {
+    console.log('Seeker changed useEffect');
+    if(activeSeeker === 'player') {
       console.log('Player will seek.');
       setButtonDisabled(false);
     } else if(activeSeeker === 'computer') {
@@ -114,17 +118,19 @@ const Game = ({
       setTimeout(() => {
         computerMakesGuess();
       }, 2000);
+    } else if(activeSeeker === '') {
+      console.log('No one is seeking');
     }
-  }, [activeHider]);
+  }, [activeSeeker]);
 
   //player clicks box to make guess || or to hide item
   const onPlayerTurnClick = ({ target }) => {
     if(activeSeeker === 'player') {
-      const guess = Number(target.value);
+      const playerGuess = Number(target.value);
 
-      console.log('PT: hiding spot: ' + hidingSpot + '; player guess: ' + guess);
+      console.log('PT: hiding spot = ' + hidingSpot + '; player guess = ' + playerGuess);
 
-      if(guess === hidingSpot) {
+      if(playerGuess === hidingSpot) {
         incrementScore('player');
         setCorrect(true);
       } else {
@@ -143,11 +149,9 @@ const Game = ({
       setHidingSpot(playerHidingSpot);
       setActiveSeeker('computer');
       setButtonDisabled(true);
-      setActiveHider('');
     }
   };
 
-  // console.log('Active Seeker: ' + activeSeeker + '; Active Hider: ' + activeHider);
   console.log('Bottom of file');
 
   return (
