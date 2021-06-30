@@ -13,7 +13,15 @@ const Game = ({
   setComputerScore
 }) => {
   let history = useHistory();
-  
+
+  //correctBox = number
+  const [hidingSpot, setHidingSpot] = useState(0);
+
+  //disable button
+  const [buttonClickable, setButtonClickable] = useState(false);
+
+  const [madeGuess, setMadeGuess] = useState('');
+
   const [activeSeeker, setActiveSeeker] = useState('');
   const [activeHider, setActiveHider] = useState('computer');
 
@@ -29,60 +37,6 @@ const Game = ({
   const resultMessage = selectResultMessage();
 
 
-  //*** CODE BELOW HERE IS NOW IN useMessage hook
-  // let playerSeeks;
-  // if(activeSeeker === 'player') playerSeeks = true;
-  // else playerSeeks === false;
-
-  // let computerSeeks;
-  // if(activeSeeker === 'computer') computerSeeks = true;
-  // else computerSeeks === false;
-
-  // let playerHides;
-  // if(activeHider === 'player') playerHides = true;
-  // else playerHides === false;
-
-  // let computerHides;
-  // if(activeHider === 'computer') computerHides = true;
-  // else computerHides === false;
-
-  // const [correct, setCorrect] = useState(false);
-  // const [incorrect, setIncorrect] = useState(false);
-
-  //display the result: correct or incorrect
-  // const [displayResult, setDisplayResult] = useState(false);
-
-  //display 'Game Over' message
-  // const [gameOver, setGameOver] = useState(false);
-
-  // const selectActionMessage = () => {
-  //   if(!gameOver) {
-  //     if(computerHides) return 'The computer is hiding the item.';
-  //     if(playerSeeks) return 'Click on a box to guess where the item is hidden.';
-  //     if(playerHides) return 'Now it\'s your turn to hide the item. Click on a box to hide the item.';
-  //     if(computerSeeks) return 'The computer is guessing where you hid the item.';
-  //   } else {
-  //     return 'Game Over!';
-  //   }
-  // };
-
-  // const selectResultMessage = () => {
-  //   if(displayResult) {
-  //     if(correct && playerSeeks) return 'You guessed correctly!';
-  //     if(incorrect && playerSeeks) return 'You guessed incorrectly.';
-  //     if(correct && computerSeeks) return 'Computer guessed correctly!';
-  //     if(incorrect && computerSeeks) return 'Computer guessed incorrectly.';
-  //   }
-  // };
-  //*** CODE ABOVE HERE IS NOW IN useMessage hook
-
-
-  //correctBox = number
-  const [hidingSpot, setHidingSpot] = useState(0);
-
-  //disable button
-  const [buttonClickable, setButtonClickable] = useState(false);
-
   const incrementScore = (scorer) => {
     if(scorer === 'player') {
       setPlayerScore(playerScore + 1);
@@ -95,7 +49,6 @@ const Game = ({
     const computerHidingSpot = Math.ceil(Math.random() * 3);
     console.log('computer hiding spot: ' + computerHidingSpot);
     setHidingSpot(computerHidingSpot);
-    setButtonClickable(true);
     setActiveSeeker('player');
     setActiveHider('');
   };
@@ -116,16 +69,7 @@ const Game = ({
     }
 
     setDisplayResult(true);
-    setTimeout(() => {
-      setDisplayResult(false);
-      setActiveSeeker('');
-      setActiveHider('computer');
-    }, 2000);
-  };
-
-  const computerTurn = () => {
-    if(activeHider === 'computer') computerHidesItem();
-    if(activeSeeker === 'computer') computerMakesGuess();
+    setMadeGuess('computer');
   };
 
   useEffect(() => {
@@ -136,11 +80,33 @@ const Game = ({
         setGameActive(false);
         history.push('/results');
       }, 2000);
-    } else if(activeHider === 'player') {
-      setButtonClickable(true);
-    } else {
+    } else if(madeGuess === 'player') {
       setTimeout(() => {
-        computerTurn();
+        setDisplayResult(false);
+        setActiveHider('player');
+        setActiveSeeker('');
+      }, 2000);
+    } else if(madeGuess === 'computer') {
+      setTimeout(() => {
+        setDisplayResult(false);
+        setActiveHider('computer');
+        setActiveSeeker('');
+      }, 2000);
+    }
+  }, [madeGuess]);
+
+  useEffect(() => {
+    if(activeHider === 'player') {
+      setButtonClickable(true);
+    } else if(activeHider === 'computer') {
+      setTimeout(() => {
+        computerHidesItem();
+      }, 2000);
+    } else if(activeSeeker === 'player') {
+      setButtonClickable(true);
+    } else if(activeSeeker === 'computer') {
+      setTimeout(() => {
+        computerMakesGuess();
       }, 2000);
     }
   }, [activeHider]);
@@ -161,12 +127,8 @@ const Game = ({
 
       setButtonClickable(false);
       setDisplayResult(true);
+      setMadeGuess('player');
       
-      setTimeout(() => {
-        setActiveHider('player');
-        setActiveSeeker('');
-        setDisplayResult(false);
-      }, 2000);
     } else if(activeHider === 'player') {
       //the player hides the item
       const playerHidingSpot = Number(target.value);
