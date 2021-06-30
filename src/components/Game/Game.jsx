@@ -104,34 +104,81 @@ const Game = ({
   }, [madeGuess]);
 
   useEffect(() => {
-    console.log('Action Check useEffect');
+    console.log('Current Action useEffect');
+
     if(currentAction === 'player hides') {
       console.log('Player will hide.');
       setButtonDisabled(false);
-    } else if(currentAction === 'computer hides') {
+    }
+    
+    if(currentAction === 'computer hides') {
       console.log('Computer will hide.');
       setTimeout(() => {
         computerHidesItem();
       }, 2000);
-    } else if(currentAction === '') {
-      console.log('No one is hiding');
     }
-  }, [currentAction]);
 
-  useEffect(() => {
-    console.log('Seeker changed useEffect');
     if(currentAction === 'player seeks') {
       console.log('Player will seek.');
       setButtonDisabled(false);
-    } else if(currentAction === 'computer seeks') {
+    }
+    
+    if(currentAction === 'computer seeks') {
       console.log('Computer will seek.');
       setTimeout(() => {
         computerMakesGuess();
       }, 2000);
-    } else if(currentAction === '') {
-      console.log('No one is seeking');
+    }
+    
+    if(currentAction === '') {
+      console.log('No one is hiding');
     }
   }, [currentAction]);
+
+  // useEffect(() => {
+  //   console.log('Seeker changed useEffect');
+  //   if(currentAction === 'player seeks') {
+  //     console.log('Player will seek.');
+  //     setButtonDisabled(false);
+  //   } else if(currentAction === 'computer seeks') {
+  //     console.log('Computer will seek.');
+  //     setTimeout(() => {
+  //       computerMakesGuess();
+  //     }, 2000);
+  //   } else if(currentAction === '') {
+  //     console.log('No one is seeking');
+  //   }
+  // }, [currentAction]);
+
+  // useEffect(() => {
+  //   console.log('Action Check useEffect');
+  //   if(currentAction === 'player hides') {
+  //     console.log('Player will hide.');
+  //     setButtonDisabled(false);
+  //   } else if(currentAction === 'computer hides') {
+  //     console.log('Computer will hide.');
+  //     setTimeout(() => {
+  //       computerHidesItem();
+  //     }, 2000);
+  //   } else if(currentAction === '') {
+  //     console.log('No one is hiding');
+  //   }
+  // }, [currentAction]);
+
+  // useEffect(() => {
+  //   console.log('Seeker changed useEffect');
+  //   if(currentAction === 'player seeks') {
+  //     console.log('Player will seek.');
+  //     setButtonDisabled(false);
+  //   } else if(currentAction === 'computer seeks') {
+  //     console.log('Computer will seek.');
+  //     setTimeout(() => {
+  //       computerMakesGuess();
+  //     }, 2000);
+  //   } else if(currentAction === '') {
+  //     console.log('No one is seeking');
+  //   }
+  // }, [currentAction]);
 
   //player clicks box to make guess || or to hide item
   const onPlayerTurnClick = ({ target }) => {
