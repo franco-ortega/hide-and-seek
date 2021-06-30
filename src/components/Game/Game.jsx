@@ -106,8 +106,8 @@ const Game = ({
   useEffect(() => {
     console.log('Current Action useEffect');
 
-    if(currentAction === 'player hides') {
-      console.log('Player will hide.');
+    if(currentAction === 'player hides' || currentAction === 'player seeks') {
+      console.log('Player action.');
       setButtonDisabled(false);
     }
     
@@ -118,10 +118,6 @@ const Game = ({
       }, 2000);
     }
 
-    if(currentAction === 'player seeks') {
-      console.log('Player will seek.');
-      setButtonDisabled(false);
-    }
     
     if(currentAction === 'computer seeks') {
       console.log('Computer will seek.');
@@ -131,54 +127,9 @@ const Game = ({
     }
     
     if(currentAction === '') {
-      console.log('No one is hiding');
+      console.log('No one is acting');
     }
   }, [currentAction]);
-
-  // useEffect(() => {
-  //   console.log('Seeker changed useEffect');
-  //   if(currentAction === 'player seeks') {
-  //     console.log('Player will seek.');
-  //     setButtonDisabled(false);
-  //   } else if(currentAction === 'computer seeks') {
-  //     console.log('Computer will seek.');
-  //     setTimeout(() => {
-  //       computerMakesGuess();
-  //     }, 2000);
-  //   } else if(currentAction === '') {
-  //     console.log('No one is seeking');
-  //   }
-  // }, [currentAction]);
-
-  // useEffect(() => {
-  //   console.log('Action Check useEffect');
-  //   if(currentAction === 'player hides') {
-  //     console.log('Player will hide.');
-  //     setButtonDisabled(false);
-  //   } else if(currentAction === 'computer hides') {
-  //     console.log('Computer will hide.');
-  //     setTimeout(() => {
-  //       computerHidesItem();
-  //     }, 2000);
-  //   } else if(currentAction === '') {
-  //     console.log('No one is hiding');
-  //   }
-  // }, [currentAction]);
-
-  // useEffect(() => {
-  //   console.log('Seeker changed useEffect');
-  //   if(currentAction === 'player seeks') {
-  //     console.log('Player will seek.');
-  //     setButtonDisabled(false);
-  //   } else if(currentAction === 'computer seeks') {
-  //     console.log('Computer will seek.');
-  //     setTimeout(() => {
-  //       computerMakesGuess();
-  //     }, 2000);
-  //   } else if(currentAction === '') {
-  //     console.log('No one is seeking');
-  //   }
-  // }, [currentAction]);
 
   //player clicks box to make guess || or to hide item
   const onPlayerTurnClick = ({ target }) => {
