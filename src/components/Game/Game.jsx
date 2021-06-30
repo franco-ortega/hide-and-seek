@@ -20,6 +20,8 @@ const Game = ({
   //disable button
   const [buttonClickable, setButtonClickable] = useState(false);
 
+  const [madeGuess, setMadeGuess] = useState('');
+
   const [activeSeeker, setActiveSeeker] = useState('');
   const [activeHider, setActiveHider] = useState('computer');
 
@@ -67,17 +69,8 @@ const Game = ({
     }
 
     setDisplayResult(true);
-    setTimeout(() => {
-      setDisplayResult(false);
-      // setActiveSeeker('');
-      setActiveHider('computer');
-    }, 2000);
+    setMadeGuess('computer');
   };
-
-  // const computerTurn = () => {
-  //   if(activeHider === 'computer') computerHidesItem();
-  //   if(activeSeeker === 'computer') computerMakesGuess();
-  // };
 
   useEffect(() => {
     if(playerScore === 3 || computerScore === 3) {
@@ -87,18 +80,32 @@ const Game = ({
         setGameActive(false);
         history.push('/results');
       }, 2000);
-    } else if(activeHider === 'player') {
+    } else if(madeGuess === 'player') {
+      setTimeout(() => {
+        setDisplayResult(false);
+        setActiveHider('player');
+        setActiveSeeker('');
+      }, 2000);
+    } else if(madeGuess === 'computer') {
+      setTimeout(() => {
+        setDisplayResult(false);
+        setActiveHider('computer');
+        setActiveSeeker('');
+      }, 2000);
+    }
+  }, [madeGuess]);
+
+  useEffect(() => {
+    if(activeHider === 'player') {
       setButtonClickable(true);
     } else if(activeHider === 'computer') {
       setTimeout(() => {
-        // computerTurn();
         computerHidesItem();
       }, 2000);
     } else if(activeSeeker === 'player') {
       setButtonClickable(true);
     } else if(activeSeeker === 'computer') {
       setTimeout(() => {
-        // computerTurn();
         computerMakesGuess();
       }, 2000);
     }
@@ -120,12 +127,8 @@ const Game = ({
 
       setButtonClickable(false);
       setDisplayResult(true);
+      setMadeGuess('player');
       
-      setTimeout(() => {
-        setActiveHider('player');
-        setActiveSeeker('');
-        setDisplayResult(false);
-      }, 2000);
     } else if(activeHider === 'player') {
       //the player hides the item
       const playerHidingSpot = Number(target.value);
