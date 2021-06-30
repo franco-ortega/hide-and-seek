@@ -105,30 +105,10 @@ const Game = ({
 
   useEffect(() => {
     console.log('Current Action useEffect');
-
-    if(currentAction === 'player hides' || currentAction === 'player seeks') {
-      console.log('Player action.');
-      setButtonDisabled(false);
-    }
-    
-    if(currentAction === 'computer hides') {
-      console.log('Computer will hide.');
-      setTimeout(() => {
-        computerHidesItem();
-      }, 2000);
-    }
-
-    
-    if(currentAction === 'computer seeks') {
-      console.log('Computer will seek.');
-      setTimeout(() => {
-        computerMakesGuess();
-      }, 2000);
-    }
-    
-    if(currentAction === '') {
-      console.log('No one is acting');
-    }
+    if(currentAction === 'player hides' || currentAction === 'player seeks') setButtonDisabled(false);
+    if(currentAction === 'computer hides') setTimeout(() => computerHidesItem(), 2000);
+    if(currentAction === 'computer seeks') setTimeout(() => computerMakesGuess(), 2000);
+    if(currentAction === '') console.log('No one is acting');
   }, [currentAction]);
 
   //player clicks box to make guess || or to hide item
