@@ -14,14 +14,9 @@ const Game = ({
 }) => {
   let history = useHistory();
 
-  //correctBox = number
   const [hidingSpot, setHidingSpot] = useState(0);
-
-  //disable button
-  const [buttonClickable, setButtonClickable] = useState(false);
-
+  const [buttonDisabled, setButtonDisabled] = useState(true);
   const [madeGuess, setMadeGuess] = useState('');
-
   const [activeSeeker, setActiveSeeker] = useState('');
   const [activeHider, setActiveHider] = useState('computer');
 
@@ -49,8 +44,11 @@ const Game = ({
     const computerHidingSpot = Math.ceil(Math.random() * 3);
     console.log('computer hiding spot: ' + computerHidingSpot);
     setHidingSpot(computerHidingSpot);
+    console.log('TEST 1');
     setActiveSeeker('player');
+    console.log('TEST 2');
     setActiveHider('');
+    console.log('TEST 3');
   };
 
   const computerMakesGuess = () => {
@@ -73,20 +71,23 @@ const Game = ({
   };
 
   useEffect(() => {
+    console.log('Score Check useEffect');
     if(playerScore === 3 || computerScore === 3) {
-      setButtonClickable(false);
+      setButtonDisabled(true);
       setGameOver(true);
       setTimeout(() => {
         setGameActive(false);
         history.push('/results');
       }, 2000);
     } else if(madeGuess === 'player') {
+      console.log('Player made guess.');
       setTimeout(() => {
         setDisplayResult(false);
         setActiveHider('player');
         setActiveSeeker('');
       }, 2000);
     } else if(madeGuess === 'computer') {
+      console.log('Computer made guess.');
       setTimeout(() => {
         setDisplayResult(false);
         setActiveHider('computer');
@@ -96,15 +97,20 @@ const Game = ({
   }, [madeGuess]);
 
   useEffect(() => {
+    console.log('Action Check useEffect');
     if(activeHider === 'player') {
-      setButtonClickable(true);
+      console.log('Player will hide.');
+      setButtonDisabled(false);
     } else if(activeHider === 'computer') {
+      console.log('Computer will hide.');
       setTimeout(() => {
         computerHidesItem();
       }, 2000);
     } else if(activeSeeker === 'player') {
-      setButtonClickable(true);
+      console.log('Player will seek.');
+      setButtonDisabled(false);
     } else if(activeSeeker === 'computer') {
+      console.log('Computer will seek.');
       setTimeout(() => {
         computerMakesGuess();
       }, 2000);
@@ -125,7 +131,7 @@ const Game = ({
         setCorrect(false);
       }
 
-      setButtonClickable(false);
+      setButtonDisabled(true);
       setDisplayResult(true);
       setMadeGuess('player');
       
@@ -136,12 +142,13 @@ const Game = ({
       
       setHidingSpot(playerHidingSpot);
       setActiveSeeker('computer');
-      setButtonClickable(false);
+      setButtonDisabled(true);
       setActiveHider('');
     }
   };
 
   // console.log('Active Seeker: ' + activeSeeker + '; Active Hider: ' + activeHider);
+  console.log('Bottom of file');
 
   return (
     <main className={styles.Game}>
@@ -150,9 +157,9 @@ const Game = ({
         {actionMessage}
       </section>
       <section className={styles.Buttons}>
-        <button value="1" disabled={!buttonClickable} onClick={onPlayerTurnClick}>Box 1</button>
-        <button value="2" disabled={!buttonClickable} onClick={onPlayerTurnClick}>Box 2</button>
-        <button value="3" disabled={!buttonClickable} onClick={onPlayerTurnClick}>Box 3</button>
+        <button value="1" disabled={buttonDisabled} onClick={onPlayerTurnClick}>Box 1</button>
+        <button value="2" disabled={buttonDisabled} onClick={onPlayerTurnClick}>Box 2</button>
+        <button value="3" disabled={buttonDisabled} onClick={onPlayerTurnClick}>Box 3</button>
       </section>
       <section>
         {resultMessage}
