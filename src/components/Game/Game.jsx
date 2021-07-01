@@ -18,7 +18,7 @@ const Game = ({
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [madeGuess, setMadeGuess] = useState('');
   const [round, setRound] = useState(1);
-  const [nextRound, setNextRound] = useState(false);
+  const [newRound, setNewRound] = useState(false);
 
   // List of currentActions: computer hides, player seeks, player hides, computer seeks
   const [currentAction, setCurrentAction] = useState('computer hides');
@@ -59,10 +59,10 @@ const Game = ({
       console.log('Computer made guess.');
       setTimeout(() => {
         setDisplayResult(false);
-        setNextRound(true);
+        setNewRound(true);
         incrementRound();
         setTimeout(() => {
-          setNextRound(false);
+          setNewRound(false);
           setCurrentAction('computer hides');
         }, timer);
       }, timer);
@@ -145,7 +145,7 @@ const Game = ({
         </p>
       </header>
       <section>
-        {nextRound ? roundMessage : actionMessage}
+        {newRound ? roundMessage : actionMessage}
       </section>
       <section className={styles.Buttons}>
         <button value="1" disabled={buttonDisabled} onClick={onPlayerTurnClick}>Box 1</button>
