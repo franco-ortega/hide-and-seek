@@ -18,12 +18,22 @@ const Game = ({
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [madeGuess, setMadeGuess] = useState('');
   const [round, setRound] = useState(1);
+  const [nextRound, setNextRound] = useState(false);
+
+  const selectRoundMessage = (round) => {
+    let roundMessage;
+    if(round < 3) roundMessage = 'New Round';
+    else roundMessage = 'Final Round!';
+    return roundMessage;
+  };
+
+  const currentRoundMessage = selectRoundMessage(round);
 
   // List of currentActions: computer hides, player seeks, player hides, computer seeks
   const [currentAction, setCurrentAction] = useState('computer hides');
 
   const {
-    gameOver,
+    // gameOver,
     setGameOver,
     selectActionMessage,
     setCorrect,
@@ -36,12 +46,16 @@ const Game = ({
 
   useEffect(() => {
     console.log('Score Check useEffect');
-    if(playerScore === 3 || computerScore === 3) {
+    // if(playerScore === 3 || computerScore === 3) {
+    if(round === 3 && madeGuess === 'computer') {
       setButtonDisabled(true);
-      setGameOver(true);
       setTimeout(() => {
-        setGameActive(false);
-        history.push('/results');
+        setDisplayResult(false);
+        setGameOver(true);
+        setTimeout(() => {
+          setGameActive(false);
+          history.push('/results');
+        }, timer);
       }, timer);
     } else if(madeGuess === 'player') {
       console.log('Player made guess.');
@@ -53,8 +67,13 @@ const Game = ({
       console.log('Computer made guess.');
       setTimeout(() => {
         setDisplayResult(false);
-        setCurrentAction('computer hides');
+        setCurrentAction('');
+        setNextRound(true);
         incrementRound();
+        setTimeout(() => {
+          setNextRound(false);
+          setCurrentAction('computer hides');
+        }, timer);
       }, timer);
     } else if(madeGuess === '') console.log('No one made a guess');
   }, [madeGuess]);
@@ -128,11 +147,14 @@ const Game = ({
 
   return (
     <main className={styles.Game}>
-      <h2>Happy seeking!!</h2>
+      <header>
+        <h2>Happy seeking!!</h2>
+        <p>
+          Round: {round}
+        </p>
+      </header>
       <section>
-        {!gameOver && 'Round: ' + round}
-      </section>
-      <section>
+        {nextRound && currentRoundMessage}
         {actionMessage}
       </section>
       <section className={styles.Buttons}>
