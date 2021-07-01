@@ -59,7 +59,6 @@ const Game = ({
       console.log('Computer made guess.');
       setTimeout(() => {
         setDisplayResult(false);
-        setCurrentAction('');
         setNextRound(true);
         incrementRound();
         setTimeout(() => {
@@ -146,8 +145,7 @@ const Game = ({
         </p>
       </header>
       <section>
-        {nextRound && roundMessage}
-        {actionMessage}
+        {nextRound ? roundMessage : actionMessage}
       </section>
       <section className={styles.Buttons}>
         <button value="1" disabled={buttonDisabled} onClick={onPlayerTurnClick}>Box 1</button>
