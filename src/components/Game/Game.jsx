@@ -20,29 +20,21 @@ const Game = ({
   const [round, setRound] = useState(1);
   const [nextRound, setNextRound] = useState(false);
 
-  const selectRoundMessage = (round) => {
-    let roundMessage;
-    if(round < 3) roundMessage = 'New Round';
-    else roundMessage = 'Final Round!';
-    return roundMessage;
-  };
-
-  const currentRoundMessage = selectRoundMessage(round);
-
   // List of currentActions: computer hides, player seeks, player hides, computer seeks
   const [currentAction, setCurrentAction] = useState('computer hides');
 
   const {
-    // gameOver,
     setGameOver,
     selectActionMessage,
     setCorrect,
     setDisplayResult,
-    selectResultMessage
-  } = useMessage(currentAction);
+    selectResultMessage,
+    selectRoundMessage
+  } = useMessage();
 
-  const actionMessage = selectActionMessage();
-  const resultMessage = selectResultMessage();
+  const actionMessage = selectActionMessage(currentAction);
+  const resultMessage = selectResultMessage(currentAction);
+  const roundMessage = selectRoundMessage(round);
 
   useEffect(() => {
     console.log('Score Check useEffect');
@@ -154,7 +146,7 @@ const Game = ({
         </p>
       </header>
       <section>
-        {nextRound && currentRoundMessage}
+        {nextRound && roundMessage}
         {actionMessage}
       </section>
       <section className={styles.Buttons}>

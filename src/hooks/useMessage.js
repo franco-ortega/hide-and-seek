@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-export const useMessage = (currentAction) => {
+export const useMessage = () => {
   const [gameOver, setGameOver] = useState(false);
 
-  const selectActionMessage = () => {
+  const selectActionMessage = (currentAction) => {
     let actionMessage;
 
     if(!gameOver) {
@@ -22,7 +22,7 @@ export const useMessage = (currentAction) => {
   const [correct, setCorrect] = useState(false);
   const [displayResult, setDisplayResult] = useState(false);
 
-  const selectResultMessage = () => {
+  const selectResultMessage = (currentAction) => {
     if(displayResult) {
       if(correct && currentAction === 'player seeks') return 'You guessed correctly!';
       if(!correct && currentAction === 'player seeks') return 'You guessed incorrectly.';
@@ -33,12 +33,19 @@ export const useMessage = (currentAction) => {
     }
   };
 
+  const selectRoundMessage = (round) => {
+    let roundMessage;
+    if(round < 3) roundMessage = 'New Round';
+    else roundMessage = 'Final Round!';
+    return roundMessage;
+  };
+
   return {
-    gameOver,
     setGameOver,
     selectActionMessage,
     setCorrect,
     setDisplayResult,
-    selectResultMessage
+    selectResultMessage,
+    selectRoundMessage
   };
 };
