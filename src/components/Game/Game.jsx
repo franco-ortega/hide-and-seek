@@ -19,6 +19,9 @@ const Game = ({
   const [madeGuess, setMadeGuess] = useState('');
   const [round, setRound] = useState(1);
   const [newRound, setNewRound] = useState(false);
+  const [currentGuess, setCurrentGuess] = useState(0);
+  const [correcttGuess, setCorrecttGuess] = useState(0);
+  const [displayGuess, setDisplayGuess] = useState(false);
 
   // List of currentActions: computer hides, player seeks, player hides, computer seeks
   const [currentAction, setCurrentAction] = useState('computer hides');
@@ -42,6 +45,7 @@ const Game = ({
     if(round === 3 && madeGuess === 'computer') {
       setButtonDisabled(true);
       setTimeout(() => {
+        setDisplayGuess(false);
         setDisplayResult(false);
         setGameOver(true);
         setTimeout(() => {
@@ -52,12 +56,14 @@ const Game = ({
     } else if(madeGuess === 'player') {
       console.log('Player made guess.');
       setTimeout(() => {
+        setDisplayGuess(false);
         setDisplayResult(false);
         setCurrentAction('player hides');
       }, timer);
     } else if(madeGuess === 'computer') {
       console.log('Computer made guess.');
       setTimeout(() => {
+        setDisplayGuess(false);
         setDisplayResult(false);
         setNewRound(true);
         incrementRound();
@@ -87,6 +93,7 @@ const Game = ({
   const computerHidesItem = () => {
     const computerHidingSpot = Math.ceil(Math.random() * 3);
     console.log('Computer Hide Item: ' + computerHidingSpot);
+    setCorrecttGuess(computerHidingSpot);
     setHidingSpot(computerHidingSpot);
     console.log('Computer Hides Item: computer hid item');
     setCurrentAction('player seeks');
@@ -104,6 +111,8 @@ const Game = ({
       setCorrect(false);
     }
 
+    setCurrentGuess(computerGuess);
+    setDisplayGuess(true);
     setDisplayResult(true);
     setMadeGuess('computer');
   };
@@ -120,6 +129,8 @@ const Game = ({
         setCorrect(false);
       }
   
+      setCurrentGuess(playerGuess);
+      setDisplayGuess(true);
       setButtonDisabled(true);
       setDisplayResult(true);
       setMadeGuess('player');
@@ -127,7 +138,8 @@ const Game = ({
     } else if(currentAction === 'player hides') {
       const playerHidingSpot = Number(target.value);
       console.log('Player Turn (hide): ' + playerHidingSpot);
-        
+      
+      setCorrecttGuess(playerHidingSpot);
       setHidingSpot(playerHidingSpot);
       setButtonDisabled(true);
       setCurrentAction('computer seeks');
@@ -152,9 +164,13 @@ const Game = ({
         <button value="2" disabled={buttonDisabled} onClick={onPlayerTurnClick}>Box 2</button>
         <button value="3" disabled={buttonDisabled} onClick={onPlayerTurnClick}>Box 3</button>
       </section>
+      {displayGuess &&
       <section>
+        Guess: {currentGuess} vs Correct: {correcttGuess}
+        <br />
         {resultMessage}
       </section>
+      }
     </main>
   );
 };
