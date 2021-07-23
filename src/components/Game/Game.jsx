@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Game.module.scss';
 import { useHistory } from 'react-router';
 import { useMessage } from '../../hooks/useMessage';
+import { generateNumber } from '../../utils/utils';
 
 const Game = ({
   setGameActive,
@@ -41,7 +42,6 @@ const Game = ({
 
   useEffect(() => {
     console.log('Score Check useEffect');
-    // if(playerScore === 3 || computerScore === 3) {
     if(round === 3 && madeGuess === 'computer') {
       setButtonDisabled(true);
       setTimeout(() => {
@@ -91,7 +91,7 @@ const Game = ({
   const incrementRound = () => setRound(round + 1);
 
   const computerHidesItem = () => {
-    const computerHidingSpot = Math.ceil(Math.random() * 3);
+    const computerHidingSpot = generateNumber(3);
     console.log('Computer Hide Item: ' + computerHidingSpot);
     setCorrecttGuess(computerHidingSpot);
     setHidingSpot(computerHidingSpot);
@@ -101,7 +101,7 @@ const Game = ({
   };
 
   const computerMakesGuess = () => {
-    const computerGuess = Math.ceil(Math.random() * 3);
+    const computerGuess = generateNumber(3);
     console.log('Computer Makes Guess = ' + computerGuess + ' vs hiding spot = ' + hidingSpot);
 
     if(computerGuess === hidingSpot) {
