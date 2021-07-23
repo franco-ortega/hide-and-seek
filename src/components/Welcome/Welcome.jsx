@@ -25,7 +25,7 @@ const Welcome = ({ player, gameActive, setGameActive }) => {
         <p>3. Then you get to hide the item by clicking on a box.</p>
         <p>4. The computer will try to guess where you hid the item.</p>
         <p>5. Every correct guess scores 1 point.</p>
-        <p>6. The first one to 3 points wins the game.</p>
+        <p>6. The game ends after 3 rounds.</p>
         <button onClick={onStartGameClick}>Start Game</button>
       </section>
     </main>
