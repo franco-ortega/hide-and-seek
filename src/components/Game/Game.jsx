@@ -17,6 +17,11 @@ const Game = ({
   const [hidingSpot, setHidingSpot] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [madeGuess, setMadeGuess] = useState('');
+  const [round, setRound] = useState(1);
+  const [newRound, setNewRound] = useState(false);
+  const [currentGuess, setCurrentGuess] = useState(0);
+  const [correcttGuess, setCorrecttGuess] = useState(0);
+  const [displayGuess, setDisplayGuess] = useState(false);
 
   // List of currentActions: computer hides, player seeks, player hides, computer seeks
   const [currentAction, setCurrentAction] = useState('computer hides');
@@ -26,34 +31,48 @@ const Game = ({
     selectActionMessage,
     setCorrect,
     setDisplayResult,
-    selectResultMessage
-  } = useMessage(currentAction);
+    selectResultMessage,
+    selectRoundMessage
+  } = useMessage();
 
-  const actionMessage = selectActionMessage();
-  const resultMessage = selectResultMessage();
+  const actionMessage = selectActionMessage(currentAction);
+  const resultMessage = selectResultMessage(currentAction);
+  const roundMessage = selectRoundMessage(round);
 
   useEffect(() => {
     console.log('Score Check useEffect');
-    if(playerScore === 3 || computerScore === 3) {
+    // if(playerScore === 3 || computerScore === 3) {
+    if(round === 3 && madeGuess === 'computer') {
       setButtonDisabled(true);
-      setGameOver(true);
       setTimeout(() => {
-        setGameActive(false);
-        history.push('/results');
+        setDisplayGuess(false);
+        setDisplayResult(false);
+        setGameOver(true);
+        setTimeout(() => {
+          setGameActive(false);
+          history.push('/results');
+        }, timer);
       }, timer);
     } else if(madeGuess === 'player') {
       console.log('Player made guess.');
       setTimeout(() => {
+        setDisplayGuess(false);
         setDisplayResult(false);
         setCurrentAction('player hides');
       }, timer);
     } else if(madeGuess === 'computer') {
       console.log('Computer made guess.');
       setTimeout(() => {
+        setDisplayGuess(false);
         setDisplayResult(false);
-        setCurrentAction('computer hides');
+        setNewRound(true);
+        incrementRound();
+        setTimeout(() => {
+          setNewRound(false);
+          setCurrentAction('computer hides');
+        }, timer);
       }, timer);
-    }
+    } else if(madeGuess === '') console.log('No one made a guess');
   }, [madeGuess]);
 
   useEffect(() => {
@@ -69,9 +88,12 @@ const Game = ({
     if(scorer === 'computer') setComputerScore(computerScore + 1);
   };
 
+  const incrementRound = () => setRound(round + 1);
+
   const computerHidesItem = () => {
     const computerHidingSpot = Math.ceil(Math.random() * 3);
     console.log('Computer Hide Item: ' + computerHidingSpot);
+    setCorrecttGuess(computerHidingSpot);
     setHidingSpot(computerHidingSpot);
     console.log('Computer Hides Item: computer hid item');
     setCurrentAction('player seeks');
@@ -89,6 +111,8 @@ const Game = ({
       setCorrect(false);
     }
 
+    setCurrentGuess(computerGuess);
+    setDisplayGuess(true);
     setDisplayResult(true);
     setMadeGuess('computer');
   };
@@ -105,6 +129,8 @@ const Game = ({
         setCorrect(false);
       }
   
+      setCurrentGuess(playerGuess);
+      setDisplayGuess(true);
       setButtonDisabled(true);
       setDisplayResult(true);
       setMadeGuess('player');
@@ -112,7 +138,8 @@ const Game = ({
     } else if(currentAction === 'player hides') {
       const playerHidingSpot = Number(target.value);
       console.log('Player Turn (hide): ' + playerHidingSpot);
-        
+      
+      setCorrecttGuess(playerHidingSpot);
       setHidingSpot(playerHidingSpot);
       setButtonDisabled(true);
       setCurrentAction('computer seeks');
@@ -123,18 +150,27 @@ const Game = ({
 
   return (
     <main className={styles.Game}>
-      <h2>Happy seeking!!</h2>
+      <header>
+        <h2>Happy seeking!!</h2>
+        <p>
+          Round: {round}
+        </p>
+      </header>
       <section>
-        {actionMessage}
+        {newRound ? roundMessage : actionMessage}
       </section>
       <section className={styles.Buttons}>
         <button value="1" disabled={buttonDisabled} onClick={onPlayerTurnClick}>Box 1</button>
         <button value="2" disabled={buttonDisabled} onClick={onPlayerTurnClick}>Box 2</button>
         <button value="3" disabled={buttonDisabled} onClick={onPlayerTurnClick}>Box 3</button>
       </section>
+      {displayGuess &&
       <section>
+        Guess: {currentGuess} vs Correct: {correcttGuess}
+        <br />
         {resultMessage}
       </section>
+      }
     </main>
   );
 };
