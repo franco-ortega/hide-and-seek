@@ -13,9 +13,8 @@ const Home = ({ setDifficulty, setPlayer }) => {
 
   return (
     <main className={styles.Home}>
-      <h2>Home Page!</h2>
       <section>
-        <p>This is a Hide & Seek game. Enter your name and select diffculty. Then click on the button to proceed.</p>
+        <p>This is a Hide & Seek game where you play against the computer. Enter your name and select the diffculty level. Then click on the button to proceed.</p>
         <form onSubmit={onPlayerSubmit}>
           <label htmlFor="name">
             Name: <input
