@@ -1,7 +1,5 @@
 @import './base';
 
-
-
 @mixin screen-size($size) {
     @if $size == tablet-portrait {
         @media screen and (min-width: 500px) { @content; }

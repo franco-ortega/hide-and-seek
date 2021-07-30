@@ -1,11 +1,5 @@
 .GameBoard {
     background: lightblue;
-    border: 1px solid;
-    border-radius: 10px;
-    height: 30vh;
-
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+    border: medium solid black;
+    border-radius: 2vw;
 }

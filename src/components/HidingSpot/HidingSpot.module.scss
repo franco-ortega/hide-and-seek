@@ -1,4 +1,4 @@
-@import '../App/base.scss';
+// @import '../App/base.scss';
 @import '../App/AppGeneralStyles.scss';
 
 .HidingSpot {
@@ -9,11 +9,10 @@
     border-width: 3vw;
 
     border-radius: 10px;
-    height: 8vh;
+    height: 9vh;
     width: 20vw;
-    margin: 5vw;
-    padding: .5vw;
-    font-size: 5vw;
+    margin: 3vw;
+    font-size: 8vw;
     cursor: pointer;
 
     @include screen-size(tablet-portrait) {
@@ -21,7 +20,6 @@
         height: 7vh;
         width: 10vw;
         margin: 2vw;
-        padding: .25vw;
         font-size: 4vw;
     }
     
@@ -37,8 +35,7 @@
         border-width: 1vw;
         height: 12vh;
         width: 7vw;
-        margin: 2vw;
-        padding: .25vw;
+        margin: .75vw;
         font-size: 2vw;
     }
    
