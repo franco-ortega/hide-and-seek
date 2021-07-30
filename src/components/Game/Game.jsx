@@ -4,6 +4,7 @@ import styles from './Game.module.scss';
 import { useHistory } from 'react-router';
 import { useMessage } from '../../hooks/useMessage';
 import { generateNumber } from '../../utils/utils';
+import GameBoard from './GameBoard';
 
 const Game = ({
   setGameActive,
@@ -77,7 +78,10 @@ const Game = ({
 
   useEffect(() => {
     console.log('Current Action useEffect');
-    if(currentAction === 'player hides' || currentAction === 'player seeks') setButtonDisabled(false);
+    if(currentAction === 'player hides' || currentAction === 'player seeks') {
+      console.log('PLAYER SSAFASJDAOKS!!');
+      setButtonDisabled(false);
+    }
     if(currentAction === 'computer hides') setTimeout(() => computerHidesItem(), timer);
     if(currentAction === 'computer seeks') setTimeout(() => computerMakesGuess(), timer);
     if(currentAction === '') console.log('No one is acting');
@@ -92,7 +96,7 @@ const Game = ({
 
   const computerHidesItem = () => {
     const computerHidingSpot = generateNumber(3);
-    console.log('Computer Hide Item: ' + computerHidingSpot);
+    // console.log('Computer Hide Item: ' + computerHidingSpot);
     setCorrecttGuess(computerHidingSpot);
     setHidingSpot(computerHidingSpot);
     console.log('Computer Hides Item: computer hid item');
@@ -102,7 +106,7 @@ const Game = ({
 
   const computerMakesGuess = () => {
     const computerGuess = generateNumber(3);
-    console.log('Computer Makes Guess = ' + computerGuess + ' vs hiding spot = ' + hidingSpot);
+    // console.log('Computer Makes Guess = ' + computerGuess + ' vs hiding spot = ' + hidingSpot);
 
     if(computerGuess === hidingSpot) {
       incrementScore('computer');
@@ -120,7 +124,8 @@ const Game = ({
   const onPlayerTurnClick = ({ target }) => {
     if(currentAction === 'player seeks') {
       const playerGuess = Number(target.value);
-      console.log('Player Turn (seek) = ' + playerGuess + ' vs hiding spot = ' + hidingSpot);
+      console.log('CLIIIICCKKK:' + playerGuess);
+      // console.log('Player Turn (seek) = ' + playerGuess + ' vs hiding spot = ' + hidingSpot);
   
       if(playerGuess === hidingSpot) {
         incrementScore('player');
@@ -137,7 +142,8 @@ const Game = ({
   
     } else if(currentAction === 'player hides') {
       const playerHidingSpot = Number(target.value);
-      console.log('Player Turn (hide): ' + playerHidingSpot);
+      // console.log('Player Turn (hide): ' + playerHidingSpot);
+      console.log('CLIIIICCKKK:' + playerHidingSpot);
       
       setCorrecttGuess(playerHidingSpot);
       setHidingSpot(playerHidingSpot);
@@ -146,7 +152,9 @@ const Game = ({
     }
   };
   
-  console.log('Bottom of file: current action = ' + currentAction);
+  // console.log('Bottom of file: current action = ' + currentAction);
+
+
 
   return (
     <main className={styles.Game}>
@@ -159,11 +167,10 @@ const Game = ({
       <section>
         {newRound ? roundMessage : actionMessage}
       </section>
-      <section className={styles.Buttons}>
-        <button value="1" disabled={buttonDisabled} onClick={onPlayerTurnClick}>Box 1</button>
-        <button value="2" disabled={buttonDisabled} onClick={onPlayerTurnClick}>Box 2</button>
-        <button value="3" disabled={buttonDisabled} onClick={onPlayerTurnClick}>Box 3</button>
-      </section>
+      <GameBoard
+        buttonDisabled={buttonDisabled}
+        onPlayerTurnClick={onPlayerTurnClick}
+      />
       {displayGuess &&
       <section>
         Guess: {currentGuess} vs Correct: {correcttGuess}

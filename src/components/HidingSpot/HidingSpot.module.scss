@@ -1,0 +1,17 @@
+@import '../App/base.scss';
+
+.HidingSpot {
+    // border: medium solid black;
+    // background: $base-color;
+    // color: $base-bkgd;
+    // color: brown;
+    border-width: 3vw;
+
+    border-radius: 10px;
+    height: 8vh;
+    width: 20vw;
+    margin: 5vw;
+    padding: .5vw;
+    font-size: 5vw;
+    cursor: pointer;
+}

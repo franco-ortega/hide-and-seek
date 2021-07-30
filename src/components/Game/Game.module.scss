@@ -25,28 +25,16 @@
         align-items: center;
         justify-content: center;
 
-        button {
-            border-radius: 10px;
-            height: 10vh;
-            width: 15vh;
-            margin: 1vw;
-        }
+        // button {
+        //     border-radius: 10px;
+        //     height: 10vh;
+        //     width: 15vh;
+        //     margin: 1vw;
+        // }
 
         p {
             height: 5vh;
         }
-    }
-
-    .Buttons {
-        background: lightblue;
-        border: 1px solid;
-        border-radius: 10px;
-        height: 30vh;
-
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
     }
 }
 

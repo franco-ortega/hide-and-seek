@@ -6,18 +6,18 @@
   padding: 0;
 }
 
-html, body {
-  height: 100%;
-  width: 100%;
-}
+// html, body {
+//   height: 100%;
+//   width: 100%;
+// }
 
-button {
-  background: yellow;
-  border-radius: 10px;
-  margin: 2vw;
-  padding: .5vw 1.5vw;
-  cursor: pointer;
-}
+// button {
+//   background: yellow;
+//   border-radius: 10px;
+//   margin: 2vw;
+//   padding: .5vw 1.5vw;
+//   cursor: pointer;
+// }
 
 @include screen-size(tablet-portrait) {
   button {
