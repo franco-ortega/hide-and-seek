@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import styles from './Game.module.scss';
 import { useHistory } from 'react-router';
 import { useMessage } from '../../hooks/useMessage';
+import { generateNumber } from '../../utils/utils';
+import GameBoard from './GameBoard';
+import { useBoxes } from '../../hooks/useBoxes';
 
 const Game = ({
+  difficulty,
   setGameActive,
   playerScore,
   setPlayerScore,
@@ -35,13 +39,16 @@ const Game = ({
     selectRoundMessage
   } = useMessage();
 
+  const { boxCount } = useBoxes();
+
+  const hidingSpots = boxCount(difficulty);
+
   const actionMessage = selectActionMessage(currentAction);
   const resultMessage = selectResultMessage(currentAction);
   const roundMessage = selectRoundMessage(round);
 
   useEffect(() => {
     console.log('Score Check useEffect');
-    // if(playerScore === 3 || computerScore === 3) {
     if(round === 3 && madeGuess === 'computer') {
       setButtonDisabled(true);
       setTimeout(() => {
@@ -77,7 +84,10 @@ const Game = ({
 
   useEffect(() => {
     console.log('Current Action useEffect');
-    if(currentAction === 'player hides' || currentAction === 'player seeks') setButtonDisabled(false);
+    if(currentAction === 'player hides' || currentAction === 'player seeks') {
+      console.log('PLAYER SSAFASJDAOKS!!');
+      setButtonDisabled(false);
+    }
     if(currentAction === 'computer hides') setTimeout(() => computerHidesItem(), timer);
     if(currentAction === 'computer seeks') setTimeout(() => computerMakesGuess(), timer);
     if(currentAction === '') console.log('No one is acting');
@@ -91,8 +101,8 @@ const Game = ({
   const incrementRound = () => setRound(round + 1);
 
   const computerHidesItem = () => {
-    const computerHidingSpot = Math.ceil(Math.random() * 3);
-    console.log('Computer Hide Item: ' + computerHidingSpot);
+    const computerHidingSpot = generateNumber(hidingSpots);
+    // console.log('Computer Hide Item: ' + computerHidingSpot);
     setCorrecttGuess(computerHidingSpot);
     setHidingSpot(computerHidingSpot);
     console.log('Computer Hides Item: computer hid item');
@@ -101,8 +111,8 @@ const Game = ({
   };
 
   const computerMakesGuess = () => {
-    const computerGuess = Math.ceil(Math.random() * 3);
-    console.log('Computer Makes Guess = ' + computerGuess + ' vs hiding spot = ' + hidingSpot);
+    const computerGuess = generateNumber(hidingSpots);
+    // console.log('Computer Makes Guess = ' + computerGuess + ' vs hiding spot = ' + hidingSpot);
 
     if(computerGuess === hidingSpot) {
       incrementScore('computer');
@@ -120,7 +130,8 @@ const Game = ({
   const onPlayerTurnClick = ({ target }) => {
     if(currentAction === 'player seeks') {
       const playerGuess = Number(target.value);
-      console.log('Player Turn (seek) = ' + playerGuess + ' vs hiding spot = ' + hidingSpot);
+      console.log('CLIIIICCKKK:' + playerGuess);
+      // console.log('Player Turn (seek) = ' + playerGuess + ' vs hiding spot = ' + hidingSpot);
   
       if(playerGuess === hidingSpot) {
         incrementScore('player');
@@ -137,7 +148,8 @@ const Game = ({
   
     } else if(currentAction === 'player hides') {
       const playerHidingSpot = Number(target.value);
-      console.log('Player Turn (hide): ' + playerHidingSpot);
+      // console.log('Player Turn (hide): ' + playerHidingSpot);
+      console.log('CLIIIICCKKK:' + playerHidingSpot);
       
       setCorrecttGuess(playerHidingSpot);
       setHidingSpot(playerHidingSpot);
@@ -146,7 +158,9 @@ const Game = ({
     }
   };
   
-  console.log('Bottom of file: current action = ' + currentAction);
+  // console.log('Bottom of file: current action = ' + currentAction);
+
+
 
   return (
     <main className={styles.Game}>
@@ -159,11 +173,11 @@ const Game = ({
       <section>
         {newRound ? roundMessage : actionMessage}
       </section>
-      <section className={styles.Buttons}>
-        <button value="1" disabled={buttonDisabled} onClick={onPlayerTurnClick}>Box 1</button>
-        <button value="2" disabled={buttonDisabled} onClick={onPlayerTurnClick}>Box 2</button>
-        <button value="3" disabled={buttonDisabled} onClick={onPlayerTurnClick}>Box 3</button>
-      </section>
+      <GameBoard
+        hidingSpots={hidingSpots}
+        buttonDisabled={buttonDisabled}
+        onPlayerTurnClick={onPlayerTurnClick}
+      />
       {displayGuess &&
       <section>
         Guess: {currentGuess} vs Correct: {correcttGuess}
@@ -176,6 +190,7 @@ const Game = ({
 };
 
 Game.propTypes = {
+  difficulty: PropTypes.string.isRequired,
   setGameActive: PropTypes.func.isRequired,
   playerScore: PropTypes.number.isRequired,
   setPlayerScore: PropTypes.func.isRequired,

@@ -3,36 +3,38 @@ import { useHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import styles from './Home.module.scss';
 
-const Home = ({ setPlayer }) => {
+const Home = ({ setDifficulty, setPlayer }) => {
   let history = useHistory();
-
-  const playerObject = {
-    player: ''
-  };
-  const onPlayerChange = (e) => {
-    playerObject.player = e.target.value;
-  };
 
   const onPlayerSubmit = (e) => {
     e.preventDefault();
-    console.log('Player Submit Clicked!');
-    setPlayer(playerObject.player);
     history.push('/welcome');
   };
 
   return (
     <main className={styles.Home}>
-      <h2>Home Page!</h2>
       <section>
-        <p>This is a Hide & Seek game. Enter your name and click on the button to proceed.</p>
+        <p>This is a Hide & Seek game where you play against the computer. Enter your name and select the diffculty level. Then click on the button to proceed.</p>
         <form onSubmit={onPlayerSubmit}>
           <label htmlFor="name">
             Name: <input
               id="name"
+              name="name"
               type="text"
               maxLength="25"
               placeholder="Name"
-              onChange={onPlayerChange} />
+              onChange={({ target }) => setPlayer(target.value)} />
+          </label>
+          <label htmlFor="difficulty">
+            <select
+              id="difficulty"
+              name="difficulty"
+              onChange={({ target }) => setDifficulty(target.value)}>
+              <option value="">Difficulty</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
           </label>
           <button>Click to Proceed</button>
         </form>
@@ -42,8 +44,8 @@ const Home = ({ setPlayer }) => {
 };
 
 Home.propTypes = {
+  setDifficulty: PropTypes.func,
   setPlayer: PropTypes.func
 };
-  
 
 export default Home;

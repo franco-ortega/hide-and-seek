@@ -14,6 +14,7 @@ const App = () => {
   const [player, setPlayer] = useState('');
   const [playerScore, setPlayerScore] = useState(0);
   const [computerScore, setComputerScore] = useState(0);
+  const [difficulty, setDifficulty] = useState('');
 
   return (
     <div className="App">
@@ -27,18 +28,20 @@ const App = () => {
         <Switch>
           <Route
             exact path="/"
-            render={() => <Home setPlayer={setPlayer} />}
+            render={() => <Home
+              setDifficulty={setDifficulty}
+              setPlayer={setPlayer} />}
           />
           <Route
             exact path="/welcome"
             render={() => <Welcome 
               player={player}
-              gameActive={gameActive}
               setGameActive={setGameActive}/>}
           />
           <Route
             exact path="/game"
             render={() => <Game
+              difficulty={difficulty}
               gameActive={gameActive}
               setGameActive={setGameActive}
               setPlayerScore={setPlayerScore}

@@ -1,7 +1,4 @@
-$header-height: 15vh;
-$main-height: 85vh;
-$headerColor: green;
-
+@import './base';
 
 @mixin screen-size($size) {
     @if $size == tablet-portrait {

@@ -1,7 +1,6 @@
 @import '../App/AppGeneralStyles.scss';
 
 .Game {
-    
     height: $main-height;
     width: 90%;
     margin: auto;
@@ -14,10 +13,10 @@
         margin: 2vw;
     }
 
-
     section {
-        height: 10vh;
+        height: fit-content;
         width: 85%;
+        margin: 1vw;
         padding: 3vw 1.5vw;
 
         display: flex;
@@ -25,28 +24,9 @@
         align-items: center;
         justify-content: center;
 
-        button {
-            border-radius: 10px;
-            height: 10vh;
-            width: 15vh;
-            margin: 1vw;
-        }
-
         p {
             height: 5vh;
         }
-    }
-
-    .Buttons {
-        background: lightblue;
-        border: 1px solid;
-        border-radius: 10px;
-        height: 30vh;
-
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
     }
 }
 
@@ -78,7 +58,6 @@
   
   @include screen-size(desktop) {
     .Game {
-
         section {
             width: 50%;
         }
@@ -89,4 +68,3 @@
         }
     }
   }
-  
