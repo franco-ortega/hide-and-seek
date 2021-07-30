@@ -11,31 +11,11 @@
 //   width: 100%;
 // }
 
-// button {
-//   background: yellow;
-//   border-radius: 10px;
-//   margin: 2vw;
-//   padding: .5vw 1.5vw;
-//   cursor: pointer;
-// }
-
 @include screen-size(tablet-portrait) {
-  button {
-    margin: 1vw;
-    padding: .5vw 1vw;
-  }
 }
 
 @include screen-size(tablet-landscape) {
-  button {
-    margin: .75vw;
-    padding: .25vw .75vw;
-  }
 }
 
 @include screen-size(desktop) {
-  button {
-    margin: .75vw;
-    padding: .25vw .5vw;
-  }
 }
