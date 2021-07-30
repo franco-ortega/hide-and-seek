@@ -3,11 +3,8 @@ import { useHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import styles from './Welcome.module.scss';
 
-const Welcome = ({ player, gameActive, setGameActive }) => {
+const Welcome = ({ player, setGameActive }) => {
   let history = useHistory();
-
-  console.log(gameActive);
-  
 
   const onStartGameClick = () => {
     console.log('Start Game Clicked!');
@@ -34,7 +31,6 @@ const Welcome = ({ player, gameActive, setGameActive }) => {
 
 Welcome.propTypes = {
   player: PropTypes.string.isRequired,
-  gameActive: PropTypes.bool.isRequired,
   setGameActive: PropTypes.func.isRequired
 };
 

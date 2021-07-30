@@ -5,8 +5,10 @@ import { useHistory } from 'react-router';
 import { useMessage } from '../../hooks/useMessage';
 import { generateNumber } from '../../utils/utils';
 import GameBoard from './GameBoard';
+import { useBoxes } from '../../hooks/useBoxes';
 
 const Game = ({
+  difficulty,
   setGameActive,
   playerScore,
   setPlayerScore,
@@ -36,6 +38,10 @@ const Game = ({
     selectResultMessage,
     selectRoundMessage
   } = useMessage();
+
+  const { boxCount } = useBoxes();
+
+  const hidingSpots = boxCount(difficulty);
 
   const actionMessage = selectActionMessage(currentAction);
   const resultMessage = selectResultMessage(currentAction);
@@ -95,7 +101,7 @@ const Game = ({
   const incrementRound = () => setRound(round + 1);
 
   const computerHidesItem = () => {
-    const computerHidingSpot = generateNumber(3);
+    const computerHidingSpot = generateNumber(hidingSpots);
     // console.log('Computer Hide Item: ' + computerHidingSpot);
     setCorrecttGuess(computerHidingSpot);
     setHidingSpot(computerHidingSpot);
@@ -105,7 +111,7 @@ const Game = ({
   };
 
   const computerMakesGuess = () => {
-    const computerGuess = generateNumber(3);
+    const computerGuess = generateNumber(hidingSpots);
     // console.log('Computer Makes Guess = ' + computerGuess + ' vs hiding spot = ' + hidingSpot);
 
     if(computerGuess === hidingSpot) {
@@ -168,6 +174,7 @@ const Game = ({
         {newRound ? roundMessage : actionMessage}
       </section>
       <GameBoard
+        hidingSpots={hidingSpots}
         buttonDisabled={buttonDisabled}
         onPlayerTurnClick={onPlayerTurnClick}
       />
@@ -183,6 +190,7 @@ const Game = ({
 };
 
 Game.propTypes = {
+  difficulty: PropTypes.string.isRequired,
   setGameActive: PropTypes.func.isRequired,
   playerScore: PropTypes.number.isRequired,
   setPlayerScore: PropTypes.func.isRequired,
