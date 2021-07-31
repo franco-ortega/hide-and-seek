@@ -2,174 +2,221 @@
 
 .Home {
     background: $dark-purple;
-    height: 85vh;
+    height: 90vh;
     padding: 8vw;
     color: $tea-green;
     font-family: $main-font;
-    font-size: 5vw;
+    font-size: 6vw;
     text-align: justify;
 
     section {
         background: $umber;
-        border-radius: 2vw;
-        padding: 3vw;
+        border-radius: 1vw;
+        padding: 3vw 5vw;
 
         form {
             background: $eton-blue;
-            border: 1px solid darkred;
-            border-radius: 2vw;
-            margin: 5vw auto 2vw auto;
-            padding: 3vw;
+            border-radius: 1vw;
+            margin: 5vw 0 2vw 0;
+            padding: 5vw 3vw;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 3vw;
+            gap: 5vw;
 
             color: $dark-purple;
 
             label {
-                width: 90%;
+                width: 100%;
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
 
                 input {
                     border-radius: 1vw;
-                    height: 7vw;
                     width: 75%;
                     margin-left: 2vw;
-                    padding: 2vw;
-                    font-size: 4.25vw;
+                    padding: .25vw 2vw;
+                    font-size: 5.25vw;
                 }
 
                 select {
                     border-radius: 1vw;
-                    height: 7vw;
-                    font-size: 4vw;
+                    padding: .25vw 1vw;
+                    font-size: 5vw;
                 }
             }
 
             button {
                 border-radius: 1vw;
                 padding: 1vw;
-                font-size: 4vw;
+                font-size: 4.25vw;
             }
         }
     }
 
     @include screen-size(tablet-portrait) {
-        padding: 5vw;
-        font-size: 4vw;
+        // height: 80vh;
+        padding: 10vw;
+        font-size: 4.5vw;
 
         section {
-            width: 90%;
-            margin: auto;
+            // border-radius: 1vw;
+            // padding: 3vw 5vw;
 
             form {
-                padding: 3vw;
+                // background: $eton-blue;
+                // border-radius: 1vw;
+                // margin: 5vw 0 2vw 0;
+                // padding: 5vw 3vw;
+                // display: flex;
+                // flex-direction: column;
+                // align-items: center;
+                // gap: 5vw;
+
+                // padding: 3vw;
 
                 label {
                     input {
-                        border-radius: 1vw;
-                        height: 6vw;
+                        // border-radius: 1vw;
                         width: 60%;
-                        margin-left: 2vw;
-                        padding: 1.5vw;
-                        font-size: 3.25vw;
+                        margin-left: 1vw;
+                        padding: .15vw 1.5vw;
+                        font-size: 4vw;
                     }
                     
                     select {
-                        height: 6vw;
-                        font-size: 3vw;
+                        // border-radius: 1vw;
+                        padding: .25vw 1.5vw;
+                        font-size: 4vw;
                     }
                 }
 
                 button {
-                    border-radius: 1vw;
+                    // border-radius: 1vw;
                     padding: .75vw;
-                    font-size: 3vw;
+                    font-size: 3.25vw;
                 }
             }
         }
     }
 
     @include screen-size(tablet-landscape) {
-        font-size: 2.5vw;
+        // padding: 10vw;
+        // font-size: 4.5vw;
+
+        height: 80vh;
+        padding: 5vw;
+        font-size: 2.25vw;
 
         section {
             border-radius: .5vw;
-            width: 75%;
+            width: 80%;
+            margin: auto;
 
             form {
+            // border-radius: 1vw;
+            // margin: 5vw 0 2vw 0;
+            // padding: 5vw 3vw;
+            // gap: 5vw;
+
                 border-radius: .5vw;
-                margin: 3vw 2vw 1vw 2vw;
+                margin: 3vw 0vw 2vw 0vw;
+                padding: 3vw 0;
+                gap: 2vw;
 
                 label {
                     input {
+                        // border-radius: 1vw;
+                        // width: 60%;
+                        // margin-left: 1vw;
+                        // padding: .15vw 1.5vw;
+                        // font-size: 4vw;
+
                         border-radius: .5vw;
-                        height: 3.5vw;
                         width: 40%;
-                        margin-left: 1vw;
-                        padding: 1vw;
-                        font-size: 2.5vw;
+                        margin-left: .5vw;
+                        padding: .0vw .75vw;
+                        font-size: 2vw;
                     }
                     
                     select {
+                        // padding: .25vw 1.5vw;
+                        // font-size: 4vw;
+                        
                         border-radius: .5vw;
-                        height: 3.5vw;
-                        font-size: 2.25vw;
+                        padding: .1vw .5vw;
+                        font-size: 1.75vw;
                     }
-                }
 
+                }
                 button {
+                    // padding: .75vw;
+                    // font-size: 3.25vw;
+
                     border-radius: .5vw;
-                    padding: .5vw;
-                    font-size: 2vw;
+                    padding: .25vw .5vw;
+                    font-size: 1.45vw;
                 }
             }
         }
     }
 
     @include screen-size(desktop) {
+        height: 85vh;
+        padding: 5vw;
+        // font-size: 2.25vw;
         font-size: 1.5vw;
 
         section {
-            border-radius: .5vw;
+            // border-radius: .5vw;
+            border-radius: .25vw;
             width: 50%;
             padding: 2.5vw;
 
             form {
+                // border-radius: .5vw;
+                // margin: 3vw 0vw 2vw 0vw;
+                // padding: 3vw 0;
+                // gap: 2vw;
+
                 border-radius: .25vw;
-                margin: 2vw;
-                margin: 2vw 3vw .5vw 3vw;
+                // margin: 2vw;
+                margin: 2vw 0 .25vw 0;
                 padding: 2vw;
-                gap: 1.25vw;
+                gap: 1.5vw;
 
                 label {
                     input {
                         border-radius: .25vw;
-                        height: 2vw;
                         width: 40%;
-                        margin-left: 1vw;
-                        padding: .5vw;
-                        font-size: 1.5vw;
+                        margin-left: .25vw;
+                        // padding: .0vw .75vw;
+                        // padding: .75vw .5vw;
+                        padding: .0vw .75vw;
+                        font-size: 1.3vw;
                     }
                     
                     select {
+                        // border-radius: .5vw;
+                        // padding: .1vw .5vw;
+                        // font-size: 1.75vw;
+
                         border-radius: .25vw;
-                        height: 2.5vw;
-                        padding: 0 .5vw;
-                        font-size: 1.1vw;
+                        padding: .05vw .5vw;
+                        font-size: 1.25vw;
                     }
                 }
 
                 button {
+                    // border-radius: .5vw;
+                    // padding: .25vw .5vw;
+                    // font-size: 1.45vw;
+
                     border-radius: .25vw;
-                    padding: .25vw;
+                    // padding: .25vw;
                     font-size: 1vw;
                 }
-
             }
         }
     }

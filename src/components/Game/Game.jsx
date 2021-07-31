@@ -6,10 +6,13 @@ import { useMessage } from '../../hooks/useMessage';
 import { generateNumber } from '../../utils/utils';
 import GameBoard from './GameBoard';
 import { useBoxes } from '../../hooks/useBoxes';
+import Scoreboard from '../Scoreboard/Scoreboard';
 
 const Game = ({
   difficulty,
+  // gameActive,
   setGameActive,
+  player,
   playerScore,
   setPlayerScore,
   computerScore,
@@ -164,12 +167,18 @@ const Game = ({
 
   return (
     <main className={styles.Game}>
-      <header>
-        <h2>Happy seeking!!</h2>
+      <section>
+        <Scoreboard
+          player={player}
+          playerScore={playerScore}
+          computerScore={computerScore}
+        />
+        
+        {/* <h2>Happy seeking!!</h2> */}
         <p>
           Round: {round}
         </p>
-      </header>
+      </section>
       <section>
         {newRound ? roundMessage : actionMessage}
       </section>
@@ -191,7 +200,9 @@ const Game = ({
 
 Game.propTypes = {
   difficulty: PropTypes.string.isRequired,
+  // gameActive: PropTypes.bool.isRequired,
   setGameActive: PropTypes.func.isRequired,
+  player: PropTypes.bool.isRequired,
   playerScore: PropTypes.number.isRequired,
   setPlayerScore: PropTypes.func.isRequired,
   computerScore: PropTypes.number.isRequired,

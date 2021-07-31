@@ -44,6 +44,7 @@ const App = () => {
               difficulty={difficulty}
               gameActive={gameActive}
               setGameActive={setGameActive}
+              player={player}
               setPlayerScore={setPlayerScore}
               setComputerScore={setComputerScore}
               playerScore={playerScore}
