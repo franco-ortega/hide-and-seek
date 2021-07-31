@@ -2,16 +2,21 @@
 
 .Header {
     // background: lightgreen;
-    height: 15vh;
+    background: $umber;
+    height: 12vh;
+    // text-align: center;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+    color: $tea-green;
+    font-family: Arial, Helvetica, sans-serif;
     
     h1 {
-        color: blueviolet;
+        margin: auto;
+        // color: blueviolet;
         font-size: 3rem;
-        text-align: center;
+        // text-align: center;
     }
 
     div {
@@ -23,7 +28,7 @@
         height: 20vh;
 
         h1 {
-            color: blueviolet;
+            // color: blueviolet;
             font-size: 4rem;
         }
     
