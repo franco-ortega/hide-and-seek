@@ -1,45 +1,248 @@
 @import '../App/AppGeneralStyles.scss';
 
 .Welcome {
+    background: $dark-purple;
     height: $main-height;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 8vw;
+
+    font-family: $main-font;
+    // text-align: center;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
 
     h2, h3 {
+        text-align: center;
+    }
+
+    h2 {
+        color: $tea-green;
+        font-family: Arial, Helvetica, sans-serif;
         margin: 2vw;
     }
 
-    section {
-        background: lightgreen;
-        border-radius: 10px;
-        width: 90%;
-        padding: 1vw 5vw;
+    h3 {
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
-        p {
-            text-align: left;
-            margin: .75vw;
+    h2, h3 {
+        // border: white dashed thin;
+    }
+
+    section {
+        background: $umber;
+        color: $tea-green;
+        border-radius: 1vw;
+        margin: auto;
+        padding: 2vw;
+
+        section {
+            background: $eton-blue;
+            color: $dark-purple;
+            margin: 2vw;
+            font-size: 5vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2vw;
+
+            ol {
+                // border: dashed white thin;
+                // width: 90%;
+                // text-align: left;
+                padding: 0 5vw;
+            }
+
+            button {
+                border-radius: 1vw;
+                margin: 2vw;
+                padding: 1vw;
+                font-size: 4.25vw;
+            }
+
         }
     }
 
     @include screen-size(tablet-portrait) {
-        height: 80vh;
+        height: $main-height-tablet;
+        padding: 10vw;
+        font-size: 4.5vw;
+        
+        h2 {
+            margin: 1vw;
+        }
+
+        // h3 {
+        //     font-family: Arial, Helvetica, sans-serif;
+        // }
 
         section {
-            width: 80%;
+            // background: $umber;
+            // color: $tea-green;
+            // border-radius: 1vw;
+            // margin: auto;
+            padding: 1vw;
+
+            section {
+                // background: $eton-blue;
+                // color: $dark-purple;
+                margin: 2vw;
+                font-size: 4.5vw;
+                // display: flex;
+                // flex-direction: column;
+                // align-items: center;
+                // gap: 2vw;
+
+                ol {
+                    // border: dashed white thin;
+                    // width: 90%;
+                    // text-align: left;
+                    padding: 0 1vw 0 6vw;
+                }
+
+                button {
+                    border-radius: 1vw;
+                    margin: 2vw;
+                    padding: .75vw;
+                    font-size: 3.25vw;
+                }
+            }
         }
     }
 
     @include screen-size(tablet-landscape) {
-        
+        // padding: 8vw;
+        height: $main-height-tablet-landscape;
+        padding: 4vw 15vw;
+        font-size: 3vw;
+
+        h2 {
+            margin: .75vw;
+        }
+
+        // h3 {
+        //     font-family: Arial, Helvetica, sans-serif;
+        // }
+
+        section {
+            // background: $umber;
+            // color: $tea-green;
+            border-radius: .5vw;
+            // margin: auto;
+            // padding: 2vw;
+            padding: 1vw;
+
+            section {
+                // background: $eton-blue;
+                // color: $dark-purple;
+                // margin: 2vw;
+                // font-size: 5vw;
+                // display: flex;
+                // flex-direction: column;
+                // align-items: center;
+                gap: .75vw;
+
+                margin: 1vw;
+                font-size: 2.25vw;
+
+                ol {
+                    // border: dashed white thin;
+                    // width: 90%;
+                    // text-align: left;
+                    // padding: 0 5vw;
+                    padding: 0 1vw 0 4vw;
+                }
+
+                button {
+                    // border-radius: 1vw;
+                    // margin: 2vw;
+                    // padding: 1vw;
+                    // font-size: 4.25vw;
+
+                    border-radius: 1vw;
+                    margin: 2vw;
+                    padding: .5vw;
+                    font-size: 1.5vw;
+                }
+            }
+        }
     }
 
     @include screen-size(desktop) {
-        height: 82vh;
+        height: $main-height-desktop;
+        padding: 3vw 15vw;
+        font-size: 2vw;
+
+        font-family: $main-font;
+        // text-align: center;
+        // display: flex;
+        // flex-direction: column;
+        // align-items: center;
+
+        // h2, h3 {
+        //     text-align: center;
+        // }
+
+        h2 {
+            // margin: 2vw;
+            margin: .75vw;
+        }
+
+        h2, h3 {
+            // border: white dashed thin;
+        }
 
         section {
-            width: 50%;
+            // border-radius: 1vw;
+            // margin: auto;
+            // padding: 2vw;
+
+            border-radius: .25vw;
+            padding: .5vw;
+
+
+            section {
+                // background: $eton-blue;
+                // color: $dark-purple;
+                // margin: 2vw;
+                // font-size: 5vw;
+                // display: flex;
+                // flex-direction: column;
+                // align-items: center;
+                // gap: 2vw;
+
+                // gap: .75vw;
+
+                // margin: 1vw;
+                // font-size: 2.25vw;
+
+                gap: .5vw;
+
+                margin: 2vw;
+                font-size: 1.75vw;
+
+
+                ol {
+                    // border: dashed white thin;
+                    // width: 90%;
+                    // text-align: left;
+                    // padding: 0 5vw;
+                    // padding: 0 1vw 0 4vw;
+                }
+
+                button {
+                    // border-radius: 1vw;
+                    // margin: 2vw;
+                    // padding: 1vw;
+                    // font-size: 4.25vw;
+
+                    border-radius: .25vw;
+                    margin: 1vw;
+                    padding: .25vw;
+                    font-size: 1.25vw;
+                    
+                }
+            }
         }
     }
 }
