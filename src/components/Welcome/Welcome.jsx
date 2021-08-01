@@ -14,16 +14,20 @@ const Welcome = ({ player, setGameActive }) => {
 
   return (
     <main className={styles.Welcome}>
-      <h2>Welcome {player}!</h2>
       <section>
-        <h3>Game Rules:</h3>
-        <p>1. The computer will hide the item in a box.</p>
-        <p>2. You can guess where the item is hidden by clicking on a box.</p>
-        <p>3. Then you get to hide the item by clicking on a box.</p>
-        <p>4. The computer will try to guess where you hid the item.</p>
-        <p>5. Every correct guess scores 1 point.</p>
-        <p>6. The game ends after 3 rounds.</p>
-        <button onClick={onStartGameClick}>Start Game</button>
+        <h2>Welcome {player}!</h2>
+        <section>
+          <h3>Game Rules:</h3>
+          <ol>
+            <li>The computer will hide the item in a box.</li>
+            <li>You can guess where the item is hidden by clicking on a box.</li>
+            <li>Then you get to hide the item by clicking on a box.</li>
+            <li>The computer will try to guess where you hid the item.</li>
+            <li>Every correct guess scores 1 point.</li>
+            <li>The game ends after 3 rounds.</li>
+          </ol>
+          <button onClick={onStartGameClick}>Start Game</button>
+        </section>
       </section>
     </main>
   );

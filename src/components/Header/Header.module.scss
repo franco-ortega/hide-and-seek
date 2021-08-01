@@ -3,7 +3,7 @@
 .Header {
     // background: lightgreen;
     background: $umber;
-    height: 12vh;
+    height: 11vh;
     // text-align: center;
     display: flex;
     // flex-direction: column;
@@ -15,7 +15,7 @@
     h1 {
         margin: auto;
         // color: blueviolet;
-        font-size: 3rem;
+        font-size: 14vw;
         // text-align: center;
     }
 
@@ -25,11 +25,11 @@
     }
 
     @include screen-size(tablet-portrait) {
-        height: 20vh;
+        height: 15vh;
 
         h1 {
             // color: blueviolet;
-            font-size: 4rem;
+            font-size: 12vw;
         }
     
         div {
@@ -44,49 +44,45 @@
     }
 
     @include screen-size(tablet-landscape) {
+        height: 20vh;
         // border: .5vw solid green;
         // height: 20vh;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: 1, 1fr;
+        // display: grid;
+        // grid-template-columns: repeat(4, 1fr);
+        // grid-template-rows: 1, 1fr;
         // align-items: center;
+        
 
         h1 {
-            grid-column: 2 / 4;
-            grid-row: 1 /2;
+            // grid-column: 2 / 4;
+            // grid-row: 1 /2;
             // width: 100%;
             // font-size: 4vw;
             // text-align: center;
+            font-size: 8vw;
         }
 
-        div {
-            height: 19vh;
-            grid-column: 3 / 5;
-            grid-row: 1 /2;
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
-        }
+        // div {
+        //     height: 19vh;
+        //     grid-column: 3 / 5;
+        //     grid-row: 1 /2;
+        //     display: flex;
+        //     flex-direction: row;
+        //     justify-content: flex-end;
+        // }
     }
 
     @include screen-size(desktop) {
         // border: 1vw solid lightblue;
         height: 18vh;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: 1, 1fr;
 
         h1 {
-            grid-column: 2 / 3;
-            grid-row: 1 /2;
+            // grid-column: 2 / 3;
+            // grid-row: 1 /2;
             // width: 100%;
             // font-size: 4vw;
             // text-align: center;
-        }
-
-        div {
-            grid-column: 3 / 4;
-            grid-row: 1 /2;
+            font-size: 6vw;
         }
     }
 }
