@@ -25,17 +25,6 @@ const Home = ({ setPlayer }) => {
               placeholder="Name"
               onChange={({ target }) => setPlayer(target.value)} />
           </label>
-          {/* <label htmlFor="difficulty">
-            <select
-              id="difficulty"
-              name="difficulty"
-              onChange={({ target }) => setDifficulty(target.value)}>
-              <option value="">Difficulty</option>
-              <option value="easy">Easy (3 hiding spots)</option>
-              <option value="medium">Medium (6 hiding spots)</option>
-              <option value="hard">Hard (9 hiding spots)</option>
-            </select>
-          </label> */}
           <button>Click to Proceed</button>
         </form>
       </section>
@@ -44,7 +33,6 @@ const Home = ({ setPlayer }) => {
 };
 
 Home.propTypes = {
-  // setDifficulty: PropTypes.func,
   setPlayer: PropTypes.func
 };
 

@@ -48,7 +48,7 @@
         }
     }
 
-    @include screen-size(tablet-landscape) {
+    @include screen-size(desktop-small) {
         // border: .1vw solid green;
         flex-direction: column;
         margin: 1vw 1vw 0 0;

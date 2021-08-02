@@ -4,7 +4,7 @@
     @if $size == tablet-portrait {
         @media screen and (min-width: 500px) { @content; }
     }
-    @else if $size == tablet-landscape {
+    @else if $size == desktop-small {
         @media screen and (min-width: 900px) { @content; }
     }
     @else if $size == desktop {
