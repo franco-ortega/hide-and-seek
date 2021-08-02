@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import styles from './Home.module.scss';
 
-const Home = ({ setDifficulty, setPlayer }) => {
+const Home = ({ setPlayer }) => {
   let history = useHistory();
 
   const onPlayerSubmit = (e) => {
@@ -14,7 +14,7 @@ const Home = ({ setDifficulty, setPlayer }) => {
   return (
     <main className={styles.Home}>
       <section>
-        <p>This is a Hide & Seek game where you play against the computer. Enter your name and select the diffculty level. Then click on the button to proceed.</p>
+        <p>This is a Hide & Seek game where you play against the computer. Enter your name, and then, click on the button to proceed.</p>
         <form onSubmit={onPlayerSubmit}>
           <label htmlFor="name">
             Name: <input
@@ -25,7 +25,7 @@ const Home = ({ setDifficulty, setPlayer }) => {
               placeholder="Name"
               onChange={({ target }) => setPlayer(target.value)} />
           </label>
-          <label htmlFor="difficulty">
+          {/* <label htmlFor="difficulty">
             <select
               id="difficulty"
               name="difficulty"
@@ -35,7 +35,7 @@ const Home = ({ setDifficulty, setPlayer }) => {
               <option value="medium">Medium (6 hiding spots)</option>
               <option value="hard">Hard (9 hiding spots)</option>
             </select>
-          </label>
+          </label> */}
           <button>Click to Proceed</button>
         </form>
       </section>
@@ -44,7 +44,7 @@ const Home = ({ setDifficulty, setPlayer }) => {
 };
 
 Home.propTypes = {
-  setDifficulty: PropTypes.func,
+  // setDifficulty: PropTypes.func,
   setPlayer: PropTypes.func
 };
 

@@ -29,13 +29,13 @@ const App = () => {
           <Route
             exact path="/"
             render={() => <Home
-              setDifficulty={setDifficulty}
               setPlayer={setPlayer} />}
           />
           <Route
             exact path="/welcome"
             render={() => <Welcome 
               player={player}
+              setDifficulty={setDifficulty}
               setGameActive={setGameActive}/>}
           />
           <Route
