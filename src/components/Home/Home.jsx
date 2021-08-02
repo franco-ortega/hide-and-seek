@@ -31,9 +31,9 @@ const Home = ({ setDifficulty, setPlayer }) => {
               name="difficulty"
               onChange={({ target }) => setDifficulty(target.value)}>
               <option value="">Difficulty</option>
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
+              <option value="easy">Easy (3 hiding spots)</option>
+              <option value="medium">Medium (6 hiding spots)</option>
+              <option value="hard">Hard (9 hiding spots)</option>
             </select>
           </label>
           <button>Click to Proceed</button>
