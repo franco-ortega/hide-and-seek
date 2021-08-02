@@ -24,7 +24,7 @@
         font-size: 4vw;
     }
     
-    @include screen-size(tablet-landscape) {
+    @include screen-size(desktop-small) {
         border-width: 1.25vw;
         // height: 10vh;
         width: 8vw;

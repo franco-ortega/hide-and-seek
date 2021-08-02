@@ -43,7 +43,7 @@
     }
   }
   
-  @include screen-size(tablet-landscape) {
+  @include screen-size(desktop-small) {
     .Game {
         section {
             width: 60%;

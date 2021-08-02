@@ -43,7 +43,7 @@
         }
     }
 
-    @include screen-size(tablet-landscape) {
+    @include screen-size(desktop-small) {
         height: 20vh;
         // border: .5vw solid green;
         // height: 20vh;

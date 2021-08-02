@@ -4,105 +4,93 @@
     background: $dark-purple;
     height: $main-height;
     padding: 8vw;
-
+    color: $tea-green;
     font-family: $main-font;
-    // text-align: center;
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-
-    h2, h3 {
-        text-align: center;
-    }
-
-    h2 {
-        color: $tea-green;
-        font-family: Arial, Helvetica, sans-serif;
-        margin: 2vw;
-    }
-
-    h3 {
-        font-family: Arial, Helvetica, sans-serif;
-    }
-
-    h2, h3 {
-        // border: white dashed thin;
-    }
+    font-size: 5.1vw;
+    text-align: center;
 
     section {
         background: $umber;
-        color: $tea-green;
         border-radius: 1vw;
-        margin: auto;
-        padding: 2vw;
+        padding: 3vw 5vw;
 
-        section {
+        display: flex;
+        flex-direction: column;
+        gap: 1vw;
+
+        h2, h3 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 100;
+        }
+
+        h2 {
+            margin-bottom: 2vw;
+        }
+
+        h3 {
+            text-decoration: underline;
+        }
+
+        ol {
+            text-align: left;
+            padding: 0 4vw 0 8vw;
+        }
+
+        form {
             background: $eton-blue;
-            color: $dark-purple;
-            margin: 2vw;
-            font-size: 5vw;
+            border-radius: 1vw;
+            margin-top: 2vw;
+            padding: 5vw 3vw;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2vw;
+            gap: 5vw;
 
-            ol {
-                // border: dashed white thin;
-                // width: 90%;
-                // text-align: left;
-                padding: 0 5vw;
+            color: $dark-purple;
+
+            label {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+
+                select {
+                    border-radius: 1vw;
+                    padding: .25vw 1vw;
+                    font-size: 4.5vw;
+                }
             }
 
             button {
                 border-radius: 1vw;
-                margin: 2vw;
                 padding: 1vw;
-                font-size: 4.25vw;
+                font-size: 4vw;
             }
-
         }
     }
 
     @include screen-size(tablet-portrait) {
         height: $main-height-tablet;
-        padding: 10vw;
-        font-size: 4.5vw;
-        
-        h2 {
-            margin: 1vw;
-        }
-
-        // h3 {
-        //     font-family: Arial, Helvetica, sans-serif;
-        // }
+        // padding: 10vw;
+        font-size: 4vw;
 
         section {
-            // background: $umber;
-            // color: $tea-green;
-            // border-radius: 1vw;
-            // margin: auto;
-            padding: 1vw;
+            ol {
+                padding: 0 2vw 0 6vw;
+            }
 
-            section {
-                // background: $eton-blue;
-                // color: $dark-purple;
-                margin: 2vw;
-                font-size: 4.5vw;
-                // display: flex;
-                // flex-direction: column;
-                // align-items: center;
-                // gap: 2vw;
+            form {
+                padding: 4vw;
+                gap: 4vw;
 
-                ol {
-                    // border: dashed white thin;
-                    // width: 90%;
-                    // text-align: left;
-                    padding: 0 1vw 0 6vw;
+                label {
+                    select {
+                        padding: .15vw 1vw;
+                        font-size: 4vw;
+                    }
                 }
-
+    
                 button {
-                    border-radius: 1vw;
-                    margin: 2vw;
                     padding: .75vw;
                     font-size: 3.25vw;
                 }
@@ -110,59 +98,40 @@
         }
     }
 
-    @include screen-size(tablet-landscape) {
-        // padding: 8vw;
-        height: $main-height-tablet-landscape;
-        padding: 4vw 15vw;
-        font-size: 3vw;
-
-        h2 {
-            margin: .75vw;
-        }
-
-        // h3 {
-        //     font-family: Arial, Helvetica, sans-serif;
-        // }
+    @include screen-size(desktop-small) {
+        height: $main-height-desktop-small;
+        padding: 5vw;
+        font-size: 2.25vw;
 
         section {
-            // background: $umber;
-            // color: $tea-green;
             border-radius: .5vw;
-            // margin: auto;
-            // padding: 2vw;
-            padding: 1vw;
+            width: 80%;
+            margin: auto;
 
-            section {
-                // background: $eton-blue;
-                // color: $dark-purple;
-                // margin: 2vw;
-                // font-size: 5vw;
-                // display: flex;
-                // flex-direction: column;
-                // align-items: center;
-                gap: .75vw;
+            ol {
+                padding: 0 1vw 0 4vw;
+            }
 
-                margin: 1vw;
-                font-size: 2.25vw;
+            form {
+                border-radius: .5vw;
+                margin-top: 3vw;
+                padding: 3vw;
+                gap: 2vw;
 
-                ol {
-                    // border: dashed white thin;
-                    // width: 90%;
-                    // text-align: left;
-                    // padding: 0 5vw;
-                    padding: 0 1vw 0 4vw;
+                label {
+                    select {
+                        border-radius: .5vw;
+                        // padding: .15vw 1vw;
+                        padding: .1vw .5vw;
+                        font-size: 2vw;
+                    }
                 }
-
+    
                 button {
-                    // border-radius: 1vw;
-                    // margin: 2vw;
-                    // padding: 1vw;
-                    // font-size: 4.25vw;
-
-                    border-radius: 1vw;
-                    margin: 2vw;
-                    padding: .5vw;
-                    font-size: 1.5vw;
+                    border-radius: .5vw;
+                    padding: .75vw;
+                    padding: .1vw .5vw;
+                    font-size: 1.75vw;
                 }
             }
         }
@@ -170,77 +139,41 @@
 
     @include screen-size(desktop) {
         height: $main-height-desktop;
-        padding: 3vw 15vw;
-        font-size: 2vw;
-
-        font-family: $main-font;
-        // text-align: center;
-        // display: flex;
-        // flex-direction: column;
-        // align-items: center;
-
-        // h2, h3 {
-        //     text-align: center;
-        // }
-
-        h2 {
-            // margin: 2vw;
-            margin: .75vw;
-        }
-
-        h2, h3 {
-            // border: white dashed thin;
-        }
+        padding: 5vw;
+        font-size: 1.5vw;
 
         section {
-            // border-radius: 1vw;
-            // margin: auto;
-            // padding: 2vw;
-
             border-radius: .25vw;
-            padding: .5vw;
+            width: 50%;
+            padding: 2vw 2.5vw;
+            gap: .5vw;
 
+            h2 {
+                margin-bottom: .5vw;
+            }
 
-            section {
-                // background: $eton-blue;
-                // color: $dark-purple;
-                // margin: 2vw;
-                // font-size: 5vw;
-                // display: flex;
-                // flex-direction: column;
-                // align-items: center;
-                // gap: 2vw;
+            ol {
+                padding: 0 0 0 2vw;
+            }
 
-                // gap: .75vw;
+            form {
+                border-radius: .25vw;
+                margin: 2vw 0 .25vw 0;
+                padding: 2vw;
+                gap: 1.5vw;
 
-                // margin: 1vw;
-                // font-size: 2.25vw;
-
-                gap: .5vw;
-
-                margin: 2vw;
-                font-size: 1.75vw;
-
-
-                ol {
-                    // border: dashed white thin;
-                    // width: 90%;
-                    // text-align: left;
-                    // padding: 0 5vw;
-                    // padding: 0 1vw 0 4vw;
+                label {
+                    select {
+                        border-radius: .25vw;
+                        padding: .05vw .5vw;
+                        padding: .0vw .5vw;
+                        font-size: 1.25vw;
+                    }
                 }
-
+    
                 button {
-                    // border-radius: 1vw;
-                    // margin: 2vw;
-                    // padding: 1vw;
-                    // font-size: 4.25vw;
-
                     border-radius: .25vw;
-                    margin: 1vw;
-                    padding: .25vw;
-                    font-size: 1.25vw;
-                    
+                    font-size: 1vw;
                 }
             }
         }
