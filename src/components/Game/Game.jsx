@@ -167,21 +167,20 @@ const Game = ({
 
   return (
     <main className={styles.Game}>
+      <Scoreboard
+        player={player}
+        playerScore={playerScore}
+        computerScore={computerScore}
+      />
+
       <section>
-        <Scoreboard
-          player={player}
-          playerScore={playerScore}
-          computerScore={computerScore}
-        />
-        
-        {/* <h2>Happy seeking!!</h2> */}
-        <p>
-          Round: {round}
-        </p>
+            Round: {round}
       </section>
+
       <section>
         {newRound ? roundMessage : actionMessage}
       </section>
+
       <GameBoard
         hidingSpots={hidingSpots}
         buttonDisabled={buttonDisabled}
@@ -189,7 +188,7 @@ const Game = ({
       />
       {displayGuess &&
       <section>
-        Guess: {currentGuess} vs Correct: {correcttGuess}
+        Guess: {currentGuess} vs Hiding Spot: {correcttGuess}
         <br />
         {resultMessage}
       </section>

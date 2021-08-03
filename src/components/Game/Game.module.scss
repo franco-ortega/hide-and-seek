@@ -1,28 +1,39 @@
 @import '../App/AppGeneralStyles.scss';
 
 .Game {
+    background: $dark-purple;
     height: $main-height;
-    width: 90%;
-    margin: auto;
+    padding: 2vw 8vw;
+    color: $tea-green;
+    font-family: $main-font;
+    font-size: 6vw;
+    text-align: justify;
+
+
+    // margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
+    // text-align: center;
 
-    h2 {
-        margin: 2vw;
-    }
+    display: grid;
+    grid-template-rows: 20vw 15vw 30vw 85vw 10vw;
+    align-items: flex-start;
+    justify-content: flex-start;
+
 
     section {
-        height: fit-content;
-        width: 85%;
-        margin: 1vw;
+        // height: fit-content;
+        // width: 85%;
+        // margin: 1vw;
         padding: 3vw 1.5vw;
 
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
+
+        border: thin dashed white;
 
         p {
             height: 5vh;
