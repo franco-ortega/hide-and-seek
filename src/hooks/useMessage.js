@@ -3,8 +3,22 @@ import { useState } from 'react';
 export const useMessage = () => {
   const [gameOver, setGameOver] = useState(false);
 
+
+  const [correct, setCorrect] = useState(false);
+  const [displayResult, setDisplayResult] = useState(false);
+
+
   const selectActionMessage = (currentAction) => {
     let actionMessage;
+
+    if(displayResult) {
+      if(correct && currentAction === 'player seeks') return 'You guessed correctly!';
+      if(!correct && currentAction === 'player seeks') return 'You guessed incorrectly.';
+      if(correct && currentAction === 'computer seeks') return 'Computer guessed correctly!';
+      if(!correct && currentAction === 'computer seeks') return 'Computer guessed incorrectly.';
+      if(correct) return 'Only CORRECT.';
+      if(!correct) return 'Only WRONG.';
+    }
 
     if(!gameOver) {
       if(currentAction === 'computer hides') actionMessage = 'The computer is hiding the item.';
@@ -19,8 +33,8 @@ export const useMessage = () => {
     return actionMessage;
   };
 
-  const [correct, setCorrect] = useState(false);
-  const [displayResult, setDisplayResult] = useState(false);
+  // const [correct, setCorrect] = useState(false);
+  // const [displayResult, setDisplayResult] = useState(false);
 
   const selectResultMessage = (currentAction) => {
     if(displayResult) {

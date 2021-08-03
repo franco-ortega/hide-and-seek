@@ -6,28 +6,19 @@
     padding: 6vw 8vw;
     color: $tea-green;
     font-family: $main-font;
-    font-size: 6vw;
+    font-size: 5.5vw;
     text-align: justify;
 
-
-    // margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    // text-align: center;
-    gap: 2vw;
-
-    // display: grid;
-    // grid-template-rows: 30vw 15vw 25vw 75vw;
-    // align-items: flex-start;
-    // justify-content: flex-start;
-
+    // gap: 0vw;
 
     section {
         // height: fit-content;
         // width: 85%;
         // margin: 1vw;
-        padding: 3vw 1.5vw;
+        padding: 2vw 1.5vw;
 
         display: flex;
         flex-wrap: wrap;
@@ -44,13 +35,30 @@
 
     section + p {
         // border: thin dashed white;
-        margin: 3vw;
+        height: 6vh;
+        // margin: 2vw;
+        display: flex;
+        flex-direction: column;
+        // align-items: center;
+        justify-content: center;
     }
 
-    p + p {
-        // color: pink;
-        height: 10vh;
+    p + section {
+        // border: thin dashed pink;
+        height: 8vh;
+        // margin: 1vw;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        // align-items: center;
+        justify-content: flex-start;
     }
+
+    
+    // p + p {
+    //     border: thin dashed lightblue;
+    //     height: 10vh;
+    // }
 
 }
 

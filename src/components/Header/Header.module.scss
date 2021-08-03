@@ -3,7 +3,7 @@
 .Header {
     // background: lightgreen;
     background: $umber;
-    height: 11vh;
+    height: $header-height;
     // text-align: center;
     display: flex;
     // flex-direction: column;
@@ -15,7 +15,7 @@
     h1 {
         margin: auto;
         // color: blueviolet;
-        font-size: 14vw;
+        font-size: 13vw;
         // text-align: center;
     }
 

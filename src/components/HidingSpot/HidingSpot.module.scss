@@ -2,42 +2,37 @@
 @import '../App/AppGeneralStyles.scss';
 
 .HidingSpot {
-    // border: medium solid black;
-    // background: $base-color;
-    // color: $base-bkgd;
-    // color: brown;
-    border-width: 3vw;
+    background: $tea-green;
+    border: medium solid $umber;
+    border-radius: 50%;
+    border-width: 1vw;
 
-    border-radius: 10px;
-    // height: 9vh;
-    width: 20vw;
+    width: 15vw;
     aspect-ratio: 1/1;
-    margin: 3vw;
-    font-size: 8vw;
+    margin: 2vw;
+    color: $dark-purple;
+    font-size: 7vw;
     cursor: pointer;
 
     @include screen-size(tablet-portrait) {
-        border-width: 1.5vw;
-        // height: 7vh;
-        width: 10vw;
-        margin: 2vw;
-        font-size: 4vw;
+        border-width: .75vw;
+        width: 12vw;
+        margin: 1.5vw;
+        font-size: 5vw;
     }
     
     @include screen-size(desktop-small) {
-        border-width: 1.25vw;
-        // height: 10vh;
+        border-width: .5vw;
         width: 8vw;
-        margin: 2vw;
-        font-size: 3vw;
+        margin: 1vw;
+        font-size: 3.5vw;
     }
     
     @include screen-size(desktop) {
-        border-width: 1vw;
-        
-        width: 7vw;
+        border-width: .35vw;
+        width: 6vw;
         margin: .75vw;
-        font-size: 2vw;
+        font-size: 2.5vw;
     }
    
 }

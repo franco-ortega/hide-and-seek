@@ -162,8 +162,7 @@ const Game = ({
   };
   
   // console.log('Bottom of file: current action = ' + currentAction);
-
-
+  console.log(resultMessage);
 
   return (
     <main className={styles.Game}>
@@ -177,22 +176,35 @@ const Game = ({
             Round: {round}
       </p>
 
-      <p>
+      <section>
         {newRound ? roundMessage : actionMessage}
-      </p>
+        {displayGuess &&
+        <p>
+          Guess: {currentGuess} vs Hiding Spot: {correcttGuess}
+        </p>
+        }
+      </section>
+
+      {/* <section>
+        {displayGuess &&
+        <p>
+          Guess: {currentGuess} vs Hiding Spot: {correcttGuess}
+        </p>
+        }
+      </section> */}
 
       <GameBoard
         hidingSpots={hidingSpots}
         buttonDisabled={buttonDisabled}
         onPlayerTurnClick={onPlayerTurnClick}
       />
-      {displayGuess &&
+      {/* {displayGuess &&
       <section>
         Guess: {currentGuess} vs Hiding Spot: {correcttGuess}
         <br />
         {resultMessage}
       </section>
-      }
+      } */}
     </main>
   );
 };
@@ -201,7 +213,7 @@ Game.propTypes = {
   difficulty: PropTypes.string.isRequired,
   // gameActive: PropTypes.bool.isRequired,
   setGameActive: PropTypes.func.isRequired,
-  player: PropTypes.bool.isRequired,
+  player: PropTypes.string.isRequired,
   playerScore: PropTypes.number.isRequired,
   setPlayerScore: PropTypes.func.isRequired,
   computerScore: PropTypes.number.isRequired,
