@@ -2,18 +2,16 @@
 @import '../App/AppGeneralStyles.scss';
 
 .HidingSpot {
-    // border: medium solid black;
-    // background: $base-color;
-    // color: $base-bkgd;
-    // color: brown;
-    border-width: 3vw;
+    background: $tea-green;
+    border: medium solid $umber;
+    border-radius: 5vw;
+    border-width: 2vw;
 
-    border-radius: 10px;
-    // height: 9vh;
-    width: 20vw;
+    width: 15vw;
     aspect-ratio: 1/1;
-    margin: 3vw;
-    font-size: 8vw;
+    margin: 2vw;
+    color: $dark-purple;
+    font-size: 7vw;
     cursor: pointer;
 
     @include screen-size(tablet-portrait) {
