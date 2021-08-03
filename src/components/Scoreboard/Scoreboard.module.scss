@@ -4,8 +4,11 @@
     background: $umber;
     border-radius: 1vw;
 
+    display: flex;
+    flex-direction: column;
+
     color: $tea-green;
-    font-size: 5.5vw;
+    font-size: 5vw;
 
     // border: thin dotted lightblue;
     
@@ -15,6 +18,7 @@
     }
 
     p {
+        margin: 1vw 2vw;
         display: flex;
         flex-direction: column;
         align-items: flex-end;
