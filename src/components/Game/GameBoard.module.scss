@@ -1,5 +1,10 @@
+@import '../App/AppGeneralStyles.scss';
+
 .GameBoard {
-    background: lightblue;
-    border: medium solid black;
-    border-radius: 2vw;
+    background: $vegas-gold;
+    // border: medium solid $vegas-gold;
+    border-radius: 1vw;
+
+    // display: flex;
+    // flex-wrap: wrap;
 }

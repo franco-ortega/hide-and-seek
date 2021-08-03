@@ -6,7 +6,7 @@
     padding: 8vw;
     color: $tea-green;
     font-family: $main-font;
-    font-size: 5.1vw;
+    font-size: 5vw;
     text-align: center;
 
     section {
@@ -33,7 +33,7 @@
 
         ol {
             text-align: left;
-            padding: 0 4vw 0 8vw;
+            padding: 0 0vw 0 6vw;
         }
 
         form {
@@ -101,12 +101,13 @@
     @include screen-size(desktop-small) {
         height: $main-height-desktop-small;
         padding: 5vw;
-        font-size: 2.25vw;
+        font-size: 2vw;
 
         section {
             border-radius: .5vw;
             width: 80%;
             margin: auto;
+            gap: .5vw;
 
             ol {
                 padding: 0 1vw 0 4vw;
@@ -146,7 +147,7 @@
             border-radius: .25vw;
             width: 50%;
             padding: 2vw 2.5vw;
-            gap: .5vw;
+            gap: .25vw;
 
             h2 {
                 margin-bottom: .5vw;
