@@ -173,13 +173,13 @@ const Game = ({
         computerScore={computerScore}
       />
 
-      <section>
+      <p>
             Round: {round}
-      </section>
+      </p>
 
-      <section>
+      <p>
         {newRound ? roundMessage : actionMessage}
-      </section>
+      </p>
 
       <GameBoard
         hidingSpots={hidingSpots}

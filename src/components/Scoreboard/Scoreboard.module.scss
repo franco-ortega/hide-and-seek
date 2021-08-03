@@ -1,89 +1,95 @@
 @import '../App/AppGeneralStyles.scss';
 
 .Scoreboard {
-    // background: lightblue;
-    border: .2vw solid black;
-    border-radius: 10px;
-    width: fit-content;
-    // height: 5vh;
+    background: $umber;
+    border-radius: 1vw;
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    // gap: 0vw;
+    color: $tea-green;
+    font-size: 5.5vw;
+
+    // border: thin dotted lightblue;
+    
+    h2 {
+        font-weight: 400;
+        text-decoration: underline;
+    }
 
     p {
-        padding-right: 2vw;
-    }
-
-    p.marquee {
-        // background: pink;
-        // border: .2vw solid black;
-        // border-style: none solid none none;
-        height: 5vh;
-        padding: 0 1vw;
-        display: flex;
-        align-items: center;
-
-        font-size: 1.5rem;
-    }
-
-    p.scores {
-        // background: rgb(200, 158, 240);
         display: flex;
         flex-direction: column;
-        font-size: .8rem;
+        align-items: flex-end;
+        // justify-content: center;
+
+        font-size: 5vw;
+        // border: thin dashed lightgreen;
+
     }
 
     @include screen-size(tablet-portrait) {
         // border: 1vw solid red;
     
-        p.marquee {
-            font-size: 2.25rem;
-        }
+        // p.marquee {
+        //     font-size: 2.25rem;
+        // }
 
-        .scores {
-            font-size: 1.25rem;
-        }
+        // .scores {
+        //     font-size: 1.25rem;
+        // }
     }
 
     @include screen-size(desktop-small) {
         // border: .1vw solid green;
         flex-direction: column;
-        margin: 1vw 1vw 0 0;
-        padding: .5vw 1vw;
+        // margin: 1vw 1vw 0 0;
+        // padding: .5vw 1vw;
 
         p {
             // border: 1px dashed green;
             // padding: 0 1vw;
-            padding: 0;
-        }
-
-        p.marquee {
-            // border: 1px dashed green;
-            font-size: 1.5rem;
-            text-decoration: underline;
             // padding: 0;
+        }
+
+        // p.marquee {
+            // border: 1px dashed green;
+            // font-size: 1.5rem;
+            // text-decoration: underline;
+            // padding: 0;
+            // margin: 0;
+        // }
+
+        // p.scores {
+        //     // padding: 1vw 1vw;
+        //     font-size: 1.1rem;
+        // }
+
+        // span {
+        //     // padding-right: 0vw;
+        //     // background: chartreuse;
+        // }
+        // span.colon {
+        //     display: none;
+        // }
+
+        font-size: 3vw;
+        gap: 0;
+        margin: 0;
+
+        p {
+            font-size: 2vw;
             margin: 0;
-        }
-
-        p.scores {
-            // padding: 1vw 1vw;
-            font-size: 1.1rem;
-        }
-
-        span {
-            // padding-right: 0vw;
-            // background: chartreuse;
-        }
-        span.colon {
-            display: none;
         }
 
     }
 
     @include screen-size(desktop) {
+        font-size: 2vw;
+        gap: 0;
+        margin: 0;
+
+        p {
+            font-size: 2vw;
+            margin: 0;
+        }
         // border: .1vw solid lightblue;
         margin-right: 2vw;
         // flex-direction: column;
