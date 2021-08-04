@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import GameBoard from './GameBoard';
+import Scoreboard from '../Scoreboard/Scoreboard';
+import { useMessage } from '../../hooks/useMessage';
+import { boxCount, generateNumber } from '../../utils/utils';
 import PropTypes from 'prop-types';
 import styles from './Game.module.scss';
-import { useHistory } from 'react-router';
-import { useMessage } from '../../hooks/useMessage';
-import { generateNumber } from '../../utils/utils';
-import GameBoard from './GameBoard';
-import { useBoxes } from '../../hooks/useBoxes';
-import Scoreboard from '../Scoreboard/Scoreboard';
 
 const Game = ({
   difficulty,
@@ -35,20 +34,16 @@ const Game = ({
 
   const {
     setGameOver,
-    selectActionMessage,
+    displayMessage,
     setCorrect,
     setDisplayResult,
-    selectResultMessage,
-    selectRoundMessage
+    roundAlertMessage
   } = useMessage();
-
-  const { boxCount } = useBoxes();
 
   const hidingSpots = boxCount(difficulty);
 
-  const actionMessage = selectActionMessage(currentAction);
-  const resultMessage = selectResultMessage(currentAction);
-  const roundMessage = selectRoundMessage(round);
+  const message = displayMessage(currentAction);
+  const roundMessage = roundAlertMessage(round);
 
   useEffect(() => {
     console.log('Score Check useEffect');
@@ -162,7 +157,7 @@ const Game = ({
   };
   
   // console.log('Bottom of file: current action = ' + currentAction);
-  console.log(resultMessage);
+  // console.log(resultMessage);
 
   return (
     <main className={styles.Game}>
@@ -177,21 +172,13 @@ const Game = ({
       </p>
 
       <section>
-        {newRound ? roundMessage : actionMessage}
+        {newRound ? roundMessage : message}
         {displayGuess &&
         <p>
           Guess: {currentGuess} vs Hiding Spot: {correcttGuess}
         </p>
         }
       </section>
-
-      {/* <section>
-        {displayGuess &&
-        <p>
-          Guess: {currentGuess} vs Hiding Spot: {correcttGuess}
-        </p>
-        }
-      </section> */}
 
       <GameBoard
         hidingSpots={hidingSpots}
