@@ -1,28 +1,52 @@
+@import '../App/AppGeneralStyles.scss';
+
 .Results {
-    // border: 1vw solid orange;
-    height: 80vh;
+    background: $dark-purple;
+    height: $main-height;
+    padding: 8vw;
+
+    color: $tea-green;
+    font-family: $main-font;
+    font-size: 5vw;
+
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 4vw;
 
     h2 {
-        margin: 2vw;
+        font-weight: 600;
     }
 
     section {
-        background: orange;
-        border-radius: 10px;
-        width: 80%;
-        padding: 1vw;
+        background: $umber;
+        border-radius: 1vw;
+        padding: 5vw 5vw;
         
         display: flex;
         flex-direction: column;
         align-items: center;
-        
+        gap: 5vw;
+
         p {
-            border-radius: 10px;
-            margin: .5vw;
-            padding: .75vw;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1vw;
+        }
+
+        p + p {
+            display: flex;
+            flex-direction: column;
+            gap: 4vw;
+
+            button {
+                border-radius: 1vw;
+                width: 75%;
+                padding: 1vw;
+                font-size: 4vw;
+            }
         }
     }
 }

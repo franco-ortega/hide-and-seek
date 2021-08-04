@@ -19,7 +19,7 @@ const Game = ({
   const history = useHistory();
   const finalRound = 3;
   const hidingSpots = boxCount(difficulty);
-  const timer = 2000;
+  const timer = 500;
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
   // List of currentActions: computer hides, player seeks, player hides, computer seeks
