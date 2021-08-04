@@ -25,22 +25,6 @@ const Welcome = ({ player, setDifficulty, setGameActive }) => {
           <li>Every correct guess scores 1 point.</li>
           <li>The game ends after 3 rounds.</li>
         </ol>
-        <ol>
-          <li>The computer will hide the item in a box.</li>
-          <li>You can guess where the item is hidden by clicking on a box.</li>
-          <li>Then you get to hide the item by clicking on a box.</li>
-          <li>The computer will try to guess where you hid the item.</li>
-          <li>Every correct guess scores 1 point.</li>
-          <li>The game ends after 3 rounds.</li>
-        </ol>
-        <ol>
-          <li>The computer will hide the item in a box.</li>
-          <li>You can guess where the item is hidden by clicking on a box.</li>
-          <li>Then you get to hide the item by clicking on a box.</li>
-          <li>The computer will try to guess where you hid the item.</li>
-          <li>Every correct guess scores 1 point.</li>
-          <li>The game ends after 3 rounds.</li>
-        </ol>
         <form onSubmit={onStartGameClick}>
           <label htmlFor="difficulty">
             <select
