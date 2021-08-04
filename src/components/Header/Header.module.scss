@@ -1,88 +1,28 @@
 @import '../App/AppGeneralStyles.scss';
 
 .Header {
-    // background: lightgreen;
     background: $umber;
     height: $header-height;
-    // text-align: center;
     display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     color: $tea-green;
     font-family: Arial, Helvetica, sans-serif;
-    
-    h1 {
-        margin: auto;
-        // color: blueviolet;
-        font-size: 13vw;
-        // text-align: center;
-    }
-
-    div {
-        height: 5vh;
-        text-align: end;
-    }
+    font-size: 6.25vw;
 
     @include screen-size(tablet-portrait) {
-        height: 15vh;
-
-        h1 {
-            // color: blueviolet;
-            font-size: 12vw;
-        }
-    
-        div {
-            // border: solid .1px black;
-            height: 7vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: end;
-        }
+        height: $header-height-tablet;
+        font-size: 5.5vw;
     }
 
     @include screen-size(desktop-small) {
-        height: 20vh;
-        // border: .5vw solid green;
-        // height: 20vh;
-        // display: grid;
-        // grid-template-columns: repeat(4, 1fr);
-        // grid-template-rows: 1, 1fr;
-        // align-items: center;
-        
-
-        h1 {
-            // grid-column: 2 / 4;
-            // grid-row: 1 /2;
-            // width: 100%;
-            // font-size: 4vw;
-            // text-align: center;
-            font-size: 8vw;
-        }
-
-        // div {
-        //     height: 19vh;
-        //     grid-column: 3 / 5;
-        //     grid-row: 1 /2;
-        //     display: flex;
-        //     flex-direction: row;
-        //     justify-content: flex-end;
-        // }
+        height: $header-height-desktop-small;
+        font-size: 4.25vw;
     }
 
     @include screen-size(desktop) {
-        // border: 1vw solid lightblue;
-        height: 18vh;
-
-        h1 {
-            // grid-column: 2 / 3;
-            // grid-row: 1 /2;
-            // width: 100%;
-            // font-size: 4vw;
-            // text-align: center;
-            font-size: 6vw;
-        }
+        height: $header-height-desktop;
+        font-size: 3vw;
     }
 }
