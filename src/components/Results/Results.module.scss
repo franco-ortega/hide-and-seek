@@ -21,7 +21,7 @@
     section {
         background: $umber;
         border-radius: 1vw;
-        padding: 5vw 5vw;
+        padding: 4vw 5vw;
         
         display: flex;
         flex-direction: column;
@@ -42,9 +42,11 @@
             gap: 4vw;
 
             button {
+                background-color: $eton-blue;
                 border-radius: 1vw;
                 width: 75%;
                 padding: 1vw;
+                color: $dark-purple;
                 font-size: 4vw;
             }
         }
