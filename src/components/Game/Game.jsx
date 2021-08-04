@@ -31,15 +31,14 @@ const Game = ({
   const [displayGuess, setDisplayGuess] = useState(false);
   const [hidingSpot, setHidingSpot] = useState(0);
   const [madeGuess, setMadeGuess] = useState('');
-  const [newRound, setNewRound] = useState(false);
 
   const {
     displayMessage,
     setCorrect,
     setDisplayResult,
-    setGameOver
-  } = useMessage(currentAction, currentRound, finalRound, newRound);
-
+    setGameOver,
+    setNewRound
+  } = useMessage(currentAction, currentRound, finalRound);
 
   const message = displayMessage();
 
@@ -81,17 +80,16 @@ const Game = ({
   useEffect(() => {
     console.log('Current Action useEffect');
     if(currentAction === 'player hides' || currentAction === 'player seeks') {
-      console.log('PLAYER SSAFASJDAOKS!!');
       setButtonDisabled(false);
     }
     if(currentAction === 'computer hides') setTimeout(() => computerHidesItem(), timer);
-    if(currentAction === 'computer seeks') setTimeout(() => computerMakesGuess(), timer);
-    if(currentAction === '') console.log('No one is acting');
+    else if(currentAction === 'computer seeks') setTimeout(() => computerMakesGuess(), timer);
+    else if(currentAction === '') console.log('No one is acting');
   }, [currentAction]);
 
   const incrementScore = (scorer) => {
     if(scorer === 'player') setPlayerScore(prev => (prev + 1));
-    if(scorer === 'computer') setComputerScore(prev => (prev + 1));
+    else if(scorer === 'computer') setComputerScore(prev => (prev + 1));
   };
 
   const incrementRound = () => setCurrentRound(prev => (prev + 1));
@@ -153,9 +151,6 @@ const Game = ({
       setCurrentAction('computer seeks');
     }
   };
-  
-  // console.log('Bottom of file: current action = ' + currentAction);
-  // console.log(resultMessage);
 
   return (
     <main className={styles.Game}>
@@ -164,32 +159,20 @@ const Game = ({
         playerScore={playerScore}
         computerScore={computerScore}
       />
-
-      <p>
-            Round: {currentRound}
-      </p>
-
+      <p>Round: {currentRound}</p>
       <section>
-        {message}
+        <p>{message}</p>
         {displayGuess &&
         <p>
           Guess: {currentGuess} vs Hiding Spot: {correcttGuess}
         </p>
         }
       </section>
-
       <GameBoard
         hidingSpots={hidingSpots}
         buttonDisabled={buttonDisabled}
         onPlayerTurnClick={onPlayerTurnClick}
       />
-      {/* {displayGuess &&
-      <section>
-        Guess: {currentGuess} vs Hiding Spot: {correcttGuess}
-        <br />
-        {resultMessage}
-      </section>
-      } */}
     </main>
   );
 };

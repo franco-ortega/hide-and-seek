@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
-export const useMessage = (currentAction, currentRound, finalRound, newRound) => {
+export const useMessage = (currentAction, currentRound, finalRound) => {
   const [correct, setCorrect] = useState(false);
   const [displayResult, setDisplayResult] = useState(false);
   const [gameOver, setGameOver] = useState(false);
+  const [newRound, setNewRound] = useState(false);
 
   const displayMessage = () => {
-
     if(newRound) {
       if(currentRound === finalRound) return 'Final Round!';
       else return 'New Round.';
@@ -30,7 +30,6 @@ export const useMessage = (currentAction, currentRound, finalRound, newRound) =>
           return 'Only WRONG.';
         }
       }
-
     } else if(!gameOver) {
       switch (currentAction) {
       case 'computer hides':
@@ -50,9 +49,10 @@ export const useMessage = (currentAction, currentRound, finalRound, newRound) =>
   };
 
   return {
-    setGameOver,
     displayMessage,
     setCorrect,
-    setDisplayResult
+    setDisplayResult,
+    setGameOver,
+    setNewRound
   };
 };
