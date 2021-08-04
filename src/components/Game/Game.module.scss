@@ -14,17 +14,6 @@
     align-items: center;
     gap: 5vw;
 
-    section {
-        padding: 2vw 1.5vw;
-
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-
-        // border: thin dashed white;
-    }
-
     section + p {
         // border: thin dashed white;
         height: fit-content;
@@ -33,10 +22,14 @@
         justify-content: center;
     }
 
+    p + p {
+        // border: thin dashed orange;
+        text-align: center;
+    }
+
     p + section {
         // border: thin dashed pink;
         height: 8vh;
-        // margin: 1vw;
         padding: 0;
         display: flex;
         flex-direction: column;
@@ -44,12 +37,13 @@
         justify-content: flex-start;
     }
 
-    
-    // p + p {
-    //     border: thin dashed lightblue;
-    //     height: 10vh;
-    // }
-
+    section + section  {
+        padding: 1vw;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-evenly;
+    }
 }
 
 @include screen-size(tablet-portrait) {

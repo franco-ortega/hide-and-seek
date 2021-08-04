@@ -3,30 +3,25 @@
 .Scoreboard {
     background: $umber;
     border-radius: 1vw;
+    padding: 1vw 2vw;
+    color: $tea-green;
+    font-size: 5vw;
 
     display: flex;
     flex-direction: column;
 
-    color: $tea-green;
-    font-size: 5vw;
-
-    // border: thin dotted lightblue;
-    
     h2 {
         font-weight: 400;
+        text-align: center;
         text-decoration: underline;
     }
 
     p {
         margin: 1vw 2vw;
+        font-size: 5vw;
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        // justify-content: center;
-
-        font-size: 5vw;
-        // border: thin dashed lightgreen;
-
     }
 
     @include screen-size(tablet-portrait) {
@@ -82,7 +77,6 @@
             font-size: 2vw;
             margin: 0;
         }
-
     }
 
     @include screen-size(desktop) {
@@ -98,6 +92,5 @@
         margin-right: 2vw;
         // flex-direction: column;
         // gap: 0;
-        
     }
 }

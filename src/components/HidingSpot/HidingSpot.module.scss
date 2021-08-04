@@ -34,6 +34,9 @@
         width: 6vw;
         margin: .75vw;
         font-size: 2.5vw;
-    }
-   
+    }  
+}
+
+.HidingSpot:disabled {
+    opacity: 50%;
 }
