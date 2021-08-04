@@ -17,37 +17,35 @@ const Game = ({
   computerScore,
   setComputerScore
 }) => {
-  let history = useHistory();
-  let timer = 2000;
+  const history = useHistory();
+  const finalRound = 3;
+  const hidingSpots = boxCount(difficulty);
+  const timer = 2000;
 
-  const [hidingSpot, setHidingSpot] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [madeGuess, setMadeGuess] = useState('');
-  const [round, setRound] = useState(1);
-  const [newRound, setNewRound] = useState(false);
+  // List of currentActions: computer hides, player seeks, player hides, computer seeks
+  const [currentAction, setCurrentAction] = useState('computer hides');
+  const [currentRound, setCurrentRound] = useState(1);
   const [currentGuess, setCurrentGuess] = useState(0);
   const [correcttGuess, setCorrecttGuess] = useState(0);
   const [displayGuess, setDisplayGuess] = useState(false);
-
-  // List of currentActions: computer hides, player seeks, player hides, computer seeks
-  const [currentAction, setCurrentAction] = useState('computer hides');
+  const [hidingSpot, setHidingSpot] = useState(0);
+  const [madeGuess, setMadeGuess] = useState('');
+  const [newRound, setNewRound] = useState(false);
 
   const {
-    setGameOver,
     displayMessage,
     setCorrect,
     setDisplayResult,
-    roundAlertMessage
-  } = useMessage();
+    setGameOver
+  } = useMessage(currentAction, currentRound, finalRound, newRound);
 
-  const hidingSpots = boxCount(difficulty);
 
-  const message = displayMessage(currentAction);
-  const roundMessage = roundAlertMessage(round);
+  const message = displayMessage();
 
   useEffect(() => {
     console.log('Score Check useEffect');
-    if(round === 3 && madeGuess === 'computer') {
+    if(currentRound === finalRound && madeGuess === 'computer') {
       setButtonDisabled(true);
       setTimeout(() => {
         setDisplayGuess(false);
@@ -92,11 +90,11 @@ const Game = ({
   }, [currentAction]);
 
   const incrementScore = (scorer) => {
-    if(scorer === 'player') setPlayerScore(playerScore + 1);
-    if(scorer === 'computer') setComputerScore(computerScore + 1);
+    if(scorer === 'player') setPlayerScore(prev => (prev + 1));
+    if(scorer === 'computer') setComputerScore(prev => (prev + 1));
   };
 
-  const incrementRound = () => setRound(round + 1);
+  const incrementRound = () => setCurrentRound(prev => (prev + 1));
 
   const computerHidesItem = () => {
     const computerHidingSpot = generateNumber(hidingSpots);
@@ -168,11 +166,11 @@ const Game = ({
       />
 
       <p>
-            Round: {round}
+            Round: {currentRound}
       </p>
 
       <section>
-        {newRound ? roundMessage : message}
+        {message}
         {displayGuess &&
         <p>
           Guess: {currentGuess} vs Hiding Spot: {correcttGuess}
