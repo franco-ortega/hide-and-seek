@@ -11,6 +11,11 @@ const Results = ({
   setGameActive
 }) => {
   let history = useHistory();
+  let resultsMessage;
+
+  if(playerScore > computerScore) resultsMessage = 'You win!!!';
+  else if(playerScore < computerScore) resultsMessage = 'Computer wins.';
+  else resultsMessage = 'It\'s a tie!';
 
   const resetScores = () => {
     setPlayerScore(0);
@@ -23,6 +28,12 @@ const Results = ({
     history.push('/game');
   };
 
+  const onNewGameClick = () => {
+    resetScores();
+    setGameActive(true);
+    history.push('/welcome');
+  };
+
   const onNewPlayerClick = () => {
     resetScores();
     history.push('/');
@@ -30,16 +41,18 @@ const Results = ({
 
   return (
     <main className={styles.Results}>
-      <h2>Results Page!!</h2>
+      <h2>{resultsMessage}</h2>
       <section>
-        <p>Your score: {playerScore}</p>
-        <p>Computer score: {computerScore}</p>
         <p>
-          <button onClick={onPlayAgainClick}>Play Again</button>
+          <span>Your score: {playerScore}</span>
+          <span>Computer score: {computerScore}</span>
+        </p>
+        <p>
+          <button onClick={onPlayAgainClick}>Repeat Game</button>
+          <button onClick={onNewGameClick}>New Game</button>
           <button onClick={onNewPlayerClick}>New Player</button>
         </p>
       </section>
-
     </main>
   );
 };
