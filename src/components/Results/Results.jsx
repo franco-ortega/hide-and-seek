@@ -11,6 +11,11 @@ const Results = ({
   setGameActive
 }) => {
   let history = useHistory();
+  let resultsMessage;
+
+  if(playerScore > computerScore) resultsMessage = 'You win!!!';
+  else if(playerScore < computerScore) resultsMessage = 'Computer wins';
+  else resultsMessage = 'It is a tie!';
 
   const resetScores = () => {
     setPlayerScore(0);
@@ -30,7 +35,7 @@ const Results = ({
 
   return (
     <main className={styles.Results}>
-      <h2>Results Page!!</h2>
+      <h2>{resultsMessage}</h2>
       <section>
         <p>Your score: {playerScore}</p>
         <p>Computer score: {computerScore}</p>
