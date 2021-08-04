@@ -27,7 +27,6 @@ const Game = ({
   const [currentRound, setCurrentRound] = useState(1);
   const [currentGuess, setCurrentGuess] = useState(0);
   const [correcttGuess, setCorrecttGuess] = useState(0);
-  // const [displayGuess, setDisplayGuess] = useState(false);
   const [hidingSpot, setHidingSpot] = useState(0);
   const [madeGuess, setMadeGuess] = useState('');
 
