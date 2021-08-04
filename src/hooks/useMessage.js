@@ -50,6 +50,7 @@ export const useMessage = (currentAction, currentRound, finalRound) => {
 
   return {
     displayMessage,
+    displayResult,
     setCorrect,
     setDisplayResult,
     setGameOver,
