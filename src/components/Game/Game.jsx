@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import GameBoard from './GameBoard';
+import Scoreboard from '../Scoreboard/Scoreboard';
+import { useMessage } from '../../hooks/useMessage';
+import { boxCount, generateNumber } from '../../utils/utils';
 import PropTypes from 'prop-types';
 import styles from './Game.module.scss';
-import { useHistory } from 'react-router';
-import { useMessage } from '../../hooks/useMessage';
-import { generateNumber } from '../../utils/utils';
-import GameBoard from './GameBoard';
-import { useBoxes } from '../../hooks/useBoxes';
-import Scoreboard from '../Scoreboard/Scoreboard';
 
 const Game = ({
   difficulty,
@@ -18,41 +17,35 @@ const Game = ({
   computerScore,
   setComputerScore
 }) => {
-  let history = useHistory();
-  let timer = 2000;
+  const history = useHistory();
+  const finalRound = 3;
+  const hidingSpots = boxCount(difficulty);
+  const timer = 2000;
 
-  const [hidingSpot, setHidingSpot] = useState(0);
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [madeGuess, setMadeGuess] = useState('');
-  const [round, setRound] = useState(1);
-  const [newRound, setNewRound] = useState(false);
+  // List of currentActions: computer hides, player seeks, player hides, computer seeks
+  const [currentAction, setCurrentAction] = useState('computer hides');
+  const [currentRound, setCurrentRound] = useState(1);
   const [currentGuess, setCurrentGuess] = useState(0);
   const [correcttGuess, setCorrecttGuess] = useState(0);
   const [displayGuess, setDisplayGuess] = useState(false);
-
-  // List of currentActions: computer hides, player seeks, player hides, computer seeks
-  const [currentAction, setCurrentAction] = useState('computer hides');
+  const [hidingSpot, setHidingSpot] = useState(0);
+  const [madeGuess, setMadeGuess] = useState('');
+  const [newRound, setNewRound] = useState(false);
 
   const {
-    setGameOver,
-    selectActionMessage,
+    displayMessage,
     setCorrect,
     setDisplayResult,
-    selectResultMessage,
-    selectRoundMessage
-  } = useMessage();
+    setGameOver
+  } = useMessage(currentAction, currentRound, finalRound, newRound);
 
-  const { boxCount } = useBoxes();
 
-  const hidingSpots = boxCount(difficulty);
-
-  const actionMessage = selectActionMessage(currentAction);
-  const resultMessage = selectResultMessage(currentAction);
-  const roundMessage = selectRoundMessage(round);
+  const message = displayMessage();
 
   useEffect(() => {
     console.log('Score Check useEffect');
-    if(round === 3 && madeGuess === 'computer') {
+    if(currentRound === finalRound && madeGuess === 'computer') {
       setButtonDisabled(true);
       setTimeout(() => {
         setDisplayGuess(false);
@@ -97,11 +90,11 @@ const Game = ({
   }, [currentAction]);
 
   const incrementScore = (scorer) => {
-    if(scorer === 'player') setPlayerScore(playerScore + 1);
-    if(scorer === 'computer') setComputerScore(computerScore + 1);
+    if(scorer === 'player') setPlayerScore(prev => (prev + 1));
+    if(scorer === 'computer') setComputerScore(prev => (prev + 1));
   };
 
-  const incrementRound = () => setRound(round + 1);
+  const incrementRound = () => setCurrentRound(prev => (prev + 1));
 
   const computerHidesItem = () => {
     const computerHidingSpot = generateNumber(hidingSpots);
@@ -162,7 +155,7 @@ const Game = ({
   };
   
   // console.log('Bottom of file: current action = ' + currentAction);
-  console.log(resultMessage);
+  // console.log(resultMessage);
 
   return (
     <main className={styles.Game}>
@@ -173,25 +166,17 @@ const Game = ({
       />
 
       <p>
-            Round: {round}
+            Round: {currentRound}
       </p>
 
       <section>
-        {newRound ? roundMessage : actionMessage}
+        {message}
         {displayGuess &&
         <p>
           Guess: {currentGuess} vs Hiding Spot: {correcttGuess}
         </p>
         }
       </section>
-
-      {/* <section>
-        {displayGuess &&
-        <p>
-          Guess: {currentGuess} vs Hiding Spot: {correcttGuess}
-        </p>
-        }
-      </section> */}
 
       <GameBoard
         hidingSpots={hidingSpots}
