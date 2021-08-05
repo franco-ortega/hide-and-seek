@@ -41,8 +41,8 @@ const Results = ({
 
   return (
     <main className={styles.Results}>
-      <h2>{resultsMessage}</h2>
       <section>
+        <h2>{resultsMessage}</h2>
         <p>
           <span>Your score: {playerScore}</span>
           <span>Computer score: {computerScore}</span>

@@ -7,26 +7,22 @@
 
     color: $tea-green;
     font-family: $main-font;
-    font-size: 5vw;
+    font-size: 5.5vw;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4vw;
-
-    h2 {
-        font-weight: 600;
-    }
 
     section {
         background: $umber;
         border-radius: 1vw;
-        padding: 4vw 5vw;
+        padding: 3vw 5vw;
         
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 5vw;
+        gap: 4vw;
+
+        h2 {
+            font-weight: 500;
+        }
 
         p {
             width: 100%;
@@ -37,17 +33,16 @@
         }
 
         p + p {
-            display: flex;
-            flex-direction: column;
+            margin: 2.5vw;
             gap: 4vw;
 
             button {
                 background-color: $eton-blue;
-                border-radius: 1vw;
-                width: 75%;
+                border-radius: 1.25vw;
+                width: 45%;
                 padding: 1vw;
                 color: $dark-purple;
-                font-size: 4vw;
+                font-size: 4.5vw;
             }
         }
     }

@@ -3,46 +3,34 @@
 .Game {
     background: $dark-purple;
     height: $main-height;
-    padding: 6vw 8vw;
+    padding: 8vw;
     color: $tea-green;
     font-family: $main-font;
     font-size: 5.5vw;
-    text-align: justify;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 5vw;
 
-    section + p {
-        // border: thin dashed white;
-        height: fit-content;
+    section:nth-child(1) {
+        background: $umber;
+        width: 100%;
+    }
+
+    section:nth-child(2) {
+        height: 12vh;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        align-items: center;
     }
 
     p + p {
-        // border: thin dashed orange;
-        text-align: center;
+        margin-top: 2vw;
     }
 
-    p + section {
-        // border: thin dashed pink;
-        height: 8vh;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        // align-items: center;
-        justify-content: flex-start;
-    }
-
-    section + section  {
-        padding: 1vw;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-evenly;
+    p + p + p {
+        margin-top: 0;
     }
 }
 

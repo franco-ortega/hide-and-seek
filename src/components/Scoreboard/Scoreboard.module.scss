@@ -3,6 +3,7 @@
 .Scoreboard {
     background: $umber;
     border-radius: 1vw;
+    width: 100%;
     padding: 1vw 2vw;
     color: $tea-green;
     font-size: 5vw;
@@ -21,7 +22,7 @@
         font-size: 5vw;
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
+        align-items: center;
     }
 
     @include screen-size(tablet-portrait) {

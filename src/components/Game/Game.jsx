@@ -135,8 +135,10 @@ const Game = ({
         playerScore={playerScore}
         computerScore={computerScore}
       />
-      <p>Round: {currentRound}</p>
       <section>
+        <p>
+          Round: {currentRound}
+        </p>
         <p>{message}</p>
         {
           displayResult &&

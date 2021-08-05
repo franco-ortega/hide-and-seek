@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     color: $tea-green;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: $header-font;
     font-size: 6.25vw;
 
     @include screen-size(tablet-portrait) {

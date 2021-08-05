@@ -33,8 +33,8 @@ const Welcome = ({ player, setDifficulty, setGameActive }) => {
               onChange={({ target }) => setDifficulty(target.value)}>
               <option value="">Choose Your Difficulty</option>
               <option value="easy">Easy (3 hiding spots)</option>
-              <option value="medium">Medium (6 hiding spots)</option>
-              <option value="hard">Hard (9 hiding spots)</option>
+              <option value="medium">Medium (4 hiding spots)</option>
+              <option value="hard">Hard (8 hiding spots)</option>
             </select>
           </label>
           <button>Start Game</button>
