@@ -74,7 +74,6 @@
 
     @include screen-size(tablet-portrait) {
         height: $main-height-tablet;
-        // padding: 10vw;
         font-size: 4vw;
 
         section {

@@ -48,7 +48,7 @@ const Results = ({
           <span>Computer score: {computerScore}</span>
         </p>
         <p>
-          <button onClick={onPlayAgainClick}>Repeat Game</button>
+          <button onClick={onPlayAgainClick}>Replay Game</button>
           <button onClick={onNewGameClick}>New Game</button>
           <button onClick={onNewPlayerClick}>New Player</button>
         </p>
