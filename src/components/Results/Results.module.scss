@@ -51,4 +51,87 @@
             }
         }
     }
+
+    @include screen-size(tablet-portrait) {
+        height: $main-height-tablet;
+        font-size: 4vw;
+
+        section {
+            gap: 4vw;
+
+            p {
+                gap: .5vw;
+            }
+
+            p + p {
+                gap: 3vw;
+
+                button {
+                    padding: .75vw;
+                    font-size: 3.25vw;
+                }
+            }
+        }
+    }
+
+    @include screen-size(desktop-small) {
+        height: $main-height-desktop-small;
+        padding: 3vw;
+        font-size: 3vw;
+
+        section {
+            border-radius: .5vw;
+            width: 60%;
+            gap: 3vw;
+
+            p {
+                // gap: .25vw;
+            }
+
+            p + p {
+                flex-direction: row;
+                gap: 2vw;
+
+                button {
+                    width: 30%;
+                    padding: .75vw;
+                    font-size: 1.75vw;
+                }
+            }
+        }
+    }
+
+    @include screen-size(desktop) {
+        height: $main-height-desktop;
+        // padding: 3vw;
+        font-size: 1.75vw;
+        gap: 2.5vw;
+
+        h2 {
+            font-size: 4.5vw;
+        }
+
+        section {
+            border-radius: .25vw;
+            width: 40%;
+            padding: 1.5vw 0 2vw 0vw;
+            gap: 1.5vw;
+
+            p {
+                gap: .25vw;
+            }
+
+            p + p {
+                gap: 1.5vw;
+                justify-content: center;
+
+                button {
+                    border-radius: .5vw;
+                    width: 25%;
+                    padding: .75vw;
+                    font-size: 1vw;
+                }
+            }
+        }
+    }
 }
