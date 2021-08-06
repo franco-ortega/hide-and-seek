@@ -61,7 +61,7 @@
                         width: 60%;
                         margin-left: 1vw;
                         padding: .15vw 1.5vw;
-                        font-size: 4vw;
+                        font-size: 3.75vw;
                     }
                 }
 
@@ -76,7 +76,7 @@
     @include screen-size(desktop-small) {
         height: $main-height-desktop-small;
         padding: 5vw;
-        font-size: 2.25vw;
+        font-size: 2vw;
 
         section {
             border-radius: .5vw;
@@ -95,14 +95,14 @@
                         width: 40%;
                         margin-left: .5vw;
                         padding: .0vw .75vw;
-                        font-size: 2vw;
+                        font-size: 1.85vw;
                     }
                 }
 
                 button {
                     border-radius: .5vw;
                     padding: .25vw .5vw;
-                    font-size: 1.45vw;
+                    font-size: 1.75vw;
                 }
             }
         }
