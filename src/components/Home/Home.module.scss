@@ -52,8 +52,7 @@
 
     @include screen-size(tablet-portrait) {
         height: $main-height-tablet;
-        // padding: 10vw;
-        font-size: 4.5vw;
+        font-size: 4vw;
 
         section {
             form {
@@ -68,7 +67,7 @@
 
                 button {
                     padding: .75vw;
-                    font-size: 3.25vw;
+                    font-size: 3vw;
                 }
             }
         }
@@ -81,7 +80,7 @@
 
         section {
             border-radius: .5vw;
-            width: 80%;
+            width: 65%;
             margin: auto;
 
             form {

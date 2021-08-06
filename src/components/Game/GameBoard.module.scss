@@ -11,4 +11,9 @@
     align-items: center;
     justify-content: space-evenly;
     gap: 4vw;
+
+    @include screen-size(desktop-small) {
+        width: 55%;
+        gap: 1vw;
+    }
 }

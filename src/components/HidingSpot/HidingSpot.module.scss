@@ -24,14 +24,14 @@
     
     @include screen-size(desktop-small) {
         border-width: .5vw;
-        width: 8vw;
-        margin: 1vw;
+        width: 9vw;
+        margin: 0vw;
         font-size: 3.5vw;
     }
     
     @include screen-size(desktop) {
         border-width: .35vw;
-        width: 6vw;
+        width: 7.5vw;
         margin: .75vw;
         font-size: 2.5vw;
     }  
