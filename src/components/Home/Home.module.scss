@@ -6,25 +6,24 @@
     padding: 8vw;
     color: $tea-green;
     font-family: $main-font;
-    font-size: 6vw;
-    text-align: justify;
+    font-size: 5.5vw;
 
     section {
         background: $umber;
         border-radius: 1vw;
         padding: 3vw 5vw;
+        text-align: justify;
 
         form {
             background: $eton-blue;
             border-radius: 1vw;
-            margin: 5vw 0 2vw 0;
+            margin: 4vw 0 2vw 0;
             padding: 5vw 3vw;
+            color: $dark-purple;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 5vw;
-
-            color: $dark-purple;
 
             label {
                 width: 100%;
@@ -37,22 +36,23 @@
                     width: 75%;
                     margin-left: 2vw;
                     padding: .25vw 2vw;
-                    font-size: 5.25vw;
+                    font-size: 5vw;
                 }
             }
 
             button {
-                border-radius: 1vw;
+                background-color: $umber;
+                border-radius: 1.25vw;
                 padding: 1vw;
-                font-size: 4.25vw;
+                color: $tea-green;
+                font-size: 4.5vw;
             }
         }
     }
 
     @include screen-size(tablet-portrait) {
         height: $main-height-tablet;
-        // padding: 10vw;
-        font-size: 4.5vw;
+        font-size: 4vw;
 
         section {
             form {
@@ -61,13 +61,13 @@
                         width: 60%;
                         margin-left: 1vw;
                         padding: .15vw 1.5vw;
-                        font-size: 4vw;
+                        font-size: 3.75vw;
                     }
                 }
 
                 button {
                     padding: .75vw;
-                    font-size: 3.25vw;
+                    font-size: 3vw;
                 }
             }
         }
@@ -76,11 +76,11 @@
     @include screen-size(desktop-small) {
         height: $main-height-desktop-small;
         padding: 5vw;
-        font-size: 2.25vw;
+        font-size: 2vw;
 
         section {
             border-radius: .5vw;
-            width: 80%;
+            width: 65%;
             margin: auto;
 
             form {
@@ -95,14 +95,14 @@
                         width: 40%;
                         margin-left: .5vw;
                         padding: .0vw .75vw;
-                        font-size: 2vw;
+                        font-size: 1.85vw;
                     }
                 }
 
                 button {
                     border-radius: .5vw;
                     padding: .25vw .5vw;
-                    font-size: 1.45vw;
+                    font-size: 1.75vw;
                 }
             }
         }

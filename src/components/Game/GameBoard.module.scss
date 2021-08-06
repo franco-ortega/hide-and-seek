@@ -3,4 +3,17 @@
 .GameBoard {
     background: $vegas-gold;
     border-radius: 1vw;
+    width: 100%;
+    padding: 4vw;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 4vw;
+
+    @include screen-size(desktop-small) {
+        width: 55%;
+        gap: 1vw;
+    }
 }

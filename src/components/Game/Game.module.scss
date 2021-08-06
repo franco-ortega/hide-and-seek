@@ -3,103 +3,72 @@
 .Game {
     background: $dark-purple;
     height: $main-height;
-    padding: 6vw 8vw;
+    padding: 8vw;
     color: $tea-green;
     font-family: $main-font;
     font-size: 5.5vw;
-    text-align: justify;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 5vw;
 
-    section + p {
-        // border: thin dashed white;
-        height: fit-content;
+    // section:nth-child(1) {
+    //     background: $umber;
+    //     width: 100%;
+    // }
+
+    section:nth-child(2) {
+        height: 12vh;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-    }
-
-    p + p {
-        // border: thin dashed orange;
-        text-align: center;
-    }
-
-    p + section {
-        // border: thin dashed pink;
-        height: 8vh;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        // align-items: center;
-        justify-content: flex-start;
-    }
-
-    section + section  {
-        padding: 1vw;
-        display: flex;
-        flex-wrap: wrap;
         align-items: center;
-        justify-content: space-evenly;
     }
-}
 
-@include screen-size(tablet-portrait) {
-    // .Game {
-    //     section {
-    //         width: 70%;
-    //         padding: 0;
-    //     }
+    section  {
+        p + p {
+            margin-top: 2vw;
+        }
+    
+        p + p + p {
+            margin-top: 0;
+        }
+    }
 
-    //     .Buttons {
-    //         background: lightblue;
-    //     }
-    // }
-  }
-  
-  @include screen-size(desktop-small) {
-    // .Game {
-    //     section {
-    //         width: 60%;
-    //     }
 
-    //     .Buttons {
-    //         height: 20vh;
-    //         background: lightcoral;
-    //     }
-    // }
-    .Game {
-        font-size: 2vw;
-        gap: 1vw;
-        padding: 1vw;
+    @include screen-size(tablet-portrait) {
+        height: $main-height-tablet;
+        font-size: 4vw;
+        gap: 6vw;
+        
+        section:nth-child(2) {
+            height: 10vh;
+        }
 
         section  {
-            padding: 1vw;
-        }
-
-        // section {
-        //     width: 50%;
-        // }
-
-        // .Buttons {
-        //     height: 25vh;
-        //     background: pink;
-        // }
-
-
-        section + p {
-            // border: thin dashed white;
-            margin: 1vw;
-        }
-
-        p + p {
-            // color: pink;
-            height: 8vh;
+            p + p {
+                margin-top: 1vw;
+            }
         }
     }
-  }
+  
+  @include screen-size(desktop-small) {
+    height: $main-height-desktop-small;
+    padding: 5vw;
+    font-size: 2.25vw;
+    gap: 0vw;
+    
+        section:nth-child(2) {
+            height: 18vh;
+            color: red;
+        }
+
+        section  {
+            p + p {
+                margin-top: 1vw;
+            }
+        }
+    }
   
   @include screen-size(desktop) {
     .Game {
@@ -132,3 +101,5 @@
         }
     }
   }
+
+}

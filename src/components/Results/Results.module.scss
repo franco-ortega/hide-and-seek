@@ -7,26 +7,22 @@
 
     color: $tea-green;
     font-family: $main-font;
-    font-size: 5vw;
+    font-size: 5.5vw;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4vw;
-
-    h2 {
-        font-weight: 600;
-    }
 
     section {
         background: $umber;
         border-radius: 1vw;
-        padding: 4vw 5vw;
+        padding: 3vw 5vw;
         
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 5vw;
+        gap: 4vw;
+
+        h2 {
+            font-weight: 500;
+        }
 
         p {
             width: 100%;
@@ -37,17 +33,20 @@
         }
 
         p + p {
-            display: flex;
-            flex-direction: column;
+            background: $eton-blue;
+            border-radius: 1vw;
+            width: fit-content;
+            margin: 2.5vw;
+            padding: 4vw;
             gap: 4vw;
 
             button {
-                background-color: $eton-blue;
-                border-radius: 1vw;
-                width: 75%;
-                padding: 1vw;
-                color: $dark-purple;
-                font-size: 4vw;
+                background-color: $umber;
+                border-radius: 1.25vw;
+                width: 100%;
+                padding: 1vw 1.5vw;
+                color: $tea-green;
+                font-size: 4.5vw;
             }
         }
     }
@@ -57,18 +56,25 @@
         font-size: 4vw;
 
         section {
-            gap: 4vw;
+            padding: 3vw 0vw;
+            gap: 3vw;
 
             p {
                 gap: .5vw;
             }
 
             p + p {
-                gap: 3vw;
+                width: 85%;
+                padding: 3vw;
+                margin: 1.5vw;
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: flex-start;
+                gap: 2vw;
 
                 button {
                     padding: .75vw;
-                    font-size: 3.25vw;
+                    font-size: 3vw;
                 }
             }
         }

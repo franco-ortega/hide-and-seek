@@ -6,8 +6,7 @@
     padding: 8vw;
     color: $tea-green;
     font-family: $main-font;
-    font-size: 5vw;
-    text-align: center;
+    font-size: 5.5vw;
     overflow: scroll;
 
     section {
@@ -15,19 +14,10 @@
         border-radius: 1vw;
         padding: 3vw 5vw;
 
-        display: flex;
-        flex-direction: column;
-        gap: 1vw;
-
-        overflow: scroll;
-
         h2, h3 {
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: 100;
-        }
-
-        h2 {
-            margin-bottom: 2vw;
+            margin-bottom: 1vw;
+            font-weight: 500;
+            text-align: center;
         }
 
         h3 {
@@ -35,21 +25,19 @@
         }
 
         ol {
-            text-align: left;
-            padding: 0 0vw 0 6vw;
+            padding: 0 0 0 5vw;
         }
 
         form {
             background: $eton-blue;
             border-radius: 1vw;
-            margin-top: 2vw;
+            margin: 4vw 0 2vw 0;
             padding: 5vw 3vw;
+            color: $dark-purple;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 5vw;
-
-            color: $dark-purple;
 
             label {
                 width: 100%;
@@ -60,14 +48,16 @@
                 select {
                     border-radius: 1vw;
                     padding: .25vw 1vw;
-                    font-size: 4.5vw;
+                    font-size: 5vw;
                 }
             }
 
             button {
-                border-radius: 1vw;
+                background-color: $umber;
+                border-radius: 1.25vw;
                 padding: 1vw;
-                font-size: 4vw;
+                color: $tea-green;
+                font-size: 4.5vw;
             }
         }
     }
@@ -75,10 +65,19 @@
     @include screen-size(tablet-portrait) {
         height: $main-height-tablet;
         font-size: 4vw;
+        overflow: hidden;
 
         section {
+            h2 {
+                margin-bottom: 2vw;
+            }
+
+            h3 {
+                margin-bottom: .5vw;
+            }
+
             ol {
-                padding: 0 2vw 0 6vw;
+                padding: 0 0 0 4vw;
             }
 
             form {
@@ -94,7 +93,7 @@
     
                 button {
                     padding: .75vw;
-                    font-size: 3.25vw;
+                    font-size: 3vw;
                 }
             }
         }
@@ -107,24 +106,32 @@
 
         section {
             border-radius: .5vw;
-            width: 80%;
+            width: 65%;
             margin: auto;
+            padding: 2vw 3vw;
             gap: .5vw;
 
+            h2 {
+                margin-bottom: 1vw;
+            }
+
+            h3 {
+                margin-bottom: .5vw;
+            }
+
             ol {
-                padding: 0 1vw 0 4vw;
+                padding: 0 0 0 2vw;
             }
 
             form {
                 border-radius: .5vw;
-                margin-top: 3vw;
-                padding: 3vw;
+                margin: 2vw 0 1vw 0;
+                padding: 2vw;
                 gap: 2vw;
 
                 label {
                     select {
                         border-radius: .5vw;
-                        // padding: .15vw 1vw;
                         padding: .1vw .5vw;
                         font-size: 2vw;
                     }
@@ -132,8 +139,7 @@
     
                 button {
                     border-radius: .5vw;
-                    padding: .75vw;
-                    padding: .1vw .5vw;
+                    padding: .25vw .5vw;
                     font-size: 1.75vw;
                 }
             }
