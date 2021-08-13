@@ -2,7 +2,6 @@ module.exports = {
   'env': {
     'browser': true,
     'es2021': true,
-    'module': true,
     jest: true
   },
   'extends': [
