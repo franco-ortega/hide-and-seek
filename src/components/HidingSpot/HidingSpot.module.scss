@@ -37,5 +37,7 @@
 }
 
 .HidingSpot:disabled {
-    opacity: 95%;
+    background: rgba(208, 252, 179, .75);
+    border-color: gray;
+    color: gray;
 }
