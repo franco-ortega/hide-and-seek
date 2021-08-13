@@ -14,6 +14,7 @@
 
     @include screen-size(desktop-small) {
         width: 55%;
+        padding: 2vw;
         gap: 1vw;
     }
 

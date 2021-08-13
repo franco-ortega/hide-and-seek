@@ -17,16 +17,15 @@ const Game = ({
   setComputerScore
 }) => {
   const history = useHistory();
-  const finalRound = 3;
+  const finalRound = 5;
   const hidingSpots = boxCount(difficulty);
-  const timer = 500;
+  const timer = 2000;
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
   // List of currentActions: computer hides, player seeks, player hides, computer seeks
   const [currentAction, setCurrentAction] = useState('computer hides');
   const [currentRound, setCurrentRound] = useState(1);
   const [currentGuess, setCurrentGuess] = useState(0);
-  const [correcttGuess, setCorrecttGuess] = useState(0);
   const [hidingSpot, setHidingSpot] = useState(0);
   const [madeGuess, setMadeGuess] = useState('');
 
@@ -54,13 +53,11 @@ const Game = ({
         }, timer);
       }, timer);
     } else if(madeGuess === 'player') {
-      console.log('Player made guess.');
       setTimeout(() => {
         setDisplayResult(false);
         setCurrentAction('player hides');
       }, timer);
     } else if(madeGuess === 'computer') {
-      console.log('Computer made guess.');
       setTimeout(() => {
         setDisplayResult(false);
         setNewRound(true);
@@ -70,7 +67,7 @@ const Game = ({
           setCurrentAction('computer hides');
         }, timer);
       }, timer);
-    } else if(madeGuess === '') console.log('No one made a guess');
+    }
   }, [madeGuess]);
 
   useEffect(() => {
@@ -78,7 +75,6 @@ const Game = ({
     if(currentAction === 'player hides' || currentAction === 'player seeks') setButtonDisabled(false);
     else if(currentAction === 'computer hides') setTimeout(() => computerHidesItem(), timer);
     else if(currentAction === 'computer seeks') setTimeout(() => computerMakesGuess(), timer);
-    else if(currentAction === '') console.log('No one is acting');
   }, [currentAction]);
 
   const incrementScore = (scorer) => {
@@ -102,7 +98,6 @@ const Game = ({
   };
 
   const handleHide = (hiddenSpot, seeker) => {
-    setCorrecttGuess(hiddenSpot);
     setHidingSpot(hiddenSpot);
     setCurrentAction(`${seeker} seeks`);
   };
@@ -118,13 +113,14 @@ const Game = ({
   };
 
   const onPlayerTurnClick = ({ target }) => {
+    const playerSelection = Number(target.value);
+  
     if(currentAction === 'player seeks') {
-      const playerGuess = Number(target.value);
-      handleGuess(playerGuess, 'player');
+      handleGuess(playerSelection, 'player');
     } else if(currentAction === 'player hides') {
-      const playerHidingSpot = Number(target.value);      
-      handleHide(playerHidingSpot, 'computer');
+      handleHide(playerSelection, 'computer');
     }
+  
     setButtonDisabled(true);
   };
 
@@ -142,7 +138,7 @@ const Game = ({
         <p>{message}</p>
         {
           displayResult &&
-          <p>Guess: {currentGuess} vs Hiding Spot: {correcttGuess}</p>
+          <p>Guess: {currentGuess} vs Hiding Spot: {hidingSpot}</p>
         }
       </section>
       <GameBoard

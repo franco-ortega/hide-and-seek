@@ -110,7 +110,6 @@
 
     @include screen-size(desktop) {
         height: $main-height-desktop;
-        // padding: 3vw;
         font-size: 1.5vw;
 
         section {
@@ -136,6 +135,7 @@
 
                 button {
                     border-radius: .25vw;
+                    padding: .5vw;
                     font-size: 1vw;
                 }
             }
