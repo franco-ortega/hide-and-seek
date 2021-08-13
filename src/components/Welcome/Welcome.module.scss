@@ -65,7 +65,6 @@
     @include screen-size(tablet-portrait) {
         height: $main-height-tablet;
         font-size: 4vw;
-        overflow: hidden;
 
         section {
             h2 {
@@ -101,7 +100,7 @@
 
     @include screen-size(desktop-small) {
         height: $main-height-desktop-small;
-        padding: 5vw;
+        padding: 4vw;
         font-size: 2vw;
 
         section {
@@ -139,7 +138,7 @@
     
                 button {
                     border-radius: .5vw;
-                    padding: .25vw .5vw;
+                    padding: .75vw;
                     font-size: 1.75vw;
                 }
             }
@@ -148,7 +147,6 @@
 
     @include screen-size(desktop) {
         height: $main-height-desktop;
-        padding: 5vw;
         font-size: 1.5vw;
 
         section {
@@ -182,6 +180,7 @@
     
                 button {
                     border-radius: .25vw;
+                    padding: .5vw;
                     font-size: 1vw;
                 }
             }

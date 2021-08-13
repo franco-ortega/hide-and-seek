@@ -13,11 +13,6 @@
     align-items: center;
     gap: 5vw;
 
-    // section:nth-child(1) {
-    //     background: $umber;
-    //     width: 100%;
-    // }
-
     section:nth-child(2) {
         height: 12vh;
         display: flex;
@@ -35,7 +30,6 @@
         }
     }
 
-
     @include screen-size(tablet-portrait) {
         height: $main-height-tablet;
         font-size: 4vw;
@@ -52,54 +46,30 @@
         }
     }
   
-  @include screen-size(desktop-small) {
-    height: $main-height-desktop-small;
-    padding: 5vw;
-    font-size: 2.25vw;
-    gap: 0vw;
-    
+    @include screen-size(desktop-small) {
+        height: $main-height-desktop-small;
+        padding: 4vw;
+        padding-bottom: 0;
+        font-size: 2.25vw;
+        gap: 1vw;
+        
         section:nth-child(2) {
-            height: 18vh;
-            color: red;
+            height: 12vh;
         }
 
         section  {
             p + p {
-                margin-top: 1vw;
+                margin-top: 0vw;
             }
         }
     }
-  
-  @include screen-size(desktop) {
-    .Game {
-        font-size: 2vw;
-        gap: 1vw;
-        padding: 1vw;
+    
+    @include screen-size(desktop) {
+        gap: .75vw;
+        font-size: 1.5vw;
 
-        section  {
-            padding: 1vw;
-        }
-
-        // section {
-        //     width: 50%;
-        // }
-
-        // .Buttons {
-        //     height: 25vh;
-        //     background: pink;
-        // }
-
-
-        section + p {
-            // border: thin dashed white;
-            margin: 1vw;
-        }
-
-        p + p {
-            // color: pink;
-            height: 8vh;
+        section:nth-child(2) {
+            height: 10vh;
         }
     }
-  }
-
 }

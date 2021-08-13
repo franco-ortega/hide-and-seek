@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import './App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from '../Header/Header';
 import Home from '../Home/Home';
 import Welcome from '../Welcome/Welcome';
 import Game from '../Game/Game';
 import Results from '../Results/Results';
-// import { Router, Route, Switch } from "react-router";
-
+import './App.scss';
 
 const App = () => {
   const [gameActive, setGameActive] = useState(false);
@@ -19,12 +17,7 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-        <Header
-          gameActive={gameActive}
-          player={player}
-          playerScore={playerScore}
-          computerScore={computerScore}
-        />
+        <Header />
         <Switch>
           <Route
             exact path="/"
