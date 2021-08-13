@@ -4,11 +4,9 @@
     background: $dark-purple;
     height: $main-height;
     padding: 8vw;
-
     color: $tea-green;
     font-family: $main-font;
     font-size: 5.5vw;
-
 
     section {
         background: $umber;
@@ -82,23 +80,26 @@
 
     @include screen-size(desktop-small) {
         height: $main-height-desktop-small;
-        padding: 3vw;
-        font-size: 3vw;
+        padding: 4vw;
+        font-size: 2vw;
 
         section {
             border-radius: .5vw;
-            width: 60%;
-            gap: 3vw;
+            width: 65%;
+            margin: auto;
+            gap: 1vw;
 
             p {
-                // gap: .25vw;
+                gap: .25vw;
             }
 
             p + p {
-                flex-direction: row;
-                gap: 2vw;
+                border-radius: .5vw;
+                justify-content: center;
+                gap: 1.5vw;
 
                 button {
+                    border-radius: .5vw;
                     width: 30%;
                     padding: .75vw;
                     font-size: 1.75vw;
@@ -110,16 +111,11 @@
     @include screen-size(desktop) {
         height: $main-height-desktop;
         // padding: 3vw;
-        font-size: 1.75vw;
-        gap: 2.5vw;
-
-        h2 {
-            font-size: 4.5vw;
-        }
+        font-size: 1.5vw;
 
         section {
             border-radius: .25vw;
-            width: 40%;
+            width: 50%;
             padding: 1.5vw 0 2vw 0vw;
             gap: 1.5vw;
 
@@ -128,11 +124,14 @@
             }
 
             p + p {
+                border-radius: .25vw;
+                padding: 2vw;
+                margin: .75vw;
                 gap: 1.5vw;
-                justify-content: center;
+                justify-content: space-around;
 
                 button {
-                    border-radius: .5vw;
+                    border-radius: .25vw;
                     width: 25%;
                     padding: .75vw;
                     font-size: 1vw;

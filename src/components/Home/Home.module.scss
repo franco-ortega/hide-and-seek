@@ -2,7 +2,7 @@
 
 .Home {
     background: $dark-purple;
-    height: 90vh;
+    height: $main-height;
     padding: 8vw;
     color: $tea-green;
     font-family: $main-font;
@@ -75,7 +75,7 @@
 
     @include screen-size(desktop-small) {
         height: $main-height-desktop-small;
-        padding: 5vw;
+        padding: 4vw;
         font-size: 2vw;
 
         section {
@@ -101,7 +101,7 @@
 
                 button {
                     border-radius: .5vw;
-                    padding: .25vw .5vw;
+                    padding: .75vw;
                     font-size: 1.75vw;
                 }
             }
@@ -110,7 +110,7 @@
 
     @include screen-size(desktop) {
         height: $main-height-desktop;
-        padding: 5vw;
+        // padding: 3vw;
         font-size: 1.5vw;
 
         section {

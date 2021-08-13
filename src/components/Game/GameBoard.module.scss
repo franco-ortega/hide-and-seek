@@ -16,4 +16,9 @@
         width: 55%;
         gap: 1vw;
     }
+
+    @include screen-size(desktop) {
+        width: 50%;
+        padding: 1vw;
+    }
 }

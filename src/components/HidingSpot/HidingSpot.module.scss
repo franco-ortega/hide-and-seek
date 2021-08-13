@@ -8,9 +8,7 @@
     border-width: 1vw;
 
     width: 15vw;
-    // aspect-ratio: 1/1;
     padding: 2vw;
-    // margin: 2vw;
     color: $dark-purple;
     font-size: 7vw;
     cursor: pointer;
@@ -32,11 +30,12 @@
     @include screen-size(desktop) {
         border-width: .35vw;
         width: 7.5vw;
-        margin: .75vw;
+        margin: .5vw;
+        padding: 1.75vw;
         font-size: 2.5vw;
     }  
 }
 
 .HidingSpot:disabled {
-    opacity: 80%;
+    opacity: 95%;
 }
