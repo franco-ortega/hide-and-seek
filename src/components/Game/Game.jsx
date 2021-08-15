@@ -20,7 +20,7 @@ const Game = ({
   
   const finalRound = 5;
   const hidingSpots = boxCount(difficulty);
-  const timer = 500;
+  const timer = 2000;
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
   // List of currentActions: computer hides, player seeks, player hides, computer seeks
@@ -84,31 +84,29 @@ const Game = ({
     setButtonDisabled(true);
   };
 
-
   useEffect(() => {
-    if(currentRound === finalRound && madeGuess === 'computer') {
-      setButtonDisabled(true);
-      setTimeout(() => {
+    const gameOver = currentRound === finalRound && madeGuess === 'computer';
+  
+    if(gameOver) setButtonDisabled(true);
+
+    setTimeout(() => {
+      if(gameOver) {
         setDisplayResult(false);
         setGameActive(false);
         setTimeout(() => history.push('/results'), timer);
-      }, timer);
-    } else {
-      setTimeout(() => {
-        if(madeGuess === 'player') {
-          setDisplayResult(false);
-          setCurrentAction('player hides');
-        } else if(madeGuess === 'computer') {
-          setDisplayResult(false);
-          setNewRound(true);
-          incrementRound();
-          setTimeout(() => {
-            setNewRound(false);
-            setCurrentAction('computer hides');
-          }, timer);
-        }
-      }, timer);
-    }
+      } else if(madeGuess === 'player') {
+        setDisplayResult(false);
+        setCurrentAction('player hides');
+      } else if(madeGuess === 'computer') {
+        setDisplayResult(false);
+        setNewRound(true);
+        incrementRound();
+        setTimeout(() => {
+          setNewRound(false);
+          setCurrentAction('computer hides');
+        }, timer);
+      }
+    }, timer);
   }, [madeGuess]);
 
   useEffect(() => {
