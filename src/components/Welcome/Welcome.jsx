@@ -21,7 +21,7 @@ const Welcome = ({ setDifficulty }) => {
         <ol>
           <li>The computer will hide the item in a circle.</li>
           <li>You can guess where the item is hidden by clicking on a circle.</li>
-          <li>Then you get to hide the item by clicking on a box.</li>
+          <li>Then you get to hide the item by clicking on a circle.</li>
           <li>The computer will try to guess where you hid the item.</li>
           <li>Every correct guess scores one point.</li>
           <li>The game ends after five rounds.</li>
