@@ -9,7 +9,6 @@ const Welcome = ({ setDifficulty, setGameActive }) => {
   const { player } = useGameContext();
 
   const onStartGameClick = () => {
-    console.log('Start Game Clicked!');
     setGameActive(true);
     history.push('/game');
   };

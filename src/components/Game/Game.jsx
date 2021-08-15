@@ -40,7 +40,6 @@ const Game = ({
   const message = displayMessage();
 
   useEffect(() => {
-    console.log('Score Check useEffect');
     if(currentRound === finalRound && madeGuess === 'computer') {
       setButtonDisabled(true);
       setTimeout(() => {
@@ -70,7 +69,6 @@ const Game = ({
   }, [madeGuess]);
 
   useEffect(() => {
-    console.log('Current Action useEffect');
     if(currentAction === 'player hides' || currentAction === 'player seeks') setButtonDisabled(false);
     else if(currentAction === 'computer hides') setTimeout(() => computerHidesItem(), timer);
     else if(currentAction === 'computer seeks') setTimeout(() => computerMakesGuess(), timer);
