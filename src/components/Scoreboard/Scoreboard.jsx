@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Scoreboard.module.scss';
+import { useGameContext } from '../../state/GameContext';
 
-const Scoreboard = ({ player, playerScore, computerScore }) => {
+const Scoreboard = ({ playerScore, computerScore }) => {
+  const { player } = useGameContext();
 
   return (
     <section className={styles.Scoreboard}>
@@ -16,7 +18,6 @@ const Scoreboard = ({ player, playerScore, computerScore }) => {
 };
 
 Scoreboard.propTypes = {
-  player: PropTypes.string.isRequired,
   playerScore: PropTypes.number.isRequired,
   computerScore: PropTypes.number.isRequired
 };

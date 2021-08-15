@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Results.module.scss';
 import { useHistory } from 'react-router';
+import { useGameContext } from '../../state/GameContext';
 
 const Results = ({
   playerScore,
@@ -11,6 +12,8 @@ const Results = ({
   setGameActive
 }) => {
   let history = useHistory();
+  const { setPlayer } = useGameContext();
+
   let resultsMessage;
 
   if(playerScore > computerScore) resultsMessage = 'You win!!!';
@@ -36,6 +39,7 @@ const Results = ({
 
   const onNewPlayerClick = () => {
     resetScores();
+    setPlayer('');
     history.push('/');
   };
 

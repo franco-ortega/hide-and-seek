@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState } from 'react';
 
 const GameContext = createContext(null);
 
+// eslint-disable-next-line react/prop-types
 export const GameProvider = ({ children }) => {
   const [player, setPlayer] = useState('');
 
@@ -15,4 +16,5 @@ export const GameProvider = ({ children }) => {
 export const useGameContext = () => {
   const { player, setPlayer } = useContext(GameContext);
   return { player, setPlayer };
-}
+};
+
