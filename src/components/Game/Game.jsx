@@ -20,7 +20,7 @@ const Game = ({
   
   const finalRound = 5;
   const hidingSpots = boxCount(difficulty);
-  const timer = 2000;
+  const timer = 500;
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
   // List of currentActions: computer hides, player seeks, player hides, computer seeks
@@ -93,20 +93,20 @@ const Game = ({
         setGameActive(false);
         setTimeout(() => history.push('/results'), timer);
       }, timer);
-    } else if(madeGuess === 'player') {
+    } else {
       setTimeout(() => {
-        setDisplayResult(false);
-        setCurrentAction('player hides');
-      }, timer);
-    } else if(madeGuess === 'computer') {
-      setTimeout(() => {
-        setDisplayResult(false);
-        setNewRound(true);
-        incrementRound();
-        setTimeout(() => {
-          setNewRound(false);
-          setCurrentAction('computer hides');
-        }, timer);
+        if(madeGuess === 'player') {
+          setDisplayResult(false);
+          setCurrentAction('player hides');
+        } else if(madeGuess === 'computer') {
+          setDisplayResult(false);
+          setNewRound(true);
+          incrementRound();
+          setTimeout(() => {
+            setNewRound(false);
+            setCurrentAction('computer hides');
+          }, timer);
+        }
       }, timer);
     }
   }, [madeGuess]);
