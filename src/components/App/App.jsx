@@ -9,7 +9,6 @@ import Results from '../Results/Results';
 import './App.scss';
 
 const App = () => {
-  const [gameActive, setGameActive] = useState(false);
   const [playerScore, setPlayerScore] = useState(0);
   const [computerScore, setComputerScore] = useState(0);
   const [difficulty, setDifficulty] = useState('');
@@ -28,14 +27,12 @@ const App = () => {
               exact path="/welcome"
               render={() => <Welcome
                 setDifficulty={setDifficulty}
-                setGameActive={setGameActive}/>}
+              />}
             />
             <Route
               exact path="/game"
               render={() => <Game
                 difficulty={difficulty}
-                gameActive={gameActive}
-                setGameActive={setGameActive}
                 setPlayerScore={setPlayerScore}
                 setComputerScore={setComputerScore}
                 playerScore={playerScore}
@@ -44,8 +41,6 @@ const App = () => {
             <Route
               exact path="/results"
               render={() => <Results
-                setGameActive={setGameActive}
-                gameActive={gameActive}
                 setPlayerScore={setPlayerScore}
                 playerScore={playerScore}
                 setComputerScore={setComputerScore}

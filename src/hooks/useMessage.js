@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useGameContext } from '../state/GameContext';
 
-export const useMessage = (currentAction, currentRound, finalRound, gameActive) => {
+export const useMessage = (currentAction, currentRound, finalRound) => {
+  const { gameActive } = useGameContext();
   const [correct, setCorrect] = useState(false);
   const [displayResult, setDisplayResult] = useState(false);
   const [newRound, setNewRound] = useState(false);

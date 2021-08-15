@@ -6,17 +6,18 @@ import { useMessage } from '../../hooks/useMessage';
 import { boxCount, generateNumber } from '../../utils/utils';
 import PropTypes from 'prop-types';
 import styles from './Game.module.scss';
+import { useGameContext } from '../../state/GameContext';
 
 const Game = ({
   difficulty,
-  gameActive,
-  setGameActive,
   playerScore,
   setPlayerScore,
   computerScore,
   setComputerScore
 }) => {
   const history = useHistory();
+  const { setGameActive } = useGameContext();
+  
   const finalRound = 5;
   const hidingSpots = boxCount(difficulty);
   const timer = 2000;
@@ -35,7 +36,7 @@ const Game = ({
     setCorrect,
     setDisplayResult,
     setNewRound
-  } = useMessage(currentAction, currentRound, finalRound, gameActive);
+  } = useMessage(currentAction, currentRound, finalRound);
 
   const message = displayMessage();
 
@@ -113,7 +114,6 @@ const Game = ({
   useEffect(() => {
     if(currentAction === 'player hides' || currentAction === 'player seeks') setButtonDisabled(false);
     else if(currentAction === 'computer hides' || currentAction === 'computer seeks') setTimeout(() => computerTurn(), timer);
-    // else if(currentAction === 'computer seeks') setTimeout(() => computerMakesGuess(), timer);
   }, [currentAction]);
 
   return (
@@ -143,8 +143,6 @@ const Game = ({
 
 Game.propTypes = {
   difficulty: PropTypes.string.isRequired,
-  gameActive: PropTypes.bool.isRequired,
-  setGameActive: PropTypes.func.isRequired,
   playerScore: PropTypes.number.isRequired,
   setPlayerScore: PropTypes.func.isRequired,
   computerScore: PropTypes.number.isRequired,
