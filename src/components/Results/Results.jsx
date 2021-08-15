@@ -9,7 +9,6 @@ const Results = ({
   setPlayerScore,
   computerScore,
   setComputerScore
-  // setGameActive
 }) => {
   let history = useHistory();
   const { setPlayer, setGameActive } = useGameContext();
@@ -66,7 +65,6 @@ Results.propTypes = {
   setPlayerScore: PropTypes.func.isRequired,
   computerScore: PropTypes.number.isRequired,
   setComputerScore: PropTypes.func.isRequired
-  // setGameActive: PropTypes.func.isRequired
 };
 
 export default Results;

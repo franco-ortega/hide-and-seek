@@ -10,8 +10,6 @@ import { useGameContext } from '../../state/GameContext';
 
 const Game = ({
   difficulty,
-  // gameActive,
-  // setGameActive,
   playerScore,
   setPlayerScore,
   computerScore,
@@ -22,7 +20,7 @@ const Game = ({
   
   const finalRound = 5;
   const hidingSpots = boxCount(difficulty);
-  const timer = 500;
+  const timer = 2000;
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
   // List of currentActions: computer hides, player seeks, player hides, computer seeks
@@ -116,7 +114,6 @@ const Game = ({
   useEffect(() => {
     if(currentAction === 'player hides' || currentAction === 'player seeks') setButtonDisabled(false);
     else if(currentAction === 'computer hides' || currentAction === 'computer seeks') setTimeout(() => computerTurn(), timer);
-    // else if(currentAction === 'computer seeks') setTimeout(() => computerMakesGuess(), timer);
   }, [currentAction]);
 
   return (
@@ -146,8 +143,6 @@ const Game = ({
 
 Game.propTypes = {
   difficulty: PropTypes.string.isRequired,
-  // gameActive: PropTypes.bool.isRequired,
-  // setGameActive: PropTypes.func.isRequired,
   playerScore: PropTypes.number.isRequired,
   setPlayerScore: PropTypes.func.isRequired,
   computerScore: PropTypes.number.isRequired,
