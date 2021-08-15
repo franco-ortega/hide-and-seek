@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 import styles from './Welcome.module.scss';
 import { useGameContext } from '../../state/GameContext';
 
-const Welcome = ({ setDifficulty, setGameActive }) => {
+const Welcome = ({ setDifficulty,
+  // setGameActive
+}) => {
   let history = useHistory();
-  const { player } = useGameContext();
+  const { player, setGameActive } = useGameContext();
 
   const onStartGameClick = () => {
     setGameActive(true);
@@ -47,7 +49,7 @@ const Welcome = ({ setDifficulty, setGameActive }) => {
 
 Welcome.propTypes = {
   setDifficulty: PropTypes.func,
-  setGameActive: PropTypes.func.isRequired
+  // setGameActive: PropTypes.func.isRequired
 };
 
 export default Welcome;

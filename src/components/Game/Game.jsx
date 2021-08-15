@@ -6,17 +6,20 @@ import { useMessage } from '../../hooks/useMessage';
 import { boxCount, generateNumber } from '../../utils/utils';
 import PropTypes from 'prop-types';
 import styles from './Game.module.scss';
+import { useGameContext } from '../../state/GameContext';
 
 const Game = ({
   difficulty,
-  gameActive,
-  setGameActive,
+  // gameActive,
+  // setGameActive,
   playerScore,
   setPlayerScore,
   computerScore,
   setComputerScore
 }) => {
   const history = useHistory();
+  const { gameActive, setGameActive } = useGameContext();
+  
   const finalRound = 5;
   const hidingSpots = boxCount(difficulty);
   const timer = 2000;
