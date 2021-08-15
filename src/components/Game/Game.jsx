@@ -9,6 +9,7 @@ import styles from './Game.module.scss';
 
 const Game = ({
   difficulty,
+  gameActive,
   setGameActive,
   playerScore,
   setPlayerScore,
@@ -33,9 +34,8 @@ const Game = ({
     displayResult,
     setCorrect,
     setDisplayResult,
-    setGameOver,
     setNewRound
-  } = useMessage(currentAction, currentRound, finalRound);
+  } = useMessage(currentAction, currentRound, finalRound, gameActive);
 
   const message = displayMessage();
 
@@ -89,11 +89,8 @@ const Game = ({
       setButtonDisabled(true);
       setTimeout(() => {
         setDisplayResult(false);
-        setGameOver(true);
-        setTimeout(() => {
-          setGameActive(false);
-          history.push('/results');
-        }, timer);
+        setGameActive(false);
+        setTimeout(() => history.push('/results'), timer);
       }, timer);
     } else if(madeGuess === 'player') {
       setTimeout(() => {
@@ -146,6 +143,7 @@ const Game = ({
 
 Game.propTypes = {
   difficulty: PropTypes.string.isRequired,
+  gameActive: PropTypes.bool.isRequired,
   setGameActive: PropTypes.func.isRequired,
   playerScore: PropTypes.number.isRequired,
   setPlayerScore: PropTypes.func.isRequired,
