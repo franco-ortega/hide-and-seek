@@ -39,6 +39,49 @@ const Game = ({
 
   const message = displayMessage();
 
+  const incrementScore = (scorer) => {
+    if(scorer === 'player') setPlayerScore(prev => (prev + 1));
+    else if(scorer === 'computer') setComputerScore(prev => (prev + 1));
+  };
+
+  const incrementRound = () => setCurrentRound(prev => (prev + 1));
+
+  const handleGuess = (guess, guesser) => {
+    if(guess === hidingSpot) {
+      incrementScore(guesser);
+      setCorrect(true);
+    } else {
+      setCorrect(false);
+    }
+
+    setCurrentGuess(guess);
+    setDisplayResult(true);
+    setMadeGuess(guesser);
+  };
+
+  const handleHide = (hiddenSpot, seeker) => {
+    setHidingSpot(hiddenSpot);
+    setCurrentAction(`${seeker} seeks`);
+  };
+
+  // Participant actions: computer and player
+  const computerTurn = () => {
+    const computerSelection = generateNumber(hidingSpots);
+
+    if(currentAction === 'computer seeks') handleGuess(computerSelection, 'computer');
+    else if(currentAction === 'computer hides') handleHide(computerSelection, 'player');
+  };
+
+  const onPlayerTurnClick = ({ target }) => {
+    const playerSelection = Number(target.value);
+  
+    if(currentAction === 'player seeks') handleGuess(playerSelection, 'player');
+    else if(currentAction === 'player hides') handleHide(playerSelection, 'computer');
+  
+    setButtonDisabled(true);
+  };
+
+
   useEffect(() => {
     if(currentRound === finalRound && madeGuess === 'computer') {
       setButtonDisabled(true);
@@ -70,53 +113,9 @@ const Game = ({
 
   useEffect(() => {
     if(currentAction === 'player hides' || currentAction === 'player seeks') setButtonDisabled(false);
-    else if(currentAction === 'computer hides') setTimeout(() => computerHidesItem(), timer);
-    else if(currentAction === 'computer seeks') setTimeout(() => computerMakesGuess(), timer);
+    else if(currentAction === 'computer hides' || currentAction === 'computer seeks') setTimeout(() => computerTurn(), timer);
+    // else if(currentAction === 'computer seeks') setTimeout(() => computerMakesGuess(), timer);
   }, [currentAction]);
-
-  const incrementScore = (scorer) => {
-    if(scorer === 'player') setPlayerScore(prev => (prev + 1));
-    else if(scorer === 'computer') setComputerScore(prev => (prev + 1));
-  };
-
-  const incrementRound = () => setCurrentRound(prev => (prev + 1));
-
-  const handleGuess = (guess, guesser) => {
-    if(guess === hidingSpot) {
-      incrementScore(guesser);
-      setCorrect(true);
-    } else {
-      setCorrect(false);
-    }
-
-    setCurrentGuess(guess);
-    setDisplayResult(true);
-    setMadeGuess(guesser);
-  };
-
-  const handleHide = (hiddenSpot, seeker) => {
-    setHidingSpot(hiddenSpot);
-    setCurrentAction(`${seeker} seeks`);
-  };
-
-  const computerHidesItem = () => {
-    const computerHidingSpot = generateNumber(hidingSpots);
-    handleHide(computerHidingSpot, 'player');
-  };
-
-  const computerMakesGuess = () => {
-    const computerGuess = generateNumber(hidingSpots);
-    handleGuess(computerGuess, 'computer');
-  };
-
-  const onPlayerTurnClick = ({ target }) => {
-    const playerSelection = Number(target.value);
-  
-    if(currentAction === 'player seeks') handleGuess(playerSelection, 'player');
-    else if(currentAction === 'player hides') handleHide(playerSelection, 'computer');
-  
-    setButtonDisabled(true);
-  };
 
   return (
     <main className={styles.Game}>
