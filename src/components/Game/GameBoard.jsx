@@ -6,12 +6,6 @@ import HidingSpot from '../HidingSpot/HidingSpot';
 const GameBoard = ({ buttonDisabled, hidingSpots, onPlayerTurnClick }) => {
   let hidingSpotList = [];
 
-  //   let boxes;
-
-  //   if(difficulty === 'easy') boxes = 3;
-  //   if(difficulty === 'medium') boxes = 6;
-  //   if(difficulty === 'hard') boxes = 3;
-
   for(let i = 0; i < hidingSpots; i++) {
     hidingSpotList.push(
       <HidingSpot

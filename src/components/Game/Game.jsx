@@ -123,7 +123,6 @@ const Game = ({
   return (
     <main className={styles.Game}>
       <Scoreboard
-        // player={player}
         playerScore={playerScore}
         computerScore={computerScore}
       />
