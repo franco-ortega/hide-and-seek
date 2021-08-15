@@ -114,11 +114,8 @@ const Game = ({
   const onPlayerTurnClick = ({ target }) => {
     const playerSelection = Number(target.value);
   
-    if(currentAction === 'player seeks') {
-      handleGuess(playerSelection, 'player');
-    } else if(currentAction === 'player hides') {
-      handleHide(playerSelection, 'computer');
-    }
+    if(currentAction === 'player seeks') handleGuess(playerSelection, 'player');
+    else if(currentAction === 'player hides') handleHide(playerSelection, 'computer');
   
     setButtonDisabled(true);
   };
