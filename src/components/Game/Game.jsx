@@ -24,9 +24,9 @@ const Game = ({
   // List of currentActions: computer hides, player seeks, player hides, computer seeks
   const [currentAction, setCurrentAction] = useState('computer hides');
   const [currentRound, setCurrentRound] = useState(1);
-  const [currentGuess, setCurrentGuess] = useState(0);
-  const [hidingSpot, setHidingSpot] = useState(0);
-  const [madeGuess, setMadeGuess] = useState('');
+  const [currentGuess, setCurrentGuess] = useState(null);
+  const [hidingSpot, setHidingSpot] = useState(null);
+  const [madeGuess, setMadeGuess] = useState(null);
 
   const {
     displayMessage,
@@ -46,6 +46,13 @@ const Game = ({
 
   const incrementRound = () => setCurrentRound(prev => (prev + 1));
 
+  // Handles the hiding of an item and passes the action to the seeker.
+  const handleHide = (hiddenSpot, seeker) => {
+    setHidingSpot(hiddenSpot);
+    setCurrentAction(`${seeker} seeks`);
+  };
+
+  // Handles the seeking of an item and checks to see if the selection was correct.
   const handleGuess = (guess, guesser) => {
     if(guess === hidingSpot) {
       incrementScore(guesser);
@@ -57,11 +64,6 @@ const Game = ({
     setCurrentGuess(guess);
     setDisplayResult(true);
     setMadeGuess(guesser);
-  };
-
-  const handleHide = (hiddenSpot, seeker) => {
-    setHidingSpot(hiddenSpot);
-    setCurrentAction(`${seeker} seeks`);
   };
 
   // Participant actions: computer and player
