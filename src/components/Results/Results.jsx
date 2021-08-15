@@ -52,7 +52,7 @@ const Results = ({
         </p>
         <p>
           <button onClick={onPlayAgainClick}>Replay Game</button>
-          <button onClick={onNewGameClick}>New Game</button>
+          <button onClick={onNewGameClick}>New Difficulty</button>
           <button onClick={onNewPlayerClick}>New Player</button>
         </p>
       </section>

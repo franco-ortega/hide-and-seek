@@ -38,9 +38,9 @@ export const useMessage = (currentAction, currentRound, finalRound) => {
       case 'computer seeks':
         return 'The computer is guessing where you hid the item.';
       case 'player hides':
-        return 'Now it\'s your turn to hide the item. Click on a box to hide it.';
+        return 'Now it\'s your turn to hide the item. Click on a circle to hide it.';
       case 'player seeks':
-        return 'Click on a box to guess where the item is hidden.';
+        return 'Click on a circle to guess where the item is hidden.';
       default:
         return 'Something strange happened';
       }
