@@ -18,11 +18,11 @@ const Game = ({
   setComputerScore
 }) => {
   const history = useHistory();
-  const { gameActive, setGameActive } = useGameContext();
+  const { setGameActive } = useGameContext();
   
   const finalRound = 5;
   const hidingSpots = boxCount(difficulty);
-  const timer = 2000;
+  const timer = 500;
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
   // List of currentActions: computer hides, player seeks, player hides, computer seeks
@@ -38,7 +38,7 @@ const Game = ({
     setCorrect,
     setDisplayResult,
     setNewRound
-  } = useMessage(currentAction, currentRound, finalRound, gameActive);
+  } = useMessage(currentAction, currentRound, finalRound);
 
   const message = displayMessage();
 
@@ -146,8 +146,8 @@ const Game = ({
 
 Game.propTypes = {
   difficulty: PropTypes.string.isRequired,
-  gameActive: PropTypes.bool.isRequired,
-  setGameActive: PropTypes.func.isRequired,
+  // gameActive: PropTypes.bool.isRequired,
+  // setGameActive: PropTypes.func.isRequired,
   playerScore: PropTypes.number.isRequired,
   setPlayerScore: PropTypes.func.isRequired,
   computerScore: PropTypes.number.isRequired,
