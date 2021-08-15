@@ -111,10 +111,10 @@ const Game = ({
     }, timer);
   }, [madeGuess]);
 
-  // Checks the current action, and proceeds accordingly.
+  // Checks to see which participant is conducting the current action, and proceeds accordingly.
   useEffect(() => {
-    if(currentAction === 'player hides' || currentAction === 'player seeks') setButtonDisabled(false);
-    else if(currentAction === 'computer hides' || currentAction === 'computer seeks') setTimeout(() => computerTurn(), timer);
+    if(currentAction.includes('player')) setButtonDisabled(false);
+    else if(currentAction.includes('computer')) setTimeout(() => computerTurn(), timer);
   }, [currentAction]);
 
   return (
