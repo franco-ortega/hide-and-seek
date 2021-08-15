@@ -22,9 +22,9 @@ const Game = ({
   const hidingSpots = boxCount(difficulty);
   const timer = 2000;
 
-  const [buttonDisabled, setButtonDisabled] = useState(true);
   // List of currentActions: computer hides, player seeks, player hides, computer seeks
   const [currentAction, setCurrentAction] = useState('computer hides');
+  const [buttonDisabled, setButtonDisabled] = useState(true);
   const [currentRound, setCurrentRound] = useState(1);
   const [currentGuess, setCurrentGuess] = useState(null);
   const [hidingSpot, setHidingSpot] = useState(null);
@@ -53,7 +53,7 @@ const Game = ({
     setCurrentAction(`${seeker} seeks`);
   };
 
-  // Handles the seeking of an item and checks to see if the selection was correct.
+  // Handles the seeking of an item by checking to see if the selection was correct.
   const handleGuess = (guess, guesser) => {
     if(guess === hidingSpot) {
       incrementScore(guesser);
@@ -67,7 +67,7 @@ const Game = ({
     setMadeGuess(guesser);
   };
 
-  // Participant actions: computer and player
+  // Handles selection and actions of computer.
   const computerTurn = () => {
     const computerSelection = generateNumber(hidingSpots);
 
@@ -75,6 +75,7 @@ const Game = ({
     else if(currentAction === 'computer hides') handleHide(computerSelection, 'player');
   };
 
+  // Handles selection and actions of player.
   const onPlayerTurnClick = ({ target }) => {
     const playerSelection = Number(target.value);
   
@@ -84,6 +85,7 @@ const Game = ({
     setButtonDisabled(true);
   };
 
+  // Checks to see if game ends or continues, and proceeds accordingly.
   useEffect(() => {
     const gameOver = currentRound === finalRound && madeGuess === 'computer';
   
@@ -109,6 +111,7 @@ const Game = ({
     }, timer);
   }, [madeGuess]);
 
+  // Checks the current action, and proceeds accordingly.
   useEffect(() => {
     if(currentAction === 'player hides' || currentAction === 'player seeks') setButtonDisabled(false);
     else if(currentAction === 'computer hides' || currentAction === 'computer seeks') setTimeout(() => computerTurn(), timer);
