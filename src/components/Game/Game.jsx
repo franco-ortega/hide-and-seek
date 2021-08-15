@@ -10,7 +10,6 @@ import styles from './Game.module.scss';
 const Game = ({
   difficulty,
   setGameActive,
-  player,
   playerScore,
   setPlayerScore,
   computerScore,
@@ -127,7 +126,7 @@ const Game = ({
   return (
     <main className={styles.Game}>
       <Scoreboard
-        player={player}
+        // player={player}
         playerScore={playerScore}
         computerScore={computerScore}
       />
@@ -153,7 +152,6 @@ const Game = ({
 Game.propTypes = {
   difficulty: PropTypes.string.isRequired,
   setGameActive: PropTypes.func.isRequired,
-  player: PropTypes.string.isRequired,
   playerScore: PropTypes.number.isRequired,
   setPlayerScore: PropTypes.func.isRequired,
   computerScore: PropTypes.number.isRequired,

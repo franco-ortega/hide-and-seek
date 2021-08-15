@@ -1,10 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import PropTypes from 'prop-types';
+import { useGameContext } from '../../state/GameContext';
 import styles from './Home.module.scss';
 
-const Home = ({ setPlayer }) => {
+const Home = () => {
   let history = useHistory();
+  const { setPlayer } = useGameContext();
 
   const onPlayerSubmit = (e) => {
     e.preventDefault();
@@ -30,10 +31,6 @@ const Home = ({ setPlayer }) => {
       </section>
     </main>
   );
-};
-
-Home.propTypes = {
-  setPlayer: PropTypes.func
 };
 
 export default Home;

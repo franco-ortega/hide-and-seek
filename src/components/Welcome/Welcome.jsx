@@ -2,9 +2,11 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import styles from './Welcome.module.scss';
+import { useGameContext } from '../../state/GameContext';
 
-const Welcome = ({ player, setDifficulty, setGameActive }) => {
+const Welcome = ({ setDifficulty, setGameActive }) => {
   let history = useHistory();
+  const { player } = useGameContext();
 
   const onStartGameClick = () => {
     console.log('Start Game Clicked!');
@@ -45,7 +47,6 @@ const Welcome = ({ player, setDifficulty, setGameActive }) => {
 };
 
 Welcome.propTypes = {
-  player: PropTypes.string.isRequired,
   setDifficulty: PropTypes.func,
   setGameActive: PropTypes.func.isRequired
 };
