@@ -1,3 +1,9 @@
+export const DIFFICULTY_LEVELS = {
+  EASY: 'easy',
+  MEDIUM: 'medium',
+  HARD: 'hard'
+};
+
 export const boxCount = (difficulty) => {
     
   if(difficulty === 'easy') return 3;

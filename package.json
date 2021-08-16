@@ -2,6 +2,7 @@
   "name": "hide-and-seek",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "node-sass": "^6.0.0",
     "react": "^17.0.2",
