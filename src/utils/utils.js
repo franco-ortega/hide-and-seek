@@ -1,15 +1,12 @@
-const boxCount = (difficulty) => {
-  let boxes = 0;
+export const boxCount = (difficulty) => {
     
-  if(difficulty === 'easy') boxes = 3;
-  if(difficulty === 'medium') boxes = 4;
-  if(difficulty === 'hard') boxes = 8;
+  if(difficulty === 'easy') return 3;
+  if(difficulty === 'medium') return 4;
+  if(difficulty === 'hard') return 8;
 
-  return boxes;
+  return 0;
 };
 
-const generateNumber = (maxNum) => {
+export const generateNumber = (maxNum) => {
   return Math.ceil(Math.random() * maxNum);
 };
-
-module.exports = { boxCount, generateNumber };
