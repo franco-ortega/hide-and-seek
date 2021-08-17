@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import { useGameContext } from '../../state/GameContext';
 import GameBoard from './GameBoard';
 import Scoreboard from '../Scoreboard/Scoreboard';
 import { useMessage } from '../../hooks/useMessage';
 import { boxCount, generateNumber } from '../../utils/utils';
+import { ACTIONS } from '../../utils/enums';
 import PropTypes from 'prop-types';
 import styles from './Game.module.scss';
-import { useGameContext } from '../../state/GameContext';
 
 const Game = ({
   difficulty,
@@ -22,8 +23,10 @@ const Game = ({
   const hidingSpots = boxCount(difficulty);
   const timer = 2000;
 
-  // List of currentActions: computer hides, player seeks, player hides, computer seeks
-  const [currentAction, setCurrentAction] = useState('computer hides');
+  // List of currentAction values
+  const { COMPUTER_HIDES, COMPUTER_SEEKS, PLAYER_HIDES, PLAYER_SEEKS } = ACTIONS;
+
+  const [currentAction, setCurrentAction] = useState(COMPUTER_HIDES);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [currentRound, setCurrentRound] = useState(1);
   const [currentGuess, setCurrentGuess] = useState(null);
@@ -71,16 +74,16 @@ const Game = ({
   const computerTurn = () => {
     const computerSelection = generateNumber(hidingSpots);
 
-    if(currentAction === 'computer seeks') handleGuess(computerSelection, 'computer');
-    else if(currentAction === 'computer hides') handleHide(computerSelection, 'player');
+    if(currentAction === COMPUTER_SEEKS) handleGuess(computerSelection, 'computer');
+    else if(currentAction === COMPUTER_HIDES) handleHide(computerSelection, 'player');
   };
 
   // Handles selection and actions of player.
   const onPlayerTurnClick = ({ target }) => {
     const playerSelection = Number(target.value);
   
-    if(currentAction === 'player seeks') handleGuess(playerSelection, 'player');
-    else if(currentAction === 'player hides') handleHide(playerSelection, 'computer');
+    if(currentAction === PLAYER_SEEKS) handleGuess(playerSelection, 'player');
+    else if(currentAction === PLAYER_HIDES) handleHide(playerSelection, 'computer');
   
     setButtonDisabled(true);
   };
@@ -98,14 +101,14 @@ const Game = ({
         setTimeout(() => history.push('/results'), timer);
       } else if(madeGuess === 'player') {
         setDisplayResult(false);
-        setCurrentAction('player hides');
+        setCurrentAction(PLAYER_HIDES);
       } else if(madeGuess === 'computer') {
         setDisplayResult(false);
         setNewRound(true);
         incrementRound();
         setTimeout(() => {
           setNewRound(false);
-          setCurrentAction('computer hides');
+          setCurrentAction(COMPUTER_HIDES);
         }, timer);
       }
     }, timer);
